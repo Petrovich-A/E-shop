@@ -20,7 +20,7 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public String findAll(@RequestParam(required = false) Model model) {
+    public String findAll(Model model) {
         List<Student> students = studentService.findAll();
         model.addAttribute("students", students);
         return "students";
