@@ -4,15 +4,34 @@
     <title>Your first Spring application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
-<p><a href="/hello">Greet the world!</a></p>
 
-<form action="/hello" method="GET" id="nameForm">
-    <div>
-        <label for="nameField">How should the app call you?</label>
-        <input name="myName" id="nameField">
-        <button>Greet me!</button>
+<body>
+<p><a href="/index">Greet the world!</a></p>
+
+
+<div th:switch="${students}">
+    <h2 th:case="null">No students yet!</h2>
+    <div th:case="*">
+        <h2>students</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.id}"></td>
+                <td th:text="${student.firstName}"></td>
+                <td th:text="${student.lastName}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</form>
+    <p><a href="/signup">Add a new student</a></p>
+</div>
+
 </body>
 </html>
