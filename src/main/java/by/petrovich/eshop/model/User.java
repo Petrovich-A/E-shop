@@ -1,6 +1,5 @@
 package by.petrovich.eshop.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,26 +11,25 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 @Entity
-@Table(name = "students")
-//@ManyToOne(cascade = {CascadeType.ALL})
-//@JoinColumn(name = "fk_order", nullable = false)
-public class Student {
-
+@Table(name = "users")
+public class User {
     @Id
-    @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotBlank(message = "First name is required")
-    private String firstName;
-    @NotBlank(message = "Last name is required")
-    private String lastName;
-    @NotBlank(message = "City id is required")
-    private int cityId;
+    private String name;
+    @NotBlank(message = "Name is required")
+    private String password;
+    @NotBlank(message = "Password id is required")
+    private String email;
+//    @NotBlank(message = "Email id is required")
+
 }

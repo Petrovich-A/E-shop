@@ -1,0 +1,25 @@
+CREATE SCHEMA IF NOT EXISTS users;
+
+CREATE TABLE IF NOT EXISTS users
+(
+    id SERIAL,
+    name    text NOT NULL,
+    password    text NOT NULL,
+    email    text
+);
+
+ALTER TABLE users
+    OWNER TO postgres;
+
+
+	INSERT INTO users (name, last_name, city_id)
+values ('Wade', 'Williams', 3),
+       ('Dave', 'Harris', 4),
+       ('Seth', 'Thomas', 2),
+       ('Seth', 'Thomas', 1),
+       ('Ivan', 'Robinson', 7),
+       ('Riley', 'Walker', 8),
+       ('Daisy', 'Scott', 4),
+       ('Deborah', 'Nelson', 1),
+       ('Stella', 'Morgan', 6),
+       ('Debra', 'Cooper', 1);
