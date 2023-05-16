@@ -2,24 +2,35 @@ CREATE SCHEMA IF NOT EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id SERIAL,
-    name    text NOT NULL,
-    password    text NOT NULL,
-    email    text
+    id       SERIAL,
+    name     text NOT NULL,
+    password text NOT NULL,
+    email    text,
+    birthday date  NULL,
+    balance numeric
+
 );
 
 ALTER TABLE users
     OWNER TO postgres;
 
 
-	INSERT INTO users (name, last_name, city_id)
-values ('Wade', 'Williams', 3),
-       ('Dave', 'Harris', 4),
-       ('Seth', 'Thomas', 2),
-       ('Seth', 'Thomas', 1),
-       ('Ivan', 'Robinson', 7),
-       ('Riley', 'Walker', 8),
-       ('Daisy', 'Scott', 4),
-       ('Deborah', 'Nelson', 1),
-       ('Stella', 'Morgan', 6),
-       ('Debra', 'Cooper', 1);
+INSERT INTO users (name, password, email, birthday, balance)
+values ('Wade', 'Williams', 'test@mail.com', '1990-01-02', 0),
+       ('Dave', 'Harris', 'test@mail.com', '1990-01-02', 0),
+       ('Seth', 'Thomas', 'test@mail.com', '1990-01-02', 0),
+       ('Seth', 'Thomas', 'test@mail.com', '1990-01-02', 0),
+       ('Ivan', 'Robinson', 'test@mail.com', '1990-01-02', 0),
+       ('Riley', 'Walker', 'test@mail.com', '1990-01-02', 0),
+       ('Daisy', 'Scott', 'test@mail.com', '1990-01-02', 0),
+       ('Deborah', 'Nelson', 'test@mail.com', '1990-01-02', 0),
+       ('Stella', 'Morgan', 'test@mail.com', '1990-01-02', 0),
+       ('Debra', 'Cooper', 'test@mail.com', '1990-01-02', 0);
+
+
+SELECT * FROM users;
+
+ALTER TABLE users
+    ADD balance numeric;
+
+UPDATE users SET birthday = '1990-01-02';

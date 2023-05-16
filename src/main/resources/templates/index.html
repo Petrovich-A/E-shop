@@ -1,19 +1,19 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Index</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="#home">Home</a>
+    <a class="active" href="/redirectToHomePage">Home</a>
     <a href="#contact">Category </a>
-    <a href="#contact">Login </a>
-    <a href="#contact">Registration </a>
-    <a href="#contact">Profile </a>
+    <a href="/redirectToLogInPage">Login </a>
+    <a href="/redirectToRegistrationPage">Registration </a>
+    <a href="/redirectToProfilePage">Profile </a>
     <div class="search-container">
-        <form action="/action_page.php">
+        <form action="/search">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
