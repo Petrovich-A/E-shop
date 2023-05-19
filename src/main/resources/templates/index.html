@@ -8,13 +8,13 @@
 <body>
 <div class="topnav">
     <a class="active" href="/redirectToHomePage">Home</a>
-    <a href="#contact">Category </a>
+    <a href="/redirectToCategoryPage">Category </a>
     <a href="/redirectToLogInPage">Login </a>
     <a href="/redirectToRegistrationPage">Registration </a>
     <a href="/redirectToProfilePage">Profile </a>
     <div class="search-container">
         <form action="/search">
-            <input type="text" placeholder="Search.." name="search">
+            <input type="text" placeholder="Search.." name="search" th:label="">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
     </div>

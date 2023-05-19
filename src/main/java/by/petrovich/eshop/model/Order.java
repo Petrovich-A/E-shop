@@ -1,12 +1,12 @@
 package by.petrovich.eshop.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -28,21 +27,20 @@ import java.util.Set;
 @ToString
 @Entity
 @EqualsAndHashCode
-@Table(name = "users")
-public class User {
+@Table(name = "orders")
+public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "order_id")
+    private Integer orderId;
+    @NotBlank(message = "Price is required")
+    private double price;
+    @NotBlank(message = "date is required")
+    private LocalDate date;
+    @NotBlank(message = "date is required")
     private Integer userId;
-    @NotBlank(message = "Name is required")
-    private String name;
-    @NotBlank(message = "Password id is required")
-    private String password;
-    @NotBlank(message = "Email id is required")
-    private String email;
-    private LocalDate birthDate;
-    private double balance;
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    private Set<Order> orders;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

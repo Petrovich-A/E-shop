@@ -1,36 +1,72 @@
 CREATE SCHEMA IF NOT EXISTS users;
 
+DROP TABLE users;
 CREATE TABLE IF NOT EXISTS users
 (
-    id       SERIAL,
-    name     text NOT NULL,
-    password text NOT NULL,
-    email    text,
-    birthday date  NULL,
-    balance numeric
-
+    user_id  SERIAL NOT NULL,
+    name     text   NOT NULL,
+    password text   NOT NULL,
+    email    text   NOT NULL,
+    PRIMARY KEY (user_id)
 );
-
 ALTER TABLE users
     OWNER TO postgres;
 
+INSERT INTO users (name, password, email)
+values ('Wade', 'Williams', 'test@mail.com'),
+       ('Dave', 'Harris', 'test@mail.com'),
+       ('Seth', 'Thomas', 'test@mail.com'),
+       ('Seth', 'Thomas', 'test@mail.com'),
+       ('Ivan', 'Robinson', 'test@mail.com'),
+       ('Riley', 'Walker', 'test@mail.com'),
+       ('Daisy', 'Scott', 'test@mail.com'),
+       ('Deborah', 'Nelson', 'test@mail.com'),
+       ('Stella', 'Morgan', 'test@mail.com'),
+       ('Debra', 'Cooper', 'test@mail.com');
 
-INSERT INTO users (name, password, email, birthday, balance)
-values ('Wade', 'Williams', 'test@mail.com', '1990-01-02', 0),
-       ('Dave', 'Harris', 'test@mail.com', '1990-01-02', 0),
-       ('Seth', 'Thomas', 'test@mail.com', '1990-01-02', 0),
-       ('Seth', 'Thomas', 'test@mail.com', '1990-01-02', 0),
-       ('Ivan', 'Robinson', 'test@mail.com', '1990-01-02', 0),
-       ('Riley', 'Walker', 'test@mail.com', '1990-01-02', 0),
-       ('Daisy', 'Scott', 'test@mail.com', '1990-01-02', 0),
-       ('Deborah', 'Nelson', 'test@mail.com', '1990-01-02', 0),
-       ('Stella', 'Morgan', 'test@mail.com', '1990-01-02', 0),
-       ('Debra', 'Cooper', 'test@mail.com', '1990-01-02', 0);
+SELECT *
+FROM users;
+
+DROP TABLE categories;
+CREATE SCHEMA IF NOT EXISTS categories;
+
+CREATE TABLE IF NOT EXISTS categories
+(
+    category_id SERIAL NOT NULL,
+    name        text   NOT NULL,
+    rating      int4 DEFAULT 1,
+    PRIMARY KEY (category_id)
+);
+
+INSERT INTO categories (name)
+values ('category1'),
+       ('category2'),
+       ('category3');
+
+SELECT *
+FROM categories;
 
 
-SELECT * FROM users;
+DROP TABLE products;
+CREATE SCHEMA IF NOT EXISTS products;
+ALTER TABLE products
+    OWNER TO postgres;
+CREATE TABLE IF NOT EXISTS products
+(
+    product_id  SERIAL NOT NULL PRIMARY KEY,
+    name        text   NOT NULL,
+    description TEXT,
+    price       int4,
+    category_id INTEGER,
+    FOREIGN KEY (category_id) REFERENCES categories (category_id)
+);
 
-ALTER TABLE users
-    ADD balance numeric;
+INSERT INTO products (name, description, price, category_id)
+VALUES ('product name1', 'description1', 0.01, 1),
+       ('product name2', 'description2', 0.0, 2),
+       ('product name3', 'description3', 0.0, 3);
 
-UPDATE users SET birthday = '1990-01-02';
+SELECT *
+FROM products;
+
+-- name DATE DEFAULT CURRENT_DATE

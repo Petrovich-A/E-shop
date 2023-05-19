@@ -1,7 +1,8 @@
-package by.petrovich.eshop.service;
+package by.petrovich.eshop.service.impl;
 
 import by.petrovich.eshop.model.User;
 import by.petrovich.eshop.repository.UserRepository;
+import by.petrovich.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
