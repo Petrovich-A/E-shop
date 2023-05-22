@@ -3,26 +3,28 @@ CREATE SCHEMA IF NOT EXISTS users;
 DROP TABLE users;
 CREATE TABLE IF NOT EXISTS users
 (
-    user_id  SERIAL NOT NULL,
-    name     text   NOT NULL,
-    password text   NOT NULL,
-    email    text   NOT NULL,
+    user_id    SERIAL           NOT NULL,
+    name       text             NOT NULL,
+    password   text             NOT NULL,
+    email      text             NOT NULL,
+    birth_date date             NOT NULL,
+    balance    double precision NOT NULL,
     PRIMARY KEY (user_id)
 );
 ALTER TABLE users
     OWNER TO postgres;
 
-INSERT INTO users (name, password, email)
-values ('Wade', 'Williams', 'test@mail.com'),
-       ('Dave', 'Harris', 'test@mail.com'),
-       ('Seth', 'Thomas', 'test@mail.com'),
-       ('Seth', 'Thomas', 'test@mail.com'),
-       ('Ivan', 'Robinson', 'test@mail.com'),
-       ('Riley', 'Walker', 'test@mail.com'),
-       ('Daisy', 'Scott', 'test@mail.com'),
-       ('Deborah', 'Nelson', 'test@mail.com'),
-       ('Stella', 'Morgan', 'test@mail.com'),
-       ('Debra', 'Cooper', 'test@mail.com');
+INSERT INTO users (name, password, email, birth_date, balance)
+values ('Wade', 'Williams', 'test@mail.com', '01-01-1990', 0.5),
+       ('Dave', 'Harris', 'test@mail.com', '01-01-1990', 0.5),
+       ('Seth', 'Thomas', 'test@mail.com', '01-01-1990', 0.5),
+       ('Seth', 'Thomas', 'test@mail.com', '01-01-1990', 0.5),
+       ('Ivan', 'Robinson', 'test@mail.com', '01-01-1990', 0.5),
+       ('Riley', 'Walker', 'test@mail.com', '01-01-1990', 0.5),
+       ('Daisy', 'Scott', 'test@mail.com', '01-01-1990', 0.5),
+       ('Deborah', 'Nelson', 'test@mail.com', '01-01-1990', 0.5),
+       ('Stella', 'Morgan', 'test@mail.com', '01-01-1990', 0.5),
+       ('Debra', 'Cooper', 'test@mail.com', '01-01-1990', 0.5);
 
 SELECT *
 FROM users;
@@ -46,20 +48,20 @@ values ('category1'),
 SELECT *
 FROM categories;
 
-
-DROP TABLE products;
+-- DROP TABLE products;
 CREATE SCHEMA IF NOT EXISTS products;
-ALTER TABLE products
-    OWNER TO postgres;
 CREATE TABLE IF NOT EXISTS products
 (
-    product_id  SERIAL NOT NULL PRIMARY KEY,
+    product_id  SERIAL NOT NULL,
     name        text   NOT NULL,
     description TEXT,
-    price       int4,
+    price       double precision,
     category_id INTEGER,
-    FOREIGN KEY (category_id) REFERENCES categories (category_id)
+    PRIMARY KEY (product_id),
+    CONSTRAINT fk_category_id FOREIGN KEY (category_id) REFERENCES categories (category_id)
 );
+ALTER TABLE products
+    OWNER TO postgres;
 
 INSERT INTO products (name, description, price, category_id)
 VALUES ('product name1', 'description1', 0.01, 1),
@@ -69,4 +71,25 @@ VALUES ('product name1', 'description1', 0.01, 1),
 SELECT *
 FROM products;
 
--- name DATE DEFAULT CURRENT_DATE
+
+-- DROP TABLE orders;
+CREATE SCHEMA IF NOT EXISTS orders;
+CREATE TABLE IF NOT EXISTS orders
+(
+    order_id SERIAL NOT NULL,
+    price    double precision,
+    date     date   NOT NULL DEFAULT CURRENT_DATE,
+    user_id INTEGER,
+    PRIMARY KEY (order_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
+ALTER TABLE orders
+    OWNER TO postgres;
+
+INSERT INTO orders (price, user_id)
+VALUES (0.10, 1),
+       (0.20, 2),
+       (0.30, 3);
+
+SELECT *
+FROM orders;

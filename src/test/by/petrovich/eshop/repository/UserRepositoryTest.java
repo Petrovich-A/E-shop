@@ -2,7 +2,6 @@ package by.petrovich.eshop.repository;
 
 import by.petrovich.eshop.EShopApplication;
 import by.petrovich.eshop.model.User;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -10,7 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest(classes = EShopApplication.class)
@@ -22,48 +24,49 @@ class UserRepositoryTest {
 
     @Test
     public void testSaveUser() {
-        User user = new User();
-        user.setName("John");
-        user.setEmail("john@gmail.com");
-        user.setPassword("qwerty1990");
-        user.setBirthDate(LocalDate.of(1990, 1, 1));
-        user.setBalance(50.25);
-
+        User user = User.builder()
+                .name("John")
+                .email("john@gmail.com")
+                .password("qwerty1990")
+                .birthDate(LocalDate.of(1990, 1, 1))
+                .balance(0.9)
+                .build();
         User savedUser = userRepository.save(user);
-        Optional<User> existUser = userRepository.findById(savedUser.getUserId());
-        Assertions.assertEquals(savedUser, existUser.orElse(null));
-
+        Optional<User> existedUser = userRepository.findById(savedUser.getUserId());
+        assertEquals(savedUser, existedUser.get());
     }
 
     @Test
-    public void findById() {
+    public void testFindById() {
         int id = 1;
-        User user = User.builder()
+        User actualUser = User.builder()
                 .userId(1)
                 .name("Wade")
                 .password("Williams")
                 .email("test@mail.com")
                 .birthDate(LocalDate.of(1990, 1, 1))
                 .balance(0.5)
+                .orders(new HashSet<>())
                 .build();
 
         Optional<User> expectedUser = userRepository.findById(id);
-        Assertions.assertEquals(expectedUser.orElse(null), user);
+        assertEquals(expectedUser.get(), actualUser);
     }
 
     @Test
-    public void findByName() {
+    public void testFindByName() {
         String name = "Wade";
-        User user = User.builder()
+        User actualUser = User.builder()
                 .userId(1)
                 .name("Wade")
                 .password("Williams")
                 .email("test@mail.com")
                 .birthDate(LocalDate.of(1990, 1, 1))
                 .balance(0.5)
+                .orders(new HashSet<>())
                 .build();
 
         Optional<User> expectedUser = userRepository.findByName(name);
-        Assertions.assertEquals(expectedUser.orElse(null), user);
+        assertEquals(expectedUser.get(), actualUser);
     }
 }
