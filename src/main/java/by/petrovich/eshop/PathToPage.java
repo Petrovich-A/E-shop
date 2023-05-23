@@ -3,8 +3,10 @@ package by.petrovich.eshop;
 public enum PathToPage {
     HOME_PAGE("home"),
     CATEGORY_PAGE("category"),
-    ERROR_PAGE("error"),
-    PRODUCT_PAGE("product");
+    SIGN_IN_PAGE("signin"),
+    SIGN_UP_PAGE("signup"),
+    PRODUCT_PAGE("product"),
+    ERROR_PAGE("error");
 
     private final String path;
 
