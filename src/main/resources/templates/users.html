@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>users</title>
+    <title>Users page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
 <h1>users list</h1>
-<div th:switch="${listUsers}">
+<div th:switch="${users}">
     <h2 th:case="null">No users yet!</h2>
     <div th:case="*">
         <h2>users:</h2>
@@ -21,8 +21,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${listUsers}">
-                <td th:text="${user.id}"></td>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.userId}"></td>
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.password}"></td>
                 <td th:text="${user.email}"></td>
@@ -30,7 +30,7 @@
             </tbody>
         </table>
     </div>
-    <p><a href="/signup">Add a new user</a></p>
+    <p><a href="/signup">Registration</a></p>
 </div>
 
 </body>

@@ -1,6 +1,7 @@
 package by.petrovich.eshop.service;
 
 import by.petrovich.eshop.model.Category;
+import by.petrovich.eshop.model.Product;
 import by.petrovich.eshop.model.User;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface CategoryService {
     User save(Category category);
 
     Optional<Category> findById(Integer id);
+
+    List<Product> findProductsByCategoryId(Integer categoryId);
 }

@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Category page</title>
+    <title>Product page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="topnav">
     <a class="active" href="/home">Home</a>
+
     <a href="/redirectToSignInPage">SignIn </a>
     <a href="/redirectToSignUpPage">Registration </a>
     <a href="/redirectToProfilePage">Profile </a>
@@ -21,16 +22,19 @@
     </div>
 </div>
 
-<div>
-    <!--    <h2 th:text="${category.name}"></h2>-->
-    <div th:each="p : ${products}">
-        <div>
-            <div>
-                <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
-                <h4 th:text="${p.price}"></h4>
-            </div>
-        </div>
-    </div>
+<h2 style="text-align:center">Product Card</h2>
+
+<div class="card">
+    <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:30%">
+    <h1 th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></h1>
+    <p class="price" th:text="${product.price}">$</p>
+    <p th:text="${product.description}"></p>
+    <p>
+        <button>Add to Cart</button>
+    </p>
 </div>
 </body>
 </html>
+
+
+

@@ -3,15 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Registr</title>
+    <title>SignUp page</title>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="topnav">
     <a class="active" href="/redirectToHomePage">Home</a>
     <a href="#contact">Category </a>
-    <a href="/redirectToLogInPage">Login </a>
-    <a href="/redirectToRegistrationPage">Registration </a>
+    <a href="/redirectToSignInPage">SignIn </a>
+    <a href="/redirectToSignUpPage">Registration </a>
     <a href="/redirectToProfilePage">Profile </a>
     <div class="search-container">
         <form action="/search">
@@ -20,7 +20,7 @@
         </form>
     </div>
 </div>
-<form action="/registration" method="post">
+<form action="/signup" method="post">
     <div class="container">
         <h1>Register</h1>
         <p>Please fill in this form to create an account.</p>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="container signin">
-        <p>Already have an account? <a href="#">Sign in</a>.</p>
+        <p>Already have an account? <a href="/signin">Sign in</a>.</p>
     </div>
 </form>
 </body>

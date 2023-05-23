@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,5 +44,29 @@ class CategoryRepositoryTest {
         assertEquals(expectedCategory.orElse(null), category);
     }
 
+    @Test
+    public void testFindAll() {
+        List<Category> actualCategories = new ArrayList<>();
+        Category category1 = Category.builder()
+                .categoryId(1)
+                .name("category1")
+                .rating(1)
+                .build();
+        Category category2 = Category.builder()
+                .categoryId(2)
+                .name("category2")
+                .rating(1)
+                .build();
+        Category category3 = Category.builder()
+                .categoryId(3)
+                .name("category3")
+                .rating(1)
+                .build();
+        actualCategories.add(category1);
+        actualCategories.add(category2);
+        actualCategories.add(category3);
+        List<Category> expectedCategories = categoryRepository.findAll();
+        assertEquals(expectedCategories, actualCategories);
+    }
 
 }
