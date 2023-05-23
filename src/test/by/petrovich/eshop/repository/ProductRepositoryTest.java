@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -57,5 +59,24 @@ class ProductRepositoryTest {
                 .build();
         Optional<Product> expectedProduct = productRepository.findByName(name);
         assertEquals(actualProduct, expectedProduct.get());
+    }
+
+    @Test
+    void testFindProductsByCategoryId() {
+        Integer categoryId = 3;
+        Category category = Category.builder()
+                .categoryId(categoryId)
+                .build();
+        Product product = Product.builder()
+                .productId(3)
+                .name("product name3")
+                .price(0)
+                .category(category)
+                .description("description3")
+                .build();
+        List<Product> actualProducts = new ArrayList<>();
+        actualProducts.add(product);
+        List<Product> expectedProducts = productRepository.findProductsByCategoryId(categoryId);
+        assertEquals(actualProducts, expectedProducts);
     }
 }
