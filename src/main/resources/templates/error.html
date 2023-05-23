@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Error page</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="topnav">
+  <a class="active" href="/home">Home</a>
+
+  <a href="/redirectToSignInPage">SignIn </a>
+  <a href="/redirectToSignUpPage">Registration </a>
+  <a href="/redirectToProfilePage">Profile </a>
+  <div class="search-container">
+    <form action="/search">
+      <label>
+        <input type="text" placeholder="Search.." name="search">
+      </label>
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+<h2>Error</h2>
+
+<div class="container-fluid mb-4">
+  <h1 class="alert alert-danger" role="alert" th:text="${error}"></h1>
+  <a th:href="@{/home}">
+    <button type="button" class="btn btn-danger">Try again...</button>
+  </a>
+</div>
+</body>
+</html>

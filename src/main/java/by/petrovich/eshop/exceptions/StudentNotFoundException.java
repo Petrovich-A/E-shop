@@ -1,4 +1,4 @@
-package by.petrovich.eshop;
+package by.petrovich.eshop.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;

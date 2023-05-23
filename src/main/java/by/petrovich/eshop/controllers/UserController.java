@@ -3,6 +3,7 @@ package by.petrovich.eshop.controllers;
 import by.petrovich.eshop.model.User;
 import by.petrovich.eshop.service.UserService;
 import jakarta.validation.Valid;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class UserController {
-    UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -20,52 +21,41 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public Model showStudents(Model model) {
-        model.addAttribute("listUsers", userService.findAll());
+    public Model showUsers(@NonNull Model model) {
+        model.addAttribute("users", userService.findAll());
         return model;
     }
 
-    @GetMapping("/redirectToRegistrationPage")
-    public ModelAndView showRegistrationPage(ModelAndView modelAndView) {
-        modelAndView.setViewName("/registr");
+    @GetMapping("/redirectToSignUpPage")
+    public ModelAndView showSignUpPage(@NonNull ModelAndView modelAndView) {
+        modelAndView.setViewName("/signup");
         return modelAndView;
     }
 
-    @GetMapping("/redirectToHomePage")
-    public ModelAndView showHomePage(ModelAndView modelAndView) {
-        modelAndView.setViewName("/index");
-        return modelAndView;
-    }
-
-    @GetMapping("/redirectToLogInPage")
-    public ModelAndView showLogInPage(ModelAndView modelAndView) {
+    @GetMapping("/redirectToSignInPage")
+    public ModelAndView showSignInPage(@NonNull ModelAndView modelAndView) {
         modelAndView.setViewName("/login");
         return modelAndView;
     }
 
     @GetMapping("/redirectToProfilePage")
-    public ModelAndView showProfilePage(ModelAndView modelAndView) {
+    public ModelAndView showProfilePage(@NonNull ModelAndView modelAndView) {
         modelAndView.setViewName("/registr");
         return modelAndView;
     }
 
-    @PostMapping(value = "/registration")
-    public ModelAndView registration(@Valid User user, ModelAndView modelAndView) {
+    @PostMapping(value = "/signup")
+    public ModelAndView signup(@Valid User user, @NonNull ModelAndView modelAndView) {
         userService.save(user);
         modelAndView.setViewName("/index");
         return modelAndView;
     }
 
-    @GetMapping (value = "/login")
-    public ModelAndView loginUser(@Valid User user, ModelAndView modelAndView) {
+    @GetMapping (value = "/signin")
+    public ModelAndView signin(@Valid User user, @NonNull ModelAndView modelAndView) {
         userService.save(user);
         modelAndView.setViewName("/index");
         return modelAndView;
     }
 
-    @GetMapping("/authorization")
-    public Model authorizationUser(Model model) {
-        return model;
-    }
-
-}
+ }
