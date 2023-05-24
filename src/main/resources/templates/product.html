@@ -7,15 +7,13 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="/category">Home</a>
+    <a class="active" href="/home">Home</a>
     <a href="/signing/redirectToSignInPage">Login </a>
     <a href="/signing/redirectToSignUpPage">Registration </a>
     <a href="/redirectToProfilePage">Profile </a>
     <div class="search-container">
-        <form action="/search">
-            <label>
-                <input type="text" placeholder="Search.." name="search">
-            </label>
+        <form th:action="@{/product/search}">
+            <label><input type="text" placeholder="Search.." th:name="searchKey"></label>
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
     </div>
@@ -24,13 +22,34 @@
 <h2 style="text-align:center">Product Card</h2>
 
 <div class="card">
-    <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:30%">
+        <div th:if="${product!=null}">
+    <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:20%">
     <h1 th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></h1>
     <p class="price" th:text="${product.price}">$</p>
     <p th:text="${product.description}"></p>
     <p>
         <button>Add to Cart</button>
     </p>
+        </div>
+
+    <div th:if="${products!=null}">
+        <div th:each="p : ${products}">
+            <div>
+                <div>
+                    <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:20%">
+                    <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
+                    <p class="price" th:text="${p.price}">$</p>
+                    <p th:text="${p.description}"></p>
+                    <p>
+                        <button>Add to Cart</button>
+                    </p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>

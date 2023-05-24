@@ -9,8 +9,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -63,20 +65,47 @@ class ProductRepositoryTest {
 
     @Test
     void testFindProductsByCategoryId() {
-        Integer categoryId = 3;
+        Integer categoryId = 1;
         Category category = Category.builder()
                 .categoryId(categoryId)
                 .build();
         Product product = Product.builder()
-                .productId(3)
-                .name("product name3")
-                .price(0)
+                .productId(1)
+                .name("product name1")
+                .price(0.01)
                 .category(category)
-                .description("description3")
+                .description("description1")
                 .build();
         List<Product> actualProducts = new ArrayList<>();
         actualProducts.add(product);
         List<Product> expectedProducts = productRepository.findProductsByCategoryId(categoryId);
         assertEquals(actualProducts, expectedProducts);
+    }
+
+    @Test
+    void testFindProductsByNameLike() {
+        String searchKey = "product nam";
+        Product product1 = Product.builder()
+                .productId(1)
+                .name("product name1")
+                .price(0.01)
+                .category(Category.builder().categoryId(1).build())
+                .description("description1")
+                .build();
+        Product product2 = Product.builder()
+                .productId(1)
+                .name("product name1")
+                .price(19.99)
+                .category(Category.builder().categoryId(1).build())
+                .description("Our product is a versatile and high-quality backpack designed for the modern adventurer." +
+                        " With multiple pockets and compartments, it provides ample space for all your gear, whether you're " +
+                        "hitting the trails or a bustling city. Made from durable materials, it's built to withstand the" +
+                        " elements and last for years to come.")
+                .build();
+        Set<Product> actual = new HashSet<>();
+        actual.add(product1);
+        actual.add(product2);
+        Set<Product> expected = productRepository.findProductsByNameContainingIgnoreCase(searchKey);
+        assertEquals(actual, expected);
     }
 }

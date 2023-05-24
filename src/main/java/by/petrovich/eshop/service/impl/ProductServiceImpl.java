@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -26,6 +27,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> findById(Integer id) {
         return productRepository.findById(id);
+    }
+
+    @Override
+    public Set<Product> searchProductsByNameAndDescription(String searchKey) {
+        return productRepository.findProductsByNameContainingIgnoreCase(searchKey);
     }
 
 }

@@ -7,13 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Optional<Product> findByName(String name);
 
-    //    List<Product> findAllByCategory(Category category);
     @Query("SELECT p FROM Product p WHERE p.category.categoryId =:categoryId")
     List<Product> findProductsByCategoryId(Integer categoryId);
+
+    Set<Product> findProductsByNameContainingIgnoreCase(String searchKey);
 }
