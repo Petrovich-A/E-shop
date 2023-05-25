@@ -4,6 +4,7 @@
     <title>Home page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="topnav">
@@ -24,8 +25,15 @@
     <div th:each="c : ${categories}">
         <p>
             <a th:href="@{'/category/' + ${c.categoryId}}" th:text="${c.name}"></a>
-            <a th:text="${c.rating}">Rating</a>
-        </p>
+            <span th:with="balckStars=${5 - c.rating}">
+            <span>Rating</span>
+            <span th:each="i : ${#numbers.sequence(1, c.rating)}"
+                  class="fa fa-star checked"></span>
+            <span th:each="i : ${#numbers.sequence(1, balckStars)}"
+                  class="fa fa-star"></span>
+
+        </span>
+
     </div>
 </div>
 

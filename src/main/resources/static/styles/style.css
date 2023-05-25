@@ -193,3 +193,10 @@ img.avatar {
 .card button:hover {
     opacity: 0.7;
 }
+
+
+/*Star Rating*/
+/**/
+.checked {
+    color: orange;
+}
