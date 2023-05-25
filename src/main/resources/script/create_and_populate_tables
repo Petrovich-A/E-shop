@@ -3,31 +3,35 @@ CREATE SCHEMA IF NOT EXISTS users;
 DROP TABLE users;
 CREATE TABLE IF NOT EXISTS users
 (
-    user_id    SERIAL           NOT NULL,
-    name       text             NOT NULL,
-    password   text             NOT NULL,
-    email      text             NOT NULL,
-    birth_date date             NOT NULL,
-    balance    double precision NOT NULL,
+    user_id    SERIAL,
+    name       text           NOT NULL,
+    password   text           NOT NULL,
+    email      text           NOT NULL,
+    birth_date date           NOT NULL,
+    balance    NUMERIC(10, 2) DEFAULT '0.00',
     PRIMARY KEY (user_id)
 );
 ALTER TABLE users
     OWNER TO postgres;
 
 INSERT INTO users (name, password, email, birth_date, balance)
-values ('Wade', 'Williams', 'test@mail.com', '01-01-1990', 0.5),
-       ('Dave', 'Harris', 'test@mail.com', '01-01-1990', 0.5),
-       ('Seth', 'Thomas', 'test@mail.com', '01-01-1990', 0.5),
-       ('Seth', 'Thomas', 'test@mail.com', '01-01-1990', 0.5),
-       ('Ivan', 'Robinson', 'test@mail.com', '01-01-1990', 0.5),
-       ('Riley', 'Walker', 'test@mail.com', '01-01-1990', 0.5),
-       ('Daisy', 'Scott', 'test@mail.com', '01-01-1990', 0.5),
-       ('Deborah', 'Nelson', 'test@mail.com', '01-01-1990', 0.5),
-       ('Stella', 'Morgan', 'test@mail.com', '01-01-1990', 0.5),
-       ('Debra', 'Cooper', 'test@mail.com', '01-01-1990', 0.5);
+values ('Wade', 'Williams', 'williams@mail.com', '01-01-1990', 0.5),
+       ('Dave', 'Harris', 'harris@mail.com', '01-01-1990', 0.5),
+       ('Seth', 'Thomas', 'thomas@mail.com', '01-01-1990', 0.5),
+       ('Seth', 'Thomas', 'thomas@mail.com', '01-01-1990', 0.5),
+       ('Ivan', 'Robinson', 'robinson@mail.com', '01-01-1990', 0.5),
+       ('Riley', 'Walker', 'walker@mail.com', '01-01-1990', 0.5),
+       ('Daisy', 'Scott', 'scott@mail.com', '01-01-1990', 15.5),
+       ('Deborah', 'Nelson', 'nelson@mail.com', '01-01-1990', 0.5),
+       ('Stella', 'Morgan', 'morgan@mail.com', '01-01-1990', 0.5),
+       ('Debra', 'Cooper', 'cooper@mail.com', '01-01-1990', 0.5);
+
+INSERT INTO users (name, password, email, birth_date)
+values ('DFD', 'wefwef', 'wefwef@mail.com', '01-01-1990');
 
 SELECT *
 FROM users;
+
 
 SELECT *
 FROM users
@@ -44,10 +48,13 @@ CREATE TABLE IF NOT EXISTS categories
     PRIMARY KEY (category_id)
 );
 
-INSERT INTO categories (name)
-values ('category1'),
-       ('category2'),
-       ('category3');
+INSERT INTO categories (name, rating)
+values ('category1', 1),
+       ('category2', 2),
+       ('category3', 5),
+       ('category4', 4),
+       ('category5', 3),
+       ('category6', 5);
 
 SELECT *
 FROM categories;
@@ -92,7 +99,7 @@ SELECT *
 FROM products
 WHERE category_id = 3;
 
--- DROP TABLE orders;
+DROP TABLE orders;
 CREATE SCHEMA IF NOT EXISTS orders;
 CREATE TABLE IF NOT EXISTS orders
 (

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,7 +25,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        return userRepository.save(user);
+        User userSaved = new User();
+        if (!isExist(user.getEmail())) {
+            return userRepository.save(user);
+        } else {
+// TODO: 25.05.2023
+        }
+        return userSaved;
+    }
+
+    private boolean isExist(String email) {
+        return userRepository.existsByEmail(email);
     }
 
 

@@ -7,11 +7,18 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import static by.petrovich.eshop.PathToPage.HOME_PAGE;
+import static by.petrovich.eshop.PathToPage.SIGN_IN_PAGE;
+import static by.petrovich.eshop.PathToPage.SIGN_UP_PAGE;
+
 @RestController
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -27,35 +34,32 @@ public class UserController {
     }
 
     @GetMapping("/redirectToSignUpPage")
-    public ModelAndView showSignUpPage(@NonNull ModelAndView modelAndView) {
-        modelAndView.setViewName("/signup");
-        return modelAndView;
+    public ModelAndView showSignUpPage(Model model) {
+        model.addAttribute("user", new User());
+        return new ModelAndView(SIGN_UP_PAGE.getPath());
     }
 
     @GetMapping("/redirectToSignInPage")
-    public ModelAndView showSignInPage(@NonNull ModelAndView modelAndView) {
-        modelAndView.setViewName("/login");
-        return modelAndView;
+    public ModelAndView showSignInPage(Model model) {
+        model.addAttribute("user", new User());
+        return new ModelAndView(SIGN_IN_PAGE.getPath());
     }
 
     @GetMapping("/redirectToProfilePage")
-    public ModelAndView showProfilePage(@NonNull ModelAndView modelAndView) {
-        modelAndView.setViewName("/registr");
-        return modelAndView;
+    public ModelAndView showProfilePage() {
+        return new ModelAndView(HOME_PAGE.getPath());
     }
 
-    @PostMapping(value = "/signup")
-    public ModelAndView signup(@Valid User user, @NonNull ModelAndView modelAndView) {
+    @PostMapping("/signup")
+    public ModelAndView signUp(@ModelAttribute("user") @Valid User user, Model model) {
+        model.addAttribute("user", user);
         userService.save(user);
-        modelAndView.setViewName("/index");
-        return modelAndView;
+        return new ModelAndView(SIGN_IN_PAGE.getPath());
     }
 
-    @GetMapping (value = "/signin")
-    public ModelAndView signin(@Valid User user, @NonNull ModelAndView modelAndView) {
-        userService.save(user);
-        modelAndView.setViewName("/index");
-        return modelAndView;
+    @PostMapping(value = "/signin")
+    public ModelAndView signIn(@ModelAttribute User user) {
+        return new ModelAndView(HOME_PAGE.getPath());
     }
 
- }
+}
