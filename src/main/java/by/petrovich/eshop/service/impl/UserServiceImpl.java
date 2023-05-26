@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public User save(RegistrationFormDto registrationFormDto) {
         User user = new User();
         if (!isExist(registrationFormDto.getEmail())) {
-            user = userConverter.convertToEntity(registrationFormDto);
+            user = userConverter.convertRegisterToEntity(registrationFormDto);
             return userRepository.save(user);
         } else {
                 // TODO: 25.05.2023

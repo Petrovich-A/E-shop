@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/signin")
-    public ModelAndView signIn(@ModelAttribute User user) {
+    public ModelAndView signIn(@RequestBody @Valid User user) {
         return new ModelAndView(HOME_PAGE.getPath());
     }
 
