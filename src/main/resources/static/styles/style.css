@@ -28,7 +28,7 @@ body {
 }
 
 .topnav a.active {
-    background-color: #2196F3;
+    background-color: #04AA6D;
     color: white;
 }
 
@@ -183,7 +183,7 @@ img.avatar {
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #000;
+    background-color: #04AA6D;
     text-align: center;
     cursor: pointer;
     width: 100%;
