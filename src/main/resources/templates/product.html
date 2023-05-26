@@ -34,21 +34,21 @@
     </div>
 
     <div th:if="${products!=null}">
-        <div th:each="p : ${products}">
-            <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:20%">
-            <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
+        <div th:each="product : ${products}">
+            <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+            <h1 th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></h1>
             <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
-            <span class="price" th:text="${p.price}"></span>
-            <p th:text="${p.description}"></p>
+            <span class="price" th:text="${product.price}"></span>
+            <p th:text="${product.description}"></p>
             <p>
                 <button>Add to Cart</button>
             </p>
             <hr>
         </div>
     </div>
-
-
 </div>
+
+
 </body>
 </html>
 

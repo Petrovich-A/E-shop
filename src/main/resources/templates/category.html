@@ -19,15 +19,13 @@
     </div>
 </div>
 
-<div>
+<div style="padding-left:80px">
     <!--    <h2 th:text="${category.name}"></h2>-->
     <div th:each="p : ${products}">
-        <div>
-            <div>
-                <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
-                <span th:text="${p.price}"></span>
-            </div>
-        </div>
+        <p>
+            <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
+            <span th:text="${p.price}"></span>
+        </p>
     </div>
 </div>
 </body>
