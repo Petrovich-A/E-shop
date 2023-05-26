@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,7 +26,7 @@ import lombok.ToString;
 @Builder
 @ToString
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+//@EqualsAndHashCode
 @Table(name = "products")
 public class Product {
     @Id
@@ -39,4 +41,16 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 && Objects.equals(productId, product.productId) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(category, product.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, name, description, price, category);
+    }
 }

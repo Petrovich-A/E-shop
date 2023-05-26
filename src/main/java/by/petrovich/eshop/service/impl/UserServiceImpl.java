@@ -1,21 +1,24 @@
 package by.petrovich.eshop.service.impl;
 
+import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.model.User;
 import by.petrovich.eshop.repository.UserRepository;
+import by.petrovich.eshop.service.UserConverter;
 import by.petrovich.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserConverter userConverter;
 
     @Autowired
-    private UserServiceImpl(UserRepository userRepository) {
+    private UserServiceImpl(UserRepository userRepository, UserConverter userConverter) {
         this.userRepository = userRepository;
+        this.userConverter = userConverter;
     }
 
     @Override
@@ -24,19 +27,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(User user) {
-        User userSaved = new User();
-        if (!isExist(user.getEmail())) {
+    public User save(RegistrationFormDto registrationFormDto) {
+        User user = new User();
+        if (!isExist(registrationFormDto.getEmail())) {
+            user = userConverter.convertToEntity(registrationFormDto);
             return userRepository.save(user);
         } else {
-// TODO: 25.05.2023
+                // TODO: 25.05.2023
         }
-        return userSaved;
+        return user;
     }
 
     private boolean isExist(String email) {
         return userRepository.existsByEmail(email);
     }
-
 
 }

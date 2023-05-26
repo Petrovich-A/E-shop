@@ -84,23 +84,20 @@ class ProductRepositoryTest {
 
     @Test
     void testFindProductsByNameLike() {
-        String searchKey = "product nam";
+        String searchKey = "test";
         Product product1 = Product.builder()
-                .productId(1)
-                .name("product name1")
-                .price(0.01)
+                .productId(8)
+                .name("product name test1")
+                .price(0.5)
                 .category(Category.builder().categoryId(1).build())
-                .description("description1")
+                .description("description test1")
                 .build();
         Product product2 = Product.builder()
-                .productId(1)
-                .name("product name1")
-                .price(19.99)
-                .category(Category.builder().categoryId(1).build())
-                .description("Our product is a versatile and high-quality backpack designed for the modern adventurer." +
-                        " With multiple pockets and compartments, it provides ample space for all your gear, whether you're " +
-                        "hitting the trails or a bustling city. Made from durable materials, it's built to withstand the" +
-                        " elements and last for years to come.")
+                .productId(9)
+                .name("product name test2")
+                .price(0.9)
+                .category(Category.builder().categoryId(2).build())
+                .description("description test2")
                 .build();
         Set<Product> actual = new HashSet<>();
         actual.add(product1);

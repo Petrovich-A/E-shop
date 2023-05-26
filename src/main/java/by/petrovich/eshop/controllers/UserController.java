@@ -1,5 +1,6 @@
 package by.petrovich.eshop.controllers;
 
+import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.model.User;
 import by.petrovich.eshop.service.UserService;
 import jakarta.validation.Valid;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +37,7 @@ public class UserController {
 
     @GetMapping("/redirectToSignUpPage")
     public ModelAndView showSignUpPage(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("registration_form_dto", new RegistrationFormDto());
         return new ModelAndView(SIGN_UP_PAGE.getPath());
     }
 
@@ -51,9 +53,9 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ModelAndView signUp(@ModelAttribute("user") @Valid User user, Model model) {
-        model.addAttribute("user", user);
-        userService.save(user);
+    public ModelAndView signUp(@RequestBody @Valid RegistrationFormDto registrationFormDto, Model model) {
+        model.addAttribute("registration_form_dto", registrationFormDto);
+        userService.save(registrationFormDto);
         return new ModelAndView(SIGN_IN_PAGE.getPath());
     }
 

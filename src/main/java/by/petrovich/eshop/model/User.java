@@ -18,7 +18,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
@@ -33,7 +32,7 @@ import java.util.Set;
 @Builder
 @ToString
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@EqualsAndHashCode
 @Table(name = "users")
 public class User {
     @Id
@@ -49,7 +48,7 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     @Column(columnDefinition="Decimal(10,2) default '0.00'")
-    private BigDecimal balance = BigDecimal.ZERO;
+    private BigDecimal balance;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Order> orders = new HashSet<>();
 

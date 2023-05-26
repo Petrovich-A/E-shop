@@ -1,5 +1,6 @@
 package by.petrovich.eshop.service;
 
+import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.model.User;
 
 import java.util.List;
@@ -7,5 +8,5 @@ import java.util.List;
 public interface UserService {
     List<User> findAll();
 
-    User save(User user);
+    User save(RegistrationFormDto registrationFormDto);
 }
