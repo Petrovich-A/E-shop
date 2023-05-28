@@ -1,13 +1,20 @@
-CREATE SCHEMA IF NOT EXISTS users;
+-- DROP TABLE users;
+DROP TABLE products;
+DROP TABLE categories;
+-- DROP TABLE orders;
+-- DROP TABLE carts;
 
-DROP TABLE users;
+
+-- USERS
+--
+CREATE SCHEMA IF NOT EXISTS users;
 CREATE TABLE IF NOT EXISTS users
 (
     user_id    SERIAL,
-    name       text           NOT NULL,
-    password   text           NOT NULL,
-    email      text           NOT NULL,
-    birth_date date           NOT NULL,
+    name       text NOT NULL UNIQUE ,
+    password   text NOT NULL UNIQUE ,
+    email      text NOT NULL UNIQUE ,
+    birth_date date NOT NULL,
     balance    NUMERIC(10, 2) DEFAULT '0.00',
     PRIMARY KEY (user_id)
 );
@@ -27,39 +34,41 @@ values ('Wade', 'Williams', 'williams@mail.com', '01-01-1990', 0.5),
        ('Debra', 'Cooper', 'cooper@mail.com', '01-01-1990', 0.5);
 
 INSERT INTO users (name, password, email, birth_date)
-values ('DFD', 'wefwef', 'wefwef@mail.com', '01-01-1990');
+values ('John', 'Shade', 'shade@mail.com', '01-01-1990');
 
 SELECT *
 FROM users;
-
 
 SELECT *
 FROM users
 WHERE user_id = 1;
 
-DROP TABLE categories;
+
+-- CATEGORIES
+--
 CREATE SCHEMA IF NOT EXISTS categories;
 
 CREATE TABLE IF NOT EXISTS categories
 (
     category_id SERIAL NOT NULL,
-    name        text   NOT NULL,
+    name        text   NOT NULL UNIQUE ,
     rating      int4 DEFAULT 1,
-    PRIMARY KEY (category_id)
+    PRIMARY KEY (category_id),
+    CONSTRAINT high_rating CHECK (rating <= 5)
 );
 
 INSERT INTO categories (name, rating)
 values ('category1', 1),
        ('category2', 2),
-       ('category3', 5),
+       ('category3', 3),
        ('category4', 4),
-       ('category5', 3),
-       ('category6', 5);
+       ('category5', 5);
 
 SELECT *
 FROM categories;
 
--- DROP TABLE products;
+-- PRODUCTS
+--
 CREATE SCHEMA IF NOT EXISTS products;
 CREATE TABLE IF NOT EXISTS products
 (
@@ -80,13 +89,52 @@ VALUES ('product name1',
         19.99, 1),
        ('product name2',
         'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
-        24.95, 2),
+        24.95, 1),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 1),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 1),
        ('product name3',
         'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
         10.99, 2),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 2),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 2),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 3),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 3),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 3),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 4),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 4),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 4),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 5),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 5),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 5),
        ('product name4',
         'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
-        16.50, 3);
+        16.50, 5);
 
 SELECT *
 FROM products;
@@ -99,7 +147,9 @@ SELECT *
 FROM products
 WHERE category_id = 3;
 
-DROP TABLE orders;
+
+-- ORDERS
+--
 CREATE SCHEMA IF NOT EXISTS orders;
 CREATE TABLE IF NOT EXISTS orders
 (
@@ -121,8 +171,8 @@ VALUES (0.10, 1),
 SELECT *
 FROM orders;
 
-
--- DROP TABLE carts;
+-- CARTS
+--
 CREATE SCHEMA IF NOT EXISTS carts;
 CREATE TABLE IF NOT EXISTS carts
 (
