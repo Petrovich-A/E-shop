@@ -1,7 +1,7 @@
 package by.petrovich.eshop.repository;
 
 import by.petrovich.eshop.EShopApplication;
-import by.petrovich.eshop.model.Category;
+import by.petrovich.eshop.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

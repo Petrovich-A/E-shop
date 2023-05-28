@@ -1,6 +1,6 @@
 package by.petrovich.eshop.controllers;
 
-import by.petrovich.eshop.model.Category;
+import by.petrovich.eshop.entity.Category;
 import by.petrovich.eshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;

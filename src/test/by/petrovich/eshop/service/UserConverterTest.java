@@ -3,7 +3,7 @@ package by.petrovich.eshop.service;
 import by.petrovich.eshop.EShopApplication;
 import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
-import by.petrovich.eshop.model.User;
+import by.petrovich.eshop.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

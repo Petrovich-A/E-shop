@@ -1,4 +1,4 @@
-package by.petrovich.eshop.model;
+package by.petrovich.eshop.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -40,12 +41,16 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
     @NotBlank(message = "Name is required")
+    @Column(unique=true)
     private String name;
+    @Column(unique=true)
     @NotBlank(message = "Password id is required")
     private String password;
+    @Column(unique=true)
     @Email(message = "Email is not valid")
     private String email;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
     private LocalDate birthDate;
     @Column(columnDefinition="Decimal(10,2) default '0.00'")
     private BigDecimal balance;

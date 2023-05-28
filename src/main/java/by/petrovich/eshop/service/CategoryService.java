@@ -1,8 +1,10 @@
 package by.petrovich.eshop.service;
 
-import by.petrovich.eshop.model.Category;
-import by.petrovich.eshop.model.Product;
-import by.petrovich.eshop.model.User;
+import by.petrovich.eshop.entity.Category;
+import by.petrovich.eshop.entity.Product;
+import by.petrovich.eshop.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +16,6 @@ public interface CategoryService {
 
     Optional<Category> findById(Integer id);
 
-    List<Product> findProductsByCategoryId(Integer categoryId);
+    Page<Product> findProductsByCategoryId(Integer categoryId, Pageable pageable);
+
 }

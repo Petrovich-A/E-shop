@@ -1,7 +1,7 @@
 package by.petrovich.eshop.repository;
 
 import by.petrovich.eshop.EShopApplication;
-import by.petrovich.eshop.model.User;
+import by.petrovich.eshop.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -103,4 +103,21 @@ class UserRepositoryTest {
         boolean isExist = userRepository.existsByEmail(email);
         assertFalse(isExist);
     }
+
+//    @Test
+//    void findByNameAndPassword() {
+//        String name = "Wade";
+//        String password = "Williams";
+//        User actual = User.builder()
+//                .userId(1)
+//                .name("Wade")
+//                .password("Williams")
+//                .email("williams@mail.com")
+//                .birthDate(LocalDate.of(1990, 1, 1))
+//                .balance(BigDecimal.valueOf(0.50))
+//                .orders(new HashSet<>())
+//                .build();
+//        Optional<User> expected = userRepository.findByNameAndPassword(name, password);
+//        assertEquals(actual, expected.get());
+//    }
 }

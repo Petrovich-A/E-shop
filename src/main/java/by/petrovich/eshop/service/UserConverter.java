@@ -2,11 +2,11 @@ package by.petrovich.eshop.service;
 
 import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
-import by.petrovich.eshop.model.User;
+import by.petrovich.eshop.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-@Component("userConverter")
+@Component
 public class UserConverter {
     private final ModelMapper modelMapper;
 
@@ -22,11 +22,11 @@ public class UserConverter {
         return modelMapper.map(registrationFormDto, User.class);
     }
 
-    public LogInFormDto convertToLogInFormDto(User user){
+    public LogInFormDto convertToLogInFormDto(User user) {
         return modelMapper.map(user, LogInFormDto.class);
     }
 
-    public User convertLogInToEntity(LogInFormDto logInFormDto){
+    public User convertLogInToEntity(LogInFormDto logInFormDto) {
         return modelMapper.map(logInFormDto, User.class);
     }
 }
