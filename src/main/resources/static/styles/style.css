@@ -71,13 +71,14 @@ body {
 }
 
 
-
 /* Add padding to containers */
 .container {
-    width: 500px;
-    margin: 0 auto;
+    width: 300px;
+    /*margin: 0 auto; try to fix hiding foooter*/
+    margin: 0 auto -80px;
     padding: 16px;
     background-color: white;
+    overflow: hidden;
 }
 
 /* Full-width input fields */
@@ -104,6 +105,7 @@ input[type=date]:focus, input[type=date]:focus {
     background-color: #ddd;
     outline: none;
 }
+
 /* Overwrite default styles of hr */
 hr {
     border: 1px solid #f1f1f1;
@@ -118,7 +120,7 @@ hr {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 60%;
     opacity: 0.9;
 }
 
@@ -138,14 +140,9 @@ a {
 }
 
 
-
-
-
-
-
 .imgcontainer {
     text-align: center;
-   }
+}
 
 img.avatar {
     width: 7%;
@@ -153,25 +150,34 @@ img.avatar {
 }
 
 
-
-
-
-
-
-
-
-
-
 /*Product Card*/
 /**/
 
+/* Create three equal columns that floats next to each other */
+
+
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
+    max-width: 350px;
     text-align: center;
-    font-family: arial;
+    margin: 0;
+    border: 1px solid;
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
 }
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
 
 .price {
     color: grey;
@@ -199,4 +205,72 @@ img.avatar {
 /**/
 .checked {
     color: orange;
+}
+
+
+/* Pagination links */
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #04AA6D;
+    color: white;
+    text-align: center;
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
 }

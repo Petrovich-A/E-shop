@@ -1,6 +1,6 @@
 package by.petrovich.eshop.repository;
 
-import by.petrovich.eshop.model.Product;
+import by.petrovich.eshop.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,4 +18,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findProductsByCategoryId(Integer categoryId);
 
     Set<Product> findProductsByNameContainingIgnoreCase(String searchKey);
+
+    Optional<Product> findProductByProductId(Integer productId);
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home page</title>
+    <title>Profile page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,7 +11,6 @@
     <a class="active" href="/home">Home</a>
     <a href="/user/redirectToSignInPage">Login </a>
     <a href="/user/redirectToSignUpPage">Registration </a>
-    <a href="/cart/redirectToCartPage">Cart </a>
     <div th:if="${session.user!=null}">
         <a href="/user/redirectToProfilePage">Profile </a>
         <a href="/user/logout">Log out </a>
@@ -24,24 +23,23 @@
     </div>
 </div>
 
-<div style="padding-left:80px">
-    <h2>Categories</h2>
-    <div th:each="c : ${categories}">
-        <p>
-            <a th:href="@{'/category/' + ${c.categoryId}}" th:text="${c.name}"></a>
-            <span>Rating</span>
-            <span th:each="goldStars : ${#numbers.sequence(1, c.rating)}"
-                  class="fa fa-star checked"></span>
-            <span th:if="${'5'-c.rating &gt; '0'}" th:each="blackStars : ${#numbers.sequence(1, '5'-c.rating)}"
-                  class="fa fa-star"></span>
-        </p>
-    </div>
-</div>
+<h2 style="text-align:center">User Profile Card</h2>
 
-<div th:if="${user!=null}">
-    <h1 th:href="@{'/user/' + ${user.userId}}" th:text="${user.name}"></h1>
-    <span class="price" th:text="${user.name}"></span>
-    <span class="price" th:text="${user.password}"></span>
+<div class="card">
+    <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
+    <p class="title">Profile</p>
+    <h1 th:text="${session.user.name}"></h1>
+    <p th:text="${session.user.email}"></p>
+    <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
+    <span th:text="${session.user.balance}"></span>
+    <p th:text="${session.user.birthDate}"></p>
+    <div style="margin: 24px 0;">
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+    </div>
+    <p><button>Contact</button></p>
 </div>
 
 </body>

@@ -23,6 +23,7 @@ public class LogInFormDto {
             = "Name must be between 2 and 20 characters")
     private String name;
     @NotBlank(message = "Password id is required")
+    // TODO: add validator 28 мая 2023 г.
     private String password;
 
 }
