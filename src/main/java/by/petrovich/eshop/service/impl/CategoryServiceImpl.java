@@ -1,14 +1,19 @@
 package by.petrovich.eshop.service.impl;
 
-import by.petrovich.eshop.model.Category;
-import by.petrovich.eshop.model.Product;
-import by.petrovich.eshop.model.User;
+import by.petrovich.eshop.entity.Category;
+import by.petrovich.eshop.entity.Product;
+import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.repository.CategoryRepository;
 import by.petrovich.eshop.repository.ProductRepository;
 import by.petrovich.eshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +44,19 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Product> findProductsByCategoryId(Integer categoryId) {
-        return productRepository.findProductsByCategoryId(categoryId);
+    public Page<Product> findProductsByCategoryId(Integer categoryId, Pageable pageable) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Product> products = productRepository.findProductsByCategoryId(categoryId);
+        List<Product> list;
+        if (products.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, products.size());
+            list = products.subList(startItem, toIndex);
+        }
+        return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), products.size());
     }
 
 }
