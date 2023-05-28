@@ -6,6 +6,8 @@ public enum PathToPage {
     SIGN_IN_PAGE("signin"),
     SIGN_UP_PAGE("signup"),
     PRODUCT_PAGE("product"),
+    PROFILE_PAGE("profile"),
+    CART_PAGE("cart"),
     ERROR_PAGE("error");
 
     private final String path;
