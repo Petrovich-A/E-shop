@@ -4,7 +4,6 @@ import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.service.UserService;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.petrovich.eshop.PathToPage.HOME_PAGE;
@@ -22,7 +24,7 @@ import static by.petrovich.eshop.PathToPage.SIGN_IN_PAGE;
 import static by.petrovich.eshop.PathToPage.SIGN_UP_PAGE;
 
 @RestController
-//@SessionAttributes({"user"})
+@SessionAttributes("user")
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
@@ -30,6 +32,11 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @ModelAttribute("user")
+    public User initializeSessionObject() {
+        return new User();
     }
 
     @GetMapping("/users")
@@ -56,7 +63,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ModelAndView signUp(@ModelAttribute("registration_form_dto") @Valid RegistrationFormDto registrationFormDto, ModelAndView model) {
+    public ModelAndView signUp(@ModelAttribute("registration_form_dto") @Valid RegistrationFormDto registrationFormDto,
+                               ModelAndView model) {
         model.addObject("registration_form_dto", registrationFormDto);
         userService.register(registrationFormDto);
         model.setViewName(SIGN_IN_PAGE.getPath());
@@ -64,21 +72,20 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ModelAndView signIn(@ModelAttribute("login_form_dto") @Valid LogInFormDto logInFormDto, HttpSession httpSession) {
-        User user = userService.authorize(logInFormDto);
-        httpSession.setAttribute("user", user);
-        return new ModelAndView(PROFILE_PAGE.getPath());
+    public ModelAndView signIn(
+            @ModelAttribute("login_form_dto") @Valid LogInFormDto logInFormDto,
+            @ModelAttribute("user") User user) {
+        user = userService.authorize(logInFormDto);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName(PROFILE_PAGE.getPath());
+        return modelAndView;
     }
-//
-//    @ModelAttribute("user")
-//    public User setUpUserForm() {
-//        return new User();
-//    }
 
     @GetMapping("/logout")
-    public ModelAndView showLogoutPage(HttpSession session) {
-        session.removeAttribute("user");
-        session.invalidate();
+    public ModelAndView deleteFromSession(@ModelAttribute User user, WebRequest webRequest, SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+        webRequest.removeAttribute("user", WebRequest.SCOPE_SESSION);
         return new ModelAndView(HOME_PAGE.getPath());
     }
 
