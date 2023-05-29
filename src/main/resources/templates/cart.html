@@ -22,36 +22,49 @@
     </div>
 </div>
 
-<h2 style="text-align:center">Product Card</h2>
-<div class="card" style="align-items: center">
-    <div th:if="${product!=null}">
-        <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-        <h1 th:text="${product.name}"></h1>
-        <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
-        <span class="price" th:text="${product.price}"></span>
-        <p th:text="${product.description}"></p>
-        <p>
-            <button th:href="@{'/cart/' + ${product.productId}}">Add to Cart</button>
-        </p>
+<div class="main-content">
+    <div class=”Cart-Container”>
     </div>
-</div>
-
-<div class="" th:each="products : ${cart.getProducts()}">
-    <div class="" type="product">
-        <div class="">
-            <h4 class="card-title" th:text="${product.getName()}"></h4>
-            <h4 class="card-title" th:text="${product.getDescription()}"></h4>
-            <h4 class="card-title" th:text="${product.getPrice()}"></h4>
+    <div class=”Header”>
+        <h3 class=”Heading”>Shopping Cart</h3>
+        <a class="Action" th:href="@{/cart/clear}">
+            <button type="submit">Remove all</button>
+        </a>
+    </div>
+    <div class=”Cart-Items” th:each="product : ${cart.getProducts()}">
+        <div class=”image-box”>
+            <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="height:120px">
         </div>
+        <div class=”about”>
+            <h1 class=”title” th:text="${product.name}"></h1>
+        </div>
+        <div class=”counter”></div>
+        <div class=”prices”></div>
+    <div class=”prices”>
+        <span class="amount" th:utext="${'&#36;'+'&nbsp;'}"></span>
+        <span class="amount" th:text="${product.price}"></span>
+<!--        <div class=”remove”><u>Remove</u></div>-->
+       <a class="remove" th:href="@{/cart/remove(product_id=${product.getProductId()})}">
+            <button type="submit">remove</button>
+        </a>
+
+    </div>
+    </div>
+    <hr>
+    <div class=”checkout”>
+        <div class=”total”>
+            <div>
+                <div class=”Subtotal”>Sub-Total</div>
+                <!--                <div class=”items”>2 items</div>-->
+            </div>
+            <div class=”total-amount” th:text="${cart.totalPrice}"></div>
+        </div>
+        <button class=”button”>Checkout</button>
     </div>
 </div>
-
 
 </body>
-<!--<div class="footer">-->
-<!--    <p>Footer</p>-->
-<!--</div>-->
+<div class="footer">
+    <p>Footer</p>
+</div>
 </html>
-
-
-

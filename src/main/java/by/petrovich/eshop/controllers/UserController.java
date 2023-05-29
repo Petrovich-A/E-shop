@@ -3,6 +3,7 @@ package by.petrovich.eshop.controllers;
 import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.entity.User;
+import by.petrovich.eshop.model.Cart;
 import by.petrovich.eshop.service.UserService;
 import jakarta.validation.Valid;
 import lombok.NonNull;
@@ -24,7 +25,7 @@ import static by.petrovich.eshop.PathToPage.SIGN_IN_PAGE;
 import static by.petrovich.eshop.PathToPage.SIGN_UP_PAGE;
 
 @RestController
-@SessionAttributes("user")
+@SessionAttributes({"user", "cart"})
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
@@ -35,8 +36,13 @@ public class UserController {
     }
 
     @ModelAttribute("user")
-    public User initializeSessionObject() {
+    public User initializeUserSessionObject() {
         return new User();
+    }
+
+    @ModelAttribute("cart")
+    public Cart initializeCartSessionObject() {
+        return new Cart();
     }
 
     @GetMapping("/users")

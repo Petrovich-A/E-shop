@@ -19,10 +19,10 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Optional<Product> addProductToCart(Integer productId, Cart cart) {
-        Optional<Product> products = productRepository.findProductByProductId(productId);
-        products.ifPresent(cart::addProduct);
-        return products;
+    public Cart addProductToCart(Integer productId, Cart cart) {
+        Optional<Product> product = productRepository.findProductByProductId(productId);
+        product.ifPresent(cart::addProduct);
+        return cart;
     }
 
 }

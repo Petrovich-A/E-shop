@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Category page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
@@ -23,30 +22,32 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="card" th:if="${productPage!=null}">
-        <h2 style="text-align:center">Product Card</h2>
-        <div th:each="product, iStat : ${productPage.content}"
-             th:style="${iStat.odd}? 'font-weight: bold;'"
-             th:alt-title="${iStat.even}? 'even' : 'odd'">
-            <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-            <a th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></a>
-            <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
-            <span class="price" th:text="${product.price}"></span>
-            <p th:text="${product.description}"></p>
-            <p>
-                <button>Add to Cart</button>
-            </p>
-        </div>
-        <div class="pagination" th:if="${productPage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-            <a th:href="@{/product/listProducts(size=${productPage.size}, page=${pageNumber})}"
-               th:text=${pageNumber}
-               th:class="${pageNumber==productPage.number + 1} ? active"></a>
+<div class="main-content">
+    <div class="row">
+        <div class="card" th:if="${productPage!=null}">
+            <h2 style="text-align:center">Product Card</h2>
+            <div th:each="product, iStat : ${productPage.content}"
+                 th:style="${iStat.odd}? 'font-weight: bold;'"
+                 th:alt-title="${iStat.even}? 'even' : 'odd'">
+                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+                <a th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></a>
+                <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
+                <span class="price" th:text="${product.price}"></span>
+                <p th:text="${product.description}"></p>
+                <a th:href="@{/cart/add(product_id=${product.getProductId()})}">
+                    <button type="submit">Add to Cart</button>
+                </a>
+            </div>
+            <div class="pagination" th:if="${productPage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+                <a th:href="@{/product/listProducts(size=${productPage.size}, page=${pageNumber})}"
+                   th:text=${pageNumber}
+                   th:class="${pageNumber==productPage.number + 1} ? active"></a>
+            </div>
         </div>
     </div>
 </div>
 </body>
-<!--<div class="footer">-->
-<!--    <p>Footer</p>-->
-<!--</div>-->
+<div class="footer">
+    <p>Footer</p>
+</div>
 </html>
