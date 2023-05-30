@@ -11,10 +11,10 @@
     <a class="active" href="/home">Home</a>
     <a href="/user/redirectToSignInPage">Login </a>
     <a href="/user/redirectToSignUpPage">Registration </a>
-    <a href="/cart/redirectToCartPage">Cart </a>
-    <div th:if="${session.user!=null}">
+    <div th:if="${session.user!=null and session.user.name!=null}">
         <a href="/user/redirectToProfilePage">Profile </a>
         <a href="/user/logout">Log out </a>
+        <a href="/cart/redirectToCartPage">Cart </a>
     </div>
     <div class="search-container">
         <form th:action="@{/product/search}">
