@@ -23,23 +23,25 @@
     </div>
 </div>
 <div class="main-content">
-    <div class="card" style="align-items: center">
-        <h2 style="text-align:center">Product</h2>
-        <div th:if="${product!=null}">
-            <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-            <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
-            <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
-            <span class="price" th:text="${product.price}"></span>
-            <p th:text="${product.description}"></p>
-            <p>
-                <a th:href="@{/cart/add(product_id=${product.getProductId()})}">
-                    <button type="submit">Add to Cart</button>
-                </a>
-            </p>
-        </div>
-        <div th:if="${products!=null}">
+    <div class="one-card" th:if="${product!=null}">
+        <h2>Product card</h2>
+        <img class="one-card" src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
+        <a th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></a>
+        <span class="one-card-price" th:utext="${'&#36;'+'&nbsp;'}"></span>
+        <span class="one-card-price" th:text="${product.price}"></span>
+        <p th:text="${product.description}"></p>
+        <p>
+            <a th:href="@{/cart/add(product_id=${product.getProductId()})}">
+                <button class="one-card-button" type="submit">Add to Cart</button>
+            </a>
+        </p>
+    </div>
+
+    <div class="card-product" th:if="${products!=null}">
+        <h2>Product Card</h2>
+        <div class="card-block">
             <div th:each="p : ${products}">
-                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
                 <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
                 <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
                 <span class="price" th:text="${p.price}"></span>
