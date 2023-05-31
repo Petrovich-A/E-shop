@@ -1,5 +1,7 @@
 package by.petrovich.eshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -36,11 +39,17 @@ public class Product {
     private String description;
     private double price;
     @ToString.Exclude
+
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
-    private List<Order> orders;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE
+            }, mappedBy = "products")
+    @JsonIgnore
+    private List<Order> orders = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
