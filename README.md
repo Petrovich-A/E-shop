@@ -1,4 +1,4 @@
-<div>
+<div align="centr">
   <h1>E-shop app</h1>
 <!-- Badges -->
 <p>
@@ -95,6 +95,8 @@ to populate the database tables.
 * [x] add DTO and converters
 * [x] add global search by product name
 * [x] add User registration with saving Users to database
+* [x] add User authorization
+* [x] create shopping cart and opportunity to add products
 
 ## :handshake: Contact
 
