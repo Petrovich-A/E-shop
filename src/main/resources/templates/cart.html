@@ -60,7 +60,9 @@
             </div>
             <div class=”total-amount” th:text="${cart.totalPrice}"></div>
         </div>
-        <button class=”button”>Checkout</button>
+        <a class="button" th:href="@{/cart/order}">
+            <button type="submit">remove</button>
+        </a>
     </div>
 </div>
 
