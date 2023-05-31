@@ -33,21 +33,22 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ModelAndView showProductPage(
-            @PathVariable("productId") Integer productId) {
+    public ModelAndView showProductPage(@PathVariable("productId") Integer productId) {
         ModelMap model = new ModelMap();
-        Optional<Product> product = productService.findById(productId);
-        model.addAttribute("product", product.get());
+        if (productId != null) {
+            Optional<Product> product = productService.findById(productId);
+            model.addAttribute("product", product.get());
+        }
         return new ModelAndView(PRODUCT_PAGE.getPath(), model);
     }
 
     @GetMapping("/search")
-    public ModelAndView advancedSearch(
-            @RequestParam("searchKey") String searchKey) {
+    public ModelAndView advancedSearch(@RequestParam("searchKey") String searchKey) {
         ModelMap model = new ModelMap();
         Set<Product> products = productService.searchProductsByNameAndDescription(searchKey);
         model.addAttribute("products", products);
         return new ModelAndView(PRODUCT_PAGE.getPath(), model);
+//        return ResponseEntity.ok(products);
     }
 
     @RequestMapping(value = "/listProducts", method = RequestMethod.GET)

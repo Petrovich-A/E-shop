@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,18 +28,35 @@ import java.util.Set;
 @Builder
 @ToString
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-@Table(name = "categories")
+@Table(name = "categories", schema = "public")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Integer categoryId;
     @NotBlank(message = "Name is required")
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
     @Range(min = 1, max = 5)
     private Integer rating;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        if (categoryId != null ? !categoryId.equals(category.categoryId) : category.categoryId != null) return false;
+        return name != null ? name.equals(category.name) : category.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = categoryId != null ? categoryId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
 }

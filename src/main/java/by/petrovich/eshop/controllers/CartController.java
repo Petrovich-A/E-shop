@@ -1,7 +1,9 @@
 package by.petrovich.eshop.controllers;
 
+import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.model.Cart;
 import by.petrovich.eshop.service.CartService;
+import by.petrovich.eshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +22,12 @@ import static by.petrovich.eshop.PathToPage.HOME_PAGE;
 @RequestMapping("/cart")
 public class CartController {
     private final CartService cartService;
-    private final Cart cart;
+    private final OrderService orderService;
 
     @Autowired
-    public CartController(CartService cartService, Cart cart) {
+    public CartController(CartService cartService, OrderService orderService) {
         this.cartService = cartService;
-        this.cart = cart;
+        this.orderService = orderService;
     }
 
     @ModelAttribute("cart")
@@ -70,6 +72,19 @@ public class CartController {
     public ModelAndView clearCart(@ModelAttribute("cart") Cart cart) {
         ModelMap modelParams = new ModelMap();
         if (cart != null) {
+            cart.clear();
+            modelParams.addAttribute("cart", cart);
+        }
+        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+    }
+
+    @GetMapping("/order")
+    public ModelAndView order(@ModelAttribute("cart") Cart cart,
+                              @ModelAttribute("user") User user) {
+        ModelMap modelParams = new ModelMap();
+        if (cart != null && user != null) {
+            Integer userId = user.getUserId();
+            orderService.save(cart, userId);
             cart.clear();
             modelParams.addAttribute("cart", cart);
         }

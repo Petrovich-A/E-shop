@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,16 +17,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Objects;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 @Entity
-//@EqualsAndHashCode
 @Table(name = "products")
 public class Product {
     @Id
@@ -33,23 +32,28 @@ public class Product {
     @Column(name = "product_id")
     private Integer productId;
     private String name;
+    @Column(length = 400)
     private String description;
     private double price;
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
+    private List<Order> orders;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && Objects.equals(productId, product.productId) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(category, product.category);
+
+        return productId != null ? productId.equals(product.productId) : product.productId == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, name, description, price, category);
+        return productId != null ? productId.hashCode() : 0;
     }
 }
