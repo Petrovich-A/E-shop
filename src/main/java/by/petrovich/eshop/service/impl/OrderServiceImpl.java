@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -21,12 +22,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order save(Cart cart, Integer userId) {
-        User user = new User();
-        user.setUserId(userId);
-
-        Order order = new Order();
-        order.setPrice(BigDecimal.valueOf(cart.getTotalPrice()));
-        order.setUser(user);
+        User user = User.builder()
+                .userId(userId)
+                .build();
+        Order order = Order.builder()
+                .price(BigDecimal.valueOf(cart.getTotalPrice()))
+                .user(user)
+                .products(Set.copyOf(cart.getProducts()))
+                .build();
         return orderRepository.saveAndFlush(order);
     }
 }

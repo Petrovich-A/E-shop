@@ -41,15 +41,15 @@
         </div>
         <div class=”counter”></div>
         <div class=”prices”></div>
-    <div class=”prices”>
-        <span class="amount" th:utext="${'&#36;'+'&nbsp;'}"></span>
-        <span class="amount" th:text="${product.price}"></span>
-<!--        <div class=”remove”><u>Remove</u></div>-->
-       <a class="remove" th:href="@{/cart/remove(product_id=${product.getProductId()})}">
-            <button type="submit">remove</button>
-        </a>
+        <div class=”prices”>
+            <span class="amount" th:utext="${'&#36;'+'&nbsp;'}"></span>
+            <span class="amount" th:text="${product.price}"></span>
+            <!--        <div class=”remove”><u>Remove</u></div>-->
+            <a class="remove" th:href="@{/cart/remove(product_id=${product.getProductId()})}">
+                <button type="submit">remove</button>
+            </a>
 
-    </div>
+        </div>
     </div>
     <hr>
     <div class=”checkout”>
@@ -60,8 +60,8 @@
             </div>
             <div class=”total-amount” th:text="${cart.totalPrice}"></div>
         </div>
-        <a class="button" th:href="@{/cart/order}">
-            <button type="submit">remove</button>
+        <a class="button" th:href="@{/cart/order}" th:value="${session.cart}" method="post">
+            <button type="submit">order</button>
         </a>
     </div>
 </div>
