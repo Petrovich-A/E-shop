@@ -59,6 +59,12 @@
             <artifactId>modelmapper</artifactId>
             <version>3.1.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>9.19.1</version>
+        </dependency>
 
 
     </dependencies>
@@ -78,6 +84,22 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>9.19.1</version>
+                <configuration>
+                    <user>postgres</user>
+                    <password>123</password>
+                    <schemas>
+                        <schema>public</schema>
+                    </schemas>
+                    <url>jdbc:postgresql://localhost:5432/postgres</url>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 
