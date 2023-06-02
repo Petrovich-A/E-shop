@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="/home">Home</a>
+    <a href="/user/redirectToSignInPage">Login </a>
+    <a href="/user/redirectToSignUpPage">Registration </a>
+    <div th:if="${session.user!=null and session.user.name!=null}">
+        <a href="/user/redirectToProfilePage">Profile </a>
+        <a href="/user/logout">Log out </a>
+        <a href="/cart/redirectToCartPage">Cart </a>
+    </div>
+    <div class="search-container">
+        <form th:action="@{/product/search}">
+            <label><input type="text" placeholder="Search.." th:name="searchKey"></label>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<div class="main-content" style="padding-left:80px">
+    <h2>Categories</h2>
+    <div th:each="c : ${categories}">
+        <p>
+            <a th:href="@{'/category/' + ${c.categoryId}}" th:text="${c.name}"></a>
+            <span>Rating</span>
+            <span th:each="goldStars : ${#numbers.sequence(1, c.rating)}"
+                  class="fa fa-star checked"></span>
+            <span th:if="${'5'-c.rating &gt; '0'}" th:each="blackStars : ${#numbers.sequence(1, '5'-c.rating)}"
+                  class="fa fa-star"></span>
+        </p>
+    </div>
+</div>
+
+<div th:if="${user!=null}">
+    <h1 th:href="@{'/user/' + ${user.userId}}" th:text="${user.name}"></h1>
+    <span class="price" th:text="${user.name}"></span>
+    <span class="price" th:text="${user.password}"></span>
+</div>
+
+</body>
+<div class="footer">
+    <p>Footer</p>
+</div>
+</html>

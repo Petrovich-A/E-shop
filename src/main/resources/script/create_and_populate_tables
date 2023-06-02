@@ -1,0 +1,195 @@
+DROP TABLE users CASCADE;
+DROP TABLE categories CASCADE;
+DROP TABLE products CASCADE;
+DROP TABLE orders CASCADE;
+
+
+-- USERS
+--
+CREATE SCHEMA IF NOT EXISTS users;
+CREATE TABLE IF NOT EXISTS users
+(
+    user_id    SERIAL,
+    name       text NOT NULL UNIQUE ,
+    password   text NOT NULL UNIQUE ,
+    email      text NOT NULL UNIQUE ,
+    birth_date date NOT NULL,
+    balance    NUMERIC(10, 2) DEFAULT '0.00',
+    PRIMARY KEY (user_id)
+);
+ALTER TABLE users
+    OWNER TO postgres;
+
+INSERT INTO users (name, password, email, birth_date, balance)
+values ('Wade', 'Williams', 'williams@mail.com', '01-01-1990', 0.5),
+       ('Dave', 'Harris', 'harris@mail.com', '01-01-1990', 0.5),
+       ('Seth', 'Thomas', 'thomas@mail.com', '01-01-1990', 0.5),
+       ('Ivan', 'Robinson', 'robinson@mail.com', '01-01-1990', 0.5),
+       ('Riley', 'Walker', 'walker@mail.com', '01-01-1990', 0.5),
+       ('Daisy', 'Scott', 'scott@mail.com', '01-01-1990', 15.5),
+       ('Deborah', 'Nelson', 'nelson@mail.com', '01-01-1990', 0.5),
+       ('Stella', 'Morgan', 'morgan@mail.com', '01-01-1990', 0.5),
+       ('Debra', 'Cooper', 'cooper@mail.com', '01-01-1990', 0.5);
+
+INSERT INTO users (name, password, email, birth_date)
+values ('John', 'Shade', 'shade@mail.com', '01-01-1990');
+
+SELECT *
+FROM users;
+
+SELECT *
+FROM users
+WHERE user_id = 1;
+
+
+-- CATEGORIES
+--
+CREATE SCHEMA IF NOT EXISTS categories;
+
+CREATE TABLE IF NOT EXISTS categories
+(
+    category_id SERIAL NOT NULL,
+    name        text   NOT NULL UNIQUE ,
+    rating      int4 DEFAULT 1,
+    PRIMARY KEY (category_id),
+    CONSTRAINT high_rating CHECK (rating <= 5)
+);
+
+INSERT INTO categories (name, rating)
+values ('category1', 1),
+       ('category2', 2),
+       ('category3', 3),
+       ('category4', 4),
+       ('category5', 5);
+
+SELECT *
+FROM categories;
+
+-- PRODUCTS
+--
+CREATE SCHEMA IF NOT EXISTS products;
+CREATE TABLE IF NOT EXISTS products
+(
+    product_id  SERIAL NOT NULL,
+    name        text   NOT NULL,
+    description TEXT,
+    price       double precision,
+    category_id INTEGER,
+    PRIMARY KEY (product_id),
+    CONSTRAINT fk_category_id FOREIGN KEY (category_id) REFERENCES categories (category_id)
+);
+ALTER TABLE products
+    OWNER TO postgres;
+
+INSERT INTO products (name, description, price, category_id)
+VALUES ('product name1',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        19.99, 1),
+       ('product name2',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        24.95, 1),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 1),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 1),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 2),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 2),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 2),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 3),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 3),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 3),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 4),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 4),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 4),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 5),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 5),
+       ('product name3',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        10.99, 5),
+       ('product name4',
+        'Our product is a versatile and high-quality backpack designed for the modern adventurer. With multiple pockets and compartments, it provides ample space for all your gear, whether you''re hitting the trails or a bustling city. Made from durable materials, it''s built to withstand the elements and last for years to come.',
+        16.50, 5);
+
+SELECT *
+FROM products;
+
+DELETE
+FROM products
+WHERE name = 'product name test';
+
+SELECT *
+FROM products
+WHERE category_id = 3;
+
+
+-- ORDERS
+--
+CREATE SCHEMA IF NOT EXISTS orders;
+CREATE TABLE IF NOT EXISTS orders
+(
+    order_id SERIAL NOT NULL,
+    price    double precision,
+    date     date   NOT NULL DEFAULT CURRENT_DATE,
+    user_id  INTEGER,
+    PRIMARY KEY (order_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
+ALTER TABLE orders
+    OWNER TO postgres;
+
+INSERT INTO orders (price, user_id)
+VALUES (0.10, 1),
+       (0.20, 2),
+       (0.30, 3);
+
+SELECT *
+FROM orders;
+
+-- CARTS
+--
+CREATE SCHEMA IF NOT EXISTS carts;
+CREATE TABLE IF NOT EXISTS carts
+(
+    cart_id SERIAL NOT NULL,
+    price   double precision,
+    date    date   NOT NULL DEFAULT CURRENT_DATE,
+    user_id INTEGER,
+    PRIMARY KEY (cart_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
+ALTER TABLE carts
+    OWNER TO postgres;
+
+INSERT INTO carts (price, user_id)
+VALUES (0.10, 1),
+       (0.20, 2),
+       (0.30, 3);
+
+SELECT *
+FROM carts;
+
+SELECT * FROM order_product;

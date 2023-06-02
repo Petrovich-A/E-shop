@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>SignUp page</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="/home">Home</a>
+    <a href="/user/redirectToSignInPage">Login </a>
+    <a href="/user/redirectToSignUpPage">Registration </a>
+    <div th:if="${session.user!=null and session.user.name!=null}">
+        <a href="/user/redirectToProfilePage">Profile </a>
+        <a href="/user/logout">Log out </a>
+        <a href="/cart/redirectToCartPage">Cart </a>
+    </div>
+    <div class="search-container">
+        <form th:action="@{/product/search}">
+            <label><input type="text" placeholder="Search.." th:name="searchKey"></label>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<form class="main-content" th:action="@{/user/signup}" th:object="${registration_form_dto}" method="post">
+    <div class="container">
+        <h1>Register</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+
+        <label for="name"><b>Username</b></label>
+        <input type="text" placeholder="Enter name" name="name" id="name">
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter password" name="password" id="psw" required>
+
+        <label for="mail"><b>Email</b></label>
+        <input type="email" placeholder="Enter email" name="email" id="mail" required>
+
+        <label for="user-birth-date"><b>Date of birth:</b></label>
+        <input type="date" name="birthDate" id="user-birth-date" required/>
+
+        <button type="submit" value="Submit" class="registerbtn">submit</button>
+        <button type="reset" value="Reset" class="registerbtn">reset</button>
+
+        <p>Already have an account? <a href="/user/redirectToSignInPage">Sign in</a>.</p>
+    </div>
+</form>
+</body>
+<div class="footer">
+    <p>Footer</p>
+</div>
+</html>

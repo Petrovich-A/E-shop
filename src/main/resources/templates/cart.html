@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cart page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="/home">Home</a>
+    <a href="/user/redirectToSignInPage">Login </a>
+    <a href="/user/redirectToSignUpPage">Registration </a>
+    <div th:if="${session.user!=null and session.user.name!=null}">
+        <a href="/user/redirectToProfilePage">Profile </a>
+        <a href="/user/logout">Log out </a>
+        <a href="/cart/redirectToCartPage">Cart </a>
+    </div>
+    <div class="search-container">
+        <form th:action="@{/product/search}">
+            <label><input type="text" placeholder="Search.." th:name="searchKey"></label>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class=”Cart-Container”>
+    </div>
+    <div class=”Header”>
+        <h3 class=”Heading”>Shopping Cart</h3>
+        <a class="Action" th:href="@{/cart/clear}">
+            <button type="submit">Remove all</button>
+        </a>
+    </div>
+    <div class=”Cart-Items” th:each="product : ${cart.getProducts()}">
+        <div class=”image-box”>
+            <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="height:120px">
+        </div>
+        <div class=”about”>
+            <h1 class=”title” th:text="${product.name}"></h1>
+        </div>
+        <div class=”counter”></div>
+        <div class=”prices”></div>
+        <div class=”prices”>
+            <span class="amount" th:utext="${'&#36;'+'&nbsp;'}"></span>
+            <span class="amount" th:text="${product.price}"></span>
+            <!--        <div class=”remove”><u>Remove</u></div>-->
+            <a class="remove" th:href="@{/cart/remove(product_id=${product.getProductId()})}">
+                <button type="submit">remove</button>
+            </a>
+
+        </div>
+    </div>
+    <hr>
+    <div class=”checkout”>
+        <div class=”total”>
+            <div>
+                <div class=”Subtotal”>Sub-Total</div>
+                <!--                <div class=”items”>2 items</div>-->
+            </div>
+            <div class=”total-amount” th:text="${cart.totalPrice}"></div>
+        </div>
+        <a class="button" th:href="@{/cart/order}" th:value="${session.cart}" method="post">
+            <button type="submit">order</button>
+        </a>
+    </div>
+</div>
+
+</body>
+<div class="footer">
+    <p>Footer</p>
+</div>
+</html>
