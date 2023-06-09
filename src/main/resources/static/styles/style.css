@@ -3,6 +3,7 @@
 }
 
 body {
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
 }
@@ -10,6 +11,7 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #e9e9e9;
+    display: flex;
 }
 
 .topnav a {
@@ -23,8 +25,8 @@ body {
 }
 
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #95d9c3;
+    color: white;
 }
 
 .topnav a.active {
@@ -44,10 +46,33 @@ body {
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
-    background: #ddd;
+    background: #04AA6D;
     font-size: 17px;
     border: none;
     cursor: pointer;
+    width: 50px;
+    height: 30px;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.topnav .search-container button:hover {
+    background: #95d9c3;
+}
+
+.search-container{
+    margin-left: auto;
+}
+
+.search-form{
+    display: flex;
 }
 
 @media screen and (max-width: 600px) {
