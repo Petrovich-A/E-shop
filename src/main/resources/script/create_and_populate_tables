@@ -2,6 +2,10 @@ DROP TABLE users CASCADE;
 DROP TABLE categories CASCADE;
 DROP TABLE products CASCADE;
 DROP TABLE orders CASCADE;
+DROP TABLE order_product CASCADE ;
+
+SELECT * FROM pg_catalog.pg_tables;
+SELECT * FROM public.flyway_schema_history;
 
 
 -- USERS
@@ -165,6 +169,9 @@ INSERT INTO orders (price, user_id)
 VALUES (0.10, 1),
        (0.20, 2),
        (0.30, 3);
+
+INSERT INTO orders (price, user_id)
+VALUES (0.10, 1);
 
 SELECT *
 FROM orders;
