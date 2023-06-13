@@ -5,20 +5,20 @@ import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.service.CartService;
 import by.petrovich.eshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.petrovich.eshop.PathToPage.CART_PAGE;
 import static by.petrovich.eshop.PathToPage.HOME_PAGE;
 
-@RestController
+@Controller
 @SessionAttributes({"cart"})
 @RequestMapping("/cart")
 public class CartController {
@@ -68,8 +68,9 @@ public class CartController {
     @PostMapping("/clear")
     public ModelAndView clearCart(@ModelAttribute("cart") Cart cart) {
         ModelMap modelParams = new ModelMap();
-        modelParams.addAttribute("cart", cartService.clear(cart));
-        return new ModelAndView(HOME_PAGE.getPath());
+        Cart clearCart = cartService.clear(cart);
+        modelParams.addAttribute("cart", clearCart);
+        return new ModelAndView(CART_PAGE.getPath(), modelParams);
     }
 
     @PostMapping("/order")
@@ -81,7 +82,7 @@ public class CartController {
             orderService.save(cart, userId);
             modelParams.addAttribute("cart", cart);
         }
-        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+        return new ModelAndView("redirect:/home");
     }
 
 }
