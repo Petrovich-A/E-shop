@@ -1,16 +1,16 @@
 package by.petrovich.eshop.controllers;
 
+import by.petrovich.eshop.entity.Cart;
 import by.petrovich.eshop.entity.User;
-import by.petrovich.eshop.model.Cart;
 import by.petrovich.eshop.service.CartService;
 import by.petrovich.eshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,52 +41,44 @@ public class CartController {
         return new ModelAndView(CART_PAGE.getPath());
     }
 
-    @GetMapping("/add")
-    public ModelAndView addProductToCart(@RequestParam("product_id") String id,
+    @PostMapping("/add/{productId}")
+    public ModelAndView addProductToCart(@PathVariable("productId") String productId,
                                          @ModelAttribute("cart") Cart cart) {
         ModelMap modelParams = new ModelMap();
-        if (cart != null && id != null) {
-            Integer productId = Integer.parseInt(id);
-            cart = cartService.addProductToCart(productId, cart);
-            modelParams.addAttribute("cart", cart);
-            modelParams.addAttribute("products", cart.getProducts());
+        if (productId != null) {
+            Integer id = Integer.parseInt(productId);
+            modelParams.addAttribute("cart", cartService.addProduct(id, cart));
         } else {
             return new ModelAndView(HOME_PAGE.getPath(), modelParams);
         }
         return new ModelAndView(CART_PAGE.getPath(), modelParams);
     }
 
-    @GetMapping("/remove")
-    public ModelAndView removeProductFromCart(@RequestParam("product_id") String id,
+    @PostMapping("/remove/{productId}")
+    public ModelAndView removeProductFromCart(@PathVariable("productId") String productId,
                                               @ModelAttribute("cart") Cart cart) {
         ModelMap modelParams = new ModelMap();
-        if (cart != null && id != null) {
-            Integer productId = Integer.parseInt(id);
-            cart.removeProduct(productId);
-            modelParams.addAttribute("cart", cart);
-            modelParams.addAttribute("products", cart.getProducts());
+        if (productId != null) {
+            Integer id = Integer.parseInt(productId);
+            modelParams.addAttribute("cart", cartService.removeProduct(id, cart));
         }
         return new ModelAndView(CART_PAGE.getPath(), modelParams);
     }
 
-    @GetMapping("/clear")
+    @PostMapping("/clear")
     public ModelAndView clearCart(@ModelAttribute("cart") Cart cart) {
         ModelMap modelParams = new ModelMap();
-        if (cart != null) {
-            cart.clear();
-            modelParams.addAttribute("cart", cart);
-        }
-        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+        modelParams.addAttribute("cart", cartService.clear(cart));
+        return new ModelAndView(HOME_PAGE.getPath());
     }
 
-    @GetMapping("/order")
+    @PostMapping("/order")
     public ModelAndView order(@ModelAttribute("cart") Cart cart,
                               @ModelAttribute("user") User user) {
         ModelMap modelParams = new ModelMap();
         if (cart != null && user != null) {
             Integer userId = user.getUserId();
             orderService.save(cart, userId);
-            cart.clear();
             modelParams.addAttribute("cart", cart);
         }
         return new ModelAndView(CART_PAGE.getPath(), modelParams);

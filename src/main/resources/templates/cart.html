@@ -4,55 +4,51 @@
     <title>Cart page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
+<div class="shopping-cart">
+    <h2>Shopping Cart</h2>
+    <form th:action="@{'/cart/clear'}" method="post">
+        <button type="submit">Remove all</button>
+    </form>
+    <div class="column-labels">
+        <label class="product-image">Image</label>
+        <label class="product-name">Name</label>
+        <label class="product-description">Description</label>
+        <label class="product-price">Price</label>
+        <label class="product-removal">Remove</label>
+    </div>
 
-<div class="main-content">
-    <div class=”Cart-Container”>
-    </div>
-    <div class=”Header”>
-        <h3 class=”Heading”>Shopping Cart</h3>
-        <a class="Action" th:href="@{/cart/clear}">
-            <button type="submit">Remove all</button>
-        </a>
-    </div>
-    <div>
-        <div class=”Cart-Items” th:each="product : ${cart.getProducts()}">
-            <div class=”image-box”>
-                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="height:120px">
+    <div th:each="p : ${cart.getProducts()}" class="product-block">
+        <div class="product">
+            <div class="product-image">
+                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
             </div>
-            <div class=”about”>
-                <h1 class=”title” th:text="${product.name}"></h1>
-            </div>
-            <div class=”counter”></div>
-            <div class=”prices”></div>
-            <div class=”prices”>
-                <span class="amount" th:utext="${'&#36;'+'&nbsp;'}"></span>
-                <span class="amount" th:text="${product.price}"></span>
-                <!--        <div class=”remove”><u>Remove</u></div>-->
-                <a class="remove" th:href="@{/cart/remove(product_id=${product.getProductId()})}">
+            <div class="product-name" th:text="${p.name}"></div>
+            <div class="product-description" th:text="${p.description}"></div>
+            <div class="product-price" th:utext="${'&#36;'+'&nbsp;'} + ${p.price}"></div>
+            <div class="product-removal">
+                <form th:action="@{'/cart/remove/' + ${p.productId}}" method="post">
                     <button type="submit">remove</button>
-                </a>
-
+                </form>
             </div>
         </div>
     </div>
-    <hr>
-    <div class=”checkout”>
-        <div class=”total”>
-            <div>
-                <div class=”Subtotal”>Sub-Total</div>
-                <!--                <div class=”items”>2 items</div>-->
-            </div>
-            <div class=”total-amount” th:text="${cart.totalPrice}"></div>
+
+    <div class="totals">
+        <div class="totals-item totals-item-total">
+            <label>Grand Total</label>
+            <div class="totals-value" id="cart-total"
+                 th:text="${'&#36;'+'&nbsp;'} + ${cart.totalPrice}"></div>
+            <hr>
+            <a th:href="@{/cart/order}" th:value="${cart}">
+                <button type="submit">order</button>
+            </a>
         </div>
-        <a class="button" th:href="@{/cart/order}" th:value="${session.cart}" method="post">
-            <button type="submit">order</button>
-        </a>
     </div>
 </div>
-
 </body>
 <div th:insert="~{include/footer :: footer}"></div>
 </html>

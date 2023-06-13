@@ -1,10 +1,13 @@
 package by.petrovich.eshop.service;
 
-import by.petrovich.eshop.model.Cart;
-import by.petrovich.eshop.entity.Product;
-
-import java.util.Optional;
+import by.petrovich.eshop.entity.Cart;
 
 public interface CartService {
-    Cart addProductToCart(Integer productId, Cart cart);
+
+    Cart addProduct(Integer productId, Cart cart);
+
+    Cart removeProduct(Integer productId, Cart cart);
+
+    Cart clear(Cart cart);
+
 }
