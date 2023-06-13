@@ -2,7 +2,7 @@ package by.petrovich.eshop.service.impl;
 
 import by.petrovich.eshop.entity.Order;
 import by.petrovich.eshop.entity.User;
-import by.petrovich.eshop.model.Cart;
+import by.petrovich.eshop.entity.Cart;
 import by.petrovich.eshop.repository.OrderRepository;
 import by.petrovich.eshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
