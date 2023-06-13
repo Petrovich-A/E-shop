@@ -4,6 +4,7 @@
     <title>Product page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
@@ -32,9 +33,9 @@
                 <span class="price" th:text="${p.price}"></span>
                 <p th:text="${p.description}"></p>
                 <p>
-                    <a th:href="@{/cart/add(product_id=${p.getProductId()})}">
-                        <button type="submit">Add to Cart</button>
-                    </a>
+                <form method="post" th:action="@{'/cart/add/' + ${p.productId}}">
+                    <button type="submit">Add to Cart</button>
+                </form>
                 </p>
                 <hr>
             </div>

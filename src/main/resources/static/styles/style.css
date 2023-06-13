@@ -21,7 +21,7 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .topnav a:hover {
@@ -67,11 +67,11 @@ body {
     background: #95d9c3;
 }
 
-.search-container{
+.search-container {
     margin-left: auto;
 }
 
-.search-form{
+.search-form {
     display: flex;
 }
 
@@ -93,6 +93,26 @@ body {
         border: 1px solid #ccc;
     }
 
+}
+
+
+/*Shopping cart Icon*/
+/**/
+.topnav .badge-cart:after {
+    content: attr(value);
+    font-size: 18px;
+    color: #fff;
+    background: #04AA6D;
+    border-radius: 50%;
+    padding: 0 5px;
+    position: relative;
+    left: -4px;
+    top: -10px;
+    opacity: 0.9;
+}
+
+.topnav .badge:after {
+    position: relative;
 }
 
 
@@ -318,10 +338,6 @@ button:hover, a:hover {
 }
 
 
-
-
-
-
 /*main-content*/
 /**/
 .main-content {
@@ -341,143 +357,110 @@ button:hover, a:hover {
 
 /*Shopping Cart*/
 /**/
-.Cart-Container {
-    width: 70%;
-    height: 85%;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0px 25px 40px #1687d933;
+.shopping-cart {
+    margin: 40px 40px 50px 60px;
+    font-weight: 100;
 }
 
-.Header {
-    margin: auto;
-    width: 90%;
-    height: 15%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.product-image {
+    float: left;
+    width: 10%;
 }
 
-.Heading {
-    font-size: 20px;
-    font-weight: 700;
-    color: #2F3841;
+.product-name {
+    float: left;
+    width: 10%;
 }
 
-.Action {
-    font-size: 14px;
-    font-weight: 600;
-    color: #E44C4C;
-    cursor: pointer;
-    border-bottom: 1px solid #E44C4C;
-}
-
-.Cart-Items {
-    margin: 1em;
+.product-description {
+    float: left;
     width: 60%;
-    height: 30%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-.image-box {
-    width: 15%;
+.product-price {
     text-align: center;
+    float: left;
+    width: 15%;
 }
 
-.about {
-    height: 100%;
+.product-removal {
+    float: left;
+    width: 5%;
 }
 
-.title {
-    padding-top: 5px;
-    line-height: 10px;
-    font-size: 32px;
-    font-weight: 800;
-    color: #202020;
+label {
+    color: #aaa;
 }
 
-.subtitle {
-    line-height: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #909090;
+.column-labels {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
+.shopping-cart button {
+    /*width: 110px;*/
+    border: 0;
+    padding: 6px 8px;
+    margin-top: 20px;
+    background-color: #04AA6D;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 3px;
+}
 
-/*Adding a price section*/
-/**/
-.prices {
-    height: 100%;
+.shopping-cart button:hover {
+    background-color: #95d9c3;
+}
+
+/*product*/
+.product-block {
+    display: flex;
+}
+
+.product {
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.product img {
+    height: 120px;
+}
+
+/*totals*/
+/* Totals section */
+.totals {
+
+}
+
+.totals .totals-item {
+    float: right;
+    clear: both;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.totals label {
+    float: left;
+    clear: both;
+    width: 79%;
     text-align: right;
 }
 
-.amount {
-    padding-top: 20px;
-    font-size: 26px;
-    font-weight: 800;
-    color: #202020;
-}
-
-.remove {
-    padding-top: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #E44C4C;
-    cursor: pointer;
-}
-
-
-/*
-/*Creating a checkout section*/
-
-hr {
-    width: 66%;
+.totals .totals-value {
     float: right;
-    margin-right: 5%;
+    width: 21%;
+    text-align: right;
 }
 
-.checkout {
-    float: right;
-    margin-right: 5%;
-    width: 28%;
+.totals .totals-item label {
+    width: 60%;
 }
 
-.total {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.totals .totals-item .totals-value {
+    width: 40%;
 }
 
-.Subtotal {
-    font-size: 22px;
-    font-weight: 700;
-    color: #202020;
-}
 
-.items {
-    font-size: 16px;
-    font-weight: 500;
-    color: #909090;
-    line-height: 10px;
-}
 
-.total-amount {
-    font-size: 36px;
-    font-weight: 900;
-    color: #202020;
-}
-
-.button {
-    margin-top: 5px;
-    width: 100%;
-    height: 40px;
-    border: none;
-    background: linear-gradient(to bottom right, #B8D7FF, #8EB7EB);
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    color: #202020;
-}
