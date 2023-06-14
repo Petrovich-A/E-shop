@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
   <h1>E-shop app</h1>
 <!-- Badges -->
 <p>

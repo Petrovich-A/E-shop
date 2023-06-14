@@ -13,18 +13,18 @@
     <h2 style="text-align:center">User Profile Card</h2>
     <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
     <p class="title">Profile</p>
-    <h1 th:text="${user.name}"></h1>
-    <p th:text="${user.email}"></p>
+    <h1 th:text="'name: ' + ${user.name}"></h1>
+    <p th:text="'email: ' + ${user.email}"></p>
+    <p th:text="'userId: ' + ${user.userId}"></p>
+    <span th:text="'balance: ' + ${user.balance}"></span>
     <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
-    <span th:text="${user.balance}"></span>
-    <p th:text="${user.birthDate}"></p>
+    <p th:text="'birth date: ' + ${user.birthDate}"></p>
     <div style="margin: 24px 0;">
-        <a href="#"><i class="fa fa-dribbble"></i></a>
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
     </div>
-    <p><button>Contact</button></p>
+    <p><button>Orders history</button></p>
 </div>
 </body>
 <div th:insert="~{include/footer :: footer}"></div>
