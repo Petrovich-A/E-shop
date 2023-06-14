@@ -8,12 +8,12 @@
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
+<h2>Shopping Cart</h2>
+<form th:action="@{'/cart/clear'}" method="post">
+    <button type="submit" class="remove-all-btn">Remove all</button>
+</form>
 <div class="shopping-cart">
-    <h2>Shopping Cart</h2>
     <p th:text="${user.name}"></p>
-    <form th:action="@{'/cart/clear'}" method="post">
-        <button type="submit">Remove all</button>
-    </form>
     <div class="column-labels">
         <label class="product-image">Image</label>
         <label class="product-name">Name</label>
@@ -43,10 +43,10 @@
             <label>Grand Total</label>
             <div class="totals-value" id="cart-total" th:text="${'&#36;'+'&nbsp;'} + ${cart.totalPrice}"></div>
             <hr>
-            <form method="post" th:action="@{'/cart/order/' + ${user.userId}}" th:value="${cart}">
-                <button type="submit">order</button>
-            </form>
         </div>
+        <form method="post" th:action="@{'/cart/order/' + ${user.userId}}" th:value="${cart}">
+            <button type="submit" class="order-btn">Order</button>
+        </form>
     </div>
 </div>
 </body>

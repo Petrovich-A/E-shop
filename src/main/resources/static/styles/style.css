@@ -25,7 +25,7 @@ body {
 }
 
 .topnav a:hover {
-    background-color: #95d9c3;
+    background-color: #1ad18c;
     color: white;
 }
 
@@ -64,7 +64,7 @@ body {
 }
 
 .topnav .search-container button:hover {
-    background: #95d9c3;
+    background: #1ad18c;
 }
 
 .search-container {
@@ -93,6 +93,23 @@ body {
         border: 1px solid #ccc;
     }
 
+}
+
+
+/*general button style*/
+/**/
+button {
+    border: none;
+    color: white;
+    padding: 12px 26px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #04AA6D;
+    border-radius: 7px;
+}
+
+button:hover {
+    background: #1ad18c;
 }
 
 
@@ -148,20 +165,20 @@ hr {
     margin-bottom: 25px;
 }
 
-/* Set a style for the submit button */
-.registerbtn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px 12px;
+/* Set a style for the register button */
+.register-btn {
     margin: 8px 0;
-    border: none;
-    cursor: pointer;
     width: 100%;
-    opacity: 0.9;
 }
 
-.registerbtn:hover {
-    opacity: 1;
+/* Set a style for the order button */
+.order-btn {
+    width: 10%;
+}
+
+/* Set a style for the remove all button */
+.remove-all-btn {
+    width: 10%;
 }
 
 /* Add a blue text color to links */
@@ -175,6 +192,7 @@ a {
 }
 
 img.avatar {
+    margin-top: 20px;
     width: 7%;
     border-radius: 50%;
 }
@@ -358,108 +376,129 @@ button:hover, a:hover {
 /*Shopping Cart*/
 /**/
 .shopping-cart {
-    margin: 40px 40px 50px 60px;
-    font-weight: 100;
+    width: 98%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-image {
-    float: left;
-    width: 10%;
-}
-
-.product-name {
-    float: left;
-    width: 10%;
-}
-
-.product-description {
-    float: left;
-    width: 60%;
-}
-
-.product-price {
+.shopping-cart h2 {
     text-align: center;
-    float: left;
-    width: 15%;
-}
-
-.product-removal {
-    float: left;
-    width: 5%;
-}
-
-label {
-    color: #aaa;
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
 .column-labels {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-.shopping-cart button {
-    /*width: 110px;*/
-    border: 0;
-    padding: 6px 8px;
-    margin-top: 20px;
-    background-color: #04AA6D;
-    color: #fff;
-    font-size: 14px;
-    border-radius: 3px;
-}
-
-.shopping-cart button:hover {
-    background-color: #95d9c3;
-}
-
-/*product*/
-.product-block {
     display: flex;
-}
-
-.product {
-    margin-bottom: 40px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.product img {
-    height: 120px;
-}
-
-/*totals*/
-/* Totals section */
-.totals {
-
-}
-
-.totals .totals-item {
-    float: right;
-    clear: both;
-    width: 100%;
+    justify-content: space-between;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
-.totals label {
-    float: left;
-    clear: both;
-    width: 79%;
-    text-align: right;
+.product-block {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
 }
 
-.totals .totals-value {
+.product {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.product-image {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.product-image img {
+    width: 100%;
+}
+
+.product-name,
+.product-description,
+.product-price {
+    flex-grow: 1;
+    font-size: 18px;
+}
+
+.product-price {
+    font-size: 24px;
+}
+
+.product-removal {
+    flex-basis: 100px;
+}
+
+.product-removal button {
+    background-color: #e7e7e7;
+    color: black;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.product-removal button:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+.totals {
+    margin-top: 30px;
+}
+
+.totals-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+}
+
+.totals-item label {
+    flex-grow: 1;
+}
+
+.totals-value {
+    font-weight: bold;
+}
+
+.totals-item-total {
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+.remove-all-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
     float: right;
-    width: 21%;
-    text-align: right;
+    margin-bottom: 20px;
 }
 
-.totals .totals-item label {
-    width: 60%;
+.remove-all-btn:hover {
+    background-color: #e53935;
 }
 
-.totals .totals-item .totals-value {
-    width: 40%;
+.order-btn {
+    background-color: #1ad18c;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.order-btn:hover {
+    background-color: #0e8a61;
 }
 
 
