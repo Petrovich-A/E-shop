@@ -17,7 +17,6 @@ import java.util.Optional;
 public class CartServiceImpl implements CartService {
     private ProductRepository productRepository;
 
-
     @Autowired
     public CartServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
@@ -32,7 +31,7 @@ public class CartServiceImpl implements CartService {
         } else {
             products = new ArrayList<>();
         }
-        products.add(product.get());
+        products.add(product.orElse(null));
         cart = Cart.builder()
                 .products(products)
                 .quantity(products.size())

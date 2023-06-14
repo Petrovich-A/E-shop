@@ -1,6 +1,7 @@
 package by.petrovich.eshop.controllers;
 
 import by.petrovich.eshop.entity.Cart;
+import by.petrovich.eshop.entity.Order;
 import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.service.CartService;
 import by.petrovich.eshop.service.OrderService;
@@ -19,7 +20,7 @@ import static by.petrovich.eshop.PathToPage.CART_PAGE;
 import static by.petrovich.eshop.PathToPage.HOME_PAGE;
 
 @Controller
-@SessionAttributes({"cart"})
+@SessionAttributes({"cart", "user"})
 @RequestMapping("/cart")
 public class CartController {
     private final CartService cartService;
@@ -34,6 +35,11 @@ public class CartController {
     @ModelAttribute("cart")
     public Cart Cart() {
         return new Cart();
+    }
+
+    @ModelAttribute("user")
+    public User User() {
+        return new User();
     }
 
     @GetMapping("/redirectToCartPage")
@@ -68,21 +74,26 @@ public class CartController {
     @PostMapping("/clear")
     public ModelAndView clearCart(@ModelAttribute("cart") Cart cart) {
         ModelMap modelParams = new ModelMap();
-        Cart clearCart = cartService.clear(cart);
-        modelParams.addAttribute("cart", clearCart);
+        clearCart(cart, modelParams);
         return new ModelAndView(CART_PAGE.getPath(), modelParams);
     }
 
-    @PostMapping("/order")
+    @PostMapping("/order/{userId}")
     public ModelAndView order(@ModelAttribute("cart") Cart cart,
-                              @ModelAttribute("user") User user) {
+                              @PathVariable("userId") String userId) {
         ModelMap modelParams = new ModelMap();
-        if (cart != null && user != null) {
-            Integer userId = user.getUserId();
-            orderService.save(cart, userId);
-            modelParams.addAttribute("cart", cart);
+        if (cart != null && userId != null) {
+            Integer id = Integer.valueOf(userId);
+            Order savedCart = orderService.save(cart, id);
+            if (savedCart != null) {
+                clearCart(cart, modelParams);
+            }
         }
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+    }
+
+    private void clearCart(Cart cart, ModelMap modelParams) {
+        modelParams.addAttribute("cart", cartService.clear(cart));
     }
 
 }
