@@ -1,3 +1,10 @@
+:root {
+    --color-button: #04AA6D;
+    --color-button-hover: #1ad18c;
+/*var(--color-button);*/
+/*var(--color-button-hover);*/
+}
+
 * {
     box-sizing: border-box;
 }
@@ -25,12 +32,12 @@ body {
 }
 
 .topnav a:hover {
-    background-color: #1ad18c;
+    background-color: var(--color-button-hover);;
     color: white;
 }
 
 .topnav a.active {
-    background-color: #04AA6D;
+    background-color: var(--color-button);
     color: white;
 }
 
@@ -46,7 +53,7 @@ body {
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
-    background: #04AA6D;
+    background: var(--color-button);
     font-size: 17px;
     border: none;
     cursor: pointer;
@@ -64,7 +71,7 @@ body {
 }
 
 .topnav .search-container button:hover {
-    background: #1ad18c;
+    background: var(--color-button-hover);;
 }
 
 .search-container {
@@ -104,14 +111,13 @@ button {
     padding: 12px 26px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #04AA6D;
+    background-color: var(--color-button);
     border-radius: 7px;
 }
 
 button:hover {
-    background: #1ad18c;
+    background: var(--color-button-hover);;
 }
-
 
 /*Shopping cart Icon*/
 /**/
@@ -119,7 +125,7 @@ button:hover {
     content: attr(value);
     font-size: 18px;
     color: #fff;
-    background: #04AA6D;
+    background: var(--color-button);
     border-radius: 50%;
     padding: 0 5px;
     position: relative;
@@ -159,6 +165,26 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, inp
     outline: none;
 }
 
+.password-container {
+    position: relative;
+}
+
+.password-input {
+    display: flex;
+    align-items: center;
+}
+
+.password-input input {
+    padding-right: 30px; /* Add some padding to the right to make space for the toggle icon */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+}
+
+
 /* Overwrite default styles of hr */
 hr {
     border: 1px solid #f1f1f1;
@@ -173,7 +199,7 @@ hr {
 
 /* Set a style for the order button */
 .order-btn {
-    width: 10%;
+    width: 100%;
 }
 
 /* Set a style for the remove all button */
@@ -222,7 +248,7 @@ img.avatar {
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #04AA6D;
+    background-color: var(--color-button);
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -260,7 +286,7 @@ button:hover, a:hover {
 
 /* Style the active/current link */
 .pagination a.active {
-    background-color: #04AA6D;
+    background-color: var(--color-button);
     color: white;
 }
 
@@ -305,7 +331,7 @@ button {
     display: inline-block;
     padding: 8px;
     color: white;
-    background-color: #04AA6D;
+    background-color: var(--color-button);
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -340,7 +366,7 @@ button:hover, a:hover {
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #04AA6D;
+    background-color: var(--color-button);
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -367,7 +393,7 @@ button:hover, a:hover {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #04AA6D;
+    background-color: var(--color-button);
     text-align: center;
     color: white;
 }
@@ -488,7 +514,7 @@ button:hover, a:hover {
 }
 
 .order-btn {
-    background-color: #1ad18c;
+    background-color: var(--color-button-hover);;
     color: white;
     border: none;
     padding: 10px;
@@ -501,5 +527,39 @@ button:hover, a:hover {
     background-color: #0e8a61;
 }
 
+/*order page*/
+/*table*/
+.order-content {
+    padding: 10px 0 30px 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orders-tables {
+    padding-bottom: 40px;
+    text-align: center;
+    width: 30%;
+}
 
 
+.orders-tables td, .orders th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.orders-tables tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.orders-tables tr:hover {
+    background-color: #ddd;
+}
+
+.orders-tables th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: var(--color-button);
+    color: white;
+}

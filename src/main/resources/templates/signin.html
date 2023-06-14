@@ -4,8 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>SignIn page</title>
-    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/styles/javaScript/toggle-password.js"></script>
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
@@ -18,8 +19,13 @@
         <label for="name"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="name" id="name" required>
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+        <div class="password-container">
+            <label for="psw"><b>Password</b></label>
+            <div class="password-input">
+                <input type="password" placeholder="Enter password" name="password" id="psw" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()">&#128065;</span>
+            </div>
+        </div>
 
         <button value="Submit" type="submit">SignIn</button>
         <label>
