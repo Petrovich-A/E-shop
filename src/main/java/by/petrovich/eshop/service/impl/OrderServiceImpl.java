@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository) {
@@ -31,5 +32,13 @@ public class OrderServiceImpl implements OrderService {
                 .products(Set.copyOf(cart.getProducts()))
                 .build();
         return orderRepository.saveAndFlush(order);
+    }
+
+    @Override
+    public List<Order> read(Integer userId) {
+        User user = User.builder()
+                .userId(userId)
+                .build();
+        return orderRepository.findAllByUser(user);
     }
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div th:insert="~{include/topnav :: navigation}"></div>
+<div class="order-content">
+    <h1>Order history</h1>
+    <table class="orders-tables">
+        <tr>
+            <th>order id</th>
+            <th>price</th>
+            <th>created at</th>
+        </tr>
+        <th:block th:each="o : ${orders}">
+            <tr>
+                <td th:text="${o.orderId}"></td>
+                <td th:text="${o.price}"></td>
+                <td th:text="${o.createdAt}"></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+<div th:insert="~{include/footer :: footer}"></div>
+</html>

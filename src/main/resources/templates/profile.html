@@ -24,7 +24,9 @@
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
     </div>
-    <p><button>Orders history</button></p>
+    <form th:action="@{'/order/read/' + ${user.userId}}" th:value="${cart}">
+        <button type="submit" class="order-btn">Orders history</button>
+    </form>
 </div>
 </body>
 <div th:insert="~{include/footer :: footer}"></div>
