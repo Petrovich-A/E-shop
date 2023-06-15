@@ -8,5 +8,7 @@ import java.util.List;
 public interface OrderService {
     Order save(Cart cart, Integer userId);
 
-    List<Order> read(Integer userId);
+    List<Order> readOrders(Integer userId);
+
+    Order read (Integer orderId);
 }

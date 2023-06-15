@@ -98,6 +98,8 @@ to populate the database tables.
 * [x] add User authorization
 * [x] create shopping cart and opportunity to add products
 * [x] add orders storing to DB
+* [x] display user's order history
+* [x] add the ability to view the list of products of each user order
 
 ## :handshake: Contact
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.petrovich.eshop.PathToPage.HOME_PAGE;
+import static by.petrovich.eshop.PathToPage.ORDER_HISTORY_PAGE;
 import static by.petrovich.eshop.PathToPage.ORDER_PAGE;
 
 @Controller
@@ -31,12 +32,24 @@ public class OrderController {
         return new User();
     }
 
-    @GetMapping("/read/{userId}")
-    public ModelAndView addProductToCart(@PathVariable("userId") String userId) {
+    @GetMapping("/read-history/{userId}")
+    public ModelAndView showOrdersHistory(@PathVariable("userId") String userId) {
         ModelMap modelParams = new ModelMap();
         if (userId != null) {
             Integer id = Integer.parseInt(userId);
-            modelParams.addAttribute("orders", orderService.read(id));
+            modelParams.addAttribute("orders", orderService.readOrders(id));
+        } else {
+            return new ModelAndView(HOME_PAGE.getPath(), modelParams);
+        }
+        return new ModelAndView(ORDER_HISTORY_PAGE.getPath(), modelParams);
+    }
+
+    @GetMapping("/read/{orderId}")
+    public ModelAndView showOrder(@PathVariable("orderId") String orderId) {
+        ModelMap modelParams = new ModelMap();
+        if (orderId != null) {
+            Integer id = Integer.parseInt(orderId);
+            modelParams.addAttribute("order", orderService.read(id));
         } else {
             return new ModelAndView(HOME_PAGE.getPath(), modelParams);
         }

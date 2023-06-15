@@ -1,8 +1,8 @@
 package by.petrovich.eshop.service.impl;
 
+import by.petrovich.eshop.entity.Cart;
 import by.petrovich.eshop.entity.Order;
 import by.petrovich.eshop.entity.User;
-import by.petrovich.eshop.entity.Cart;
 import by.petrovich.eshop.repository.OrderRepository;
 import by.petrovich.eshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +35,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> read(Integer userId) {
+    public List<Order> readOrders(Integer userId) {
         User user = User.builder()
                 .userId(userId)
                 .build();
         return orderRepository.findAllByUser(user);
+    }
+
+    @Override
+    public Order read(Integer orderId) {
+        return orderRepository.findByOrderId(orderId);
     }
 }
