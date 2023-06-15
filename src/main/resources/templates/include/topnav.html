@@ -6,11 +6,10 @@
     </div>
     <div th:if="${session.user!=null and session.user.name!=null}">
         <a class="fa badge fa-5x" href="/user/redirectToProfilePage">&#xf007 Profile</a>
-        <a href="/user/logout">Log out </a>
+        <a class="fa badge fa-5x" href="/user/logout">&#xf08b Log out</a>
     </div>
     <div th:if="${session.cart!=null and session.cart.quantity!=null}">
-        <a class="fa badge-cart fa-5x" href="/cart/redirectToCartPage" th:value="${session.cart.quantity}">&#xf07a
-            Cart</a>
+        <a class="fa badge-cart fa-5x" href="/cart/redirectToCartPage" th:value="${session.cart.quantity}">&#xf07a Cart</a>
     </div>
     <div class="search-container">
         <form class="search-form" th:action="@{/product/search}">
