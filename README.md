@@ -84,6 +84,8 @@ to populate the database tables.
 <!-- Database struct -->
 ### :key: Database structure
 
+![DB_structure](src/main/resources/static/styles/img/DB_structure.png)
+
 <!-- Roadmap -->
 ## :compass: roadmap:
 
