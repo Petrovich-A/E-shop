@@ -20,6 +20,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import static by.petrovich.eshop.PathToPage.ERROR_PAGE;
 import static by.petrovich.eshop.PathToPage.PROFILE_PAGE;
 import static by.petrovich.eshop.PathToPage.SIGN_IN_PAGE;
 import static by.petrovich.eshop.PathToPage.SIGN_UP_PAGE;
@@ -77,11 +78,15 @@ public class UserController {
 
     @PostMapping("/signin")
     public ModelAndView signIn(
-            @ModelAttribute("login_form_dto") @Valid LogInFormDto logInFormDto,
-            @ModelAttribute("user") User user) {
-        user = userService.authorize(logInFormDto);
+            @ModelAttribute("login_form_dto") @Valid LogInFormDto logInFormDto) {
         ModelMap modelParams = new ModelMap();
-        modelParams.addAttribute("user", user);
+        User user = userService.authorize(logInFormDto);
+        if (user != null) {
+            modelParams.addAttribute("user", user);
+        } else {
+            modelParams.addAttribute("error_message", "Pass or login is incorrect");
+            return new ModelAndView(ERROR_PAGE.getPath(), modelParams);
+        }
         return new ModelAndView(PROFILE_PAGE.getPath(), modelParams);
     }
 

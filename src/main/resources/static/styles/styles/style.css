@@ -1,8 +1,8 @@
 :root {
     --color-button: #04AA6D;
     --color-button-hover: #1ad18c;
-/*var(--color-button);*/
-/*var(--color-button-hover);*/
+    /*var(--color-button);*/
+    /*var(--color-button-hover);*/
 }
 
 * {
@@ -539,7 +539,7 @@ button:hover, a:hover {
 .orders-tables {
     padding-bottom: 40px;
     text-align: center;
-    width: 30%;
+    width: 50%;
 }
 
 
@@ -562,4 +562,29 @@ button:hover, a:hover {
     text-align: center;
     background-color: var(--color-button);
     color: white;
+}
+
+
+/*error page*/
+/**/
+.error-content {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 140px;
+}
+
+.error-content img {
+    width: 300px;
+    margin: auto;
+}
+
+.error-content p {
+    color: #e53935;
+}
+
+.error-content button {
+    display: block;
+    margin: auto;
+    width: 20%;
 }
