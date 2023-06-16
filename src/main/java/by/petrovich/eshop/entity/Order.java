@@ -12,18 +12,18 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -41,8 +41,10 @@ public class Order {
     private Integer orderId;
     @Column(columnDefinition = "Decimal(10,2) default '0.00'")
     private BigDecimal price;
-    @Column(name = "date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDate date;
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -51,7 +53,7 @@ public class Order {
             cascade = {
                     CascadeType.MERGE
             })
-    @JoinTable(name = "order_product",
+    @JoinTable(name = "orders_products",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private Set<Product> products = new HashSet<>();
@@ -63,7 +65,7 @@ public class Order {
 
         Order order = (Order) o;
 
-        return orderId != null ? orderId.equals(order.orderId) : order.orderId == null;
+        return Objects.equals(orderId, order.orderId);
     }
 
     @Override

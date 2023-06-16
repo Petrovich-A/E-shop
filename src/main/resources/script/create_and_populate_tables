@@ -2,17 +2,33 @@ DROP TABLE users CASCADE;
 DROP TABLE categories CASCADE;
 DROP TABLE products CASCADE;
 DROP TABLE orders CASCADE;
+DROP TABLE carts CASCADE;
+DROP TABLE orders_products CASCADE;
+DROP TABLE flyway_schema_history;
+
+-- DROP schema users CASCADE;
+-- DROP schema categories CASCADE;
+-- DROP schema products CASCADE;
+-- DROP schema orders CASCADE;
+-- DROP schema carts CASCADE;
+-- DROP schema orders_products CASCADE;
+-- DROP SCHEMA flyway_schema_history;
+
+
+SELECT *
+FROM pg_catalog.pg_tables;
+SELECT *
+FROM public.flyway_schema_history;
 
 
 -- USERS
 --
-CREATE SCHEMA IF NOT EXISTS users;
 CREATE TABLE IF NOT EXISTS users
 (
     user_id    SERIAL,
-    name       text NOT NULL UNIQUE ,
-    password   text NOT NULL UNIQUE ,
-    email      text NOT NULL UNIQUE ,
+    name       text NOT NULL UNIQUE,
+    password   text NOT NULL UNIQUE,
+    email      text NOT NULL UNIQUE,
     birth_date date NOT NULL,
     balance    NUMERIC(10, 2) DEFAULT '0.00',
     PRIMARY KEY (user_id)
@@ -44,12 +60,10 @@ WHERE user_id = 1;
 
 -- CATEGORIES
 --
-CREATE SCHEMA IF NOT EXISTS categories;
-
 CREATE TABLE IF NOT EXISTS categories
 (
     category_id SERIAL NOT NULL,
-    name        text   NOT NULL UNIQUE ,
+    name        text   NOT NULL UNIQUE,
     rating      int4 DEFAULT 1,
     PRIMARY KEY (category_id),
     CONSTRAINT high_rating CHECK (rating <= 5)
@@ -67,7 +81,6 @@ FROM categories;
 
 -- PRODUCTS
 --
-CREATE SCHEMA IF NOT EXISTS products;
 CREATE TABLE IF NOT EXISTS products
 (
     product_id  SERIAL NOT NULL,
@@ -148,7 +161,6 @@ WHERE category_id = 3;
 
 -- ORDERS
 --
-CREATE SCHEMA IF NOT EXISTS orders;
 CREATE TABLE IF NOT EXISTS orders
 (
     order_id SERIAL NOT NULL,
@@ -166,12 +178,14 @@ VALUES (0.10, 1),
        (0.20, 2),
        (0.30, 3);
 
+INSERT INTO orders (price, user_id)
+VALUES (0.10, 1);
+
 SELECT *
 FROM orders;
 
 -- CARTS
 --
-CREATE SCHEMA IF NOT EXISTS carts;
 CREATE TABLE IF NOT EXISTS carts
 (
     cart_id SERIAL NOT NULL,
@@ -192,4 +206,17 @@ VALUES (0.10, 1),
 SELECT *
 FROM carts;
 
-SELECT * FROM order_product;
+-- Creating junction table order_product
+--
+CREATE TABLE orders_products
+(
+    order_id   INTEGER REFERENCES products (product_id),
+    product_id INTEGER REFERENCES orders (order_id),
+    CONSTRAINT orders_products_pk PRIMARY KEY (order_id, product_id)
+);
+
+SELECT *
+FROM orders;
+
+SELECT *
+FROM orders_products;

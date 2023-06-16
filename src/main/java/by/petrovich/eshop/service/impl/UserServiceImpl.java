@@ -42,10 +42,7 @@ public class UserServiceImpl implements UserService {
 
     public User authorize(LogInFormDto logInFormDto) {
         Optional<User> user = userRepository.findByNameAndPassword(logInFormDto.getName(), logInFormDto.getPassword());
-        if (logInFormDto.getName().equals(user.get().getName()) && logInFormDto.getPassword().equals(user.get().getPassword())) {
-            return user.get();
-        }
-        return null;
+        return user.orElse(null);
     }
 
     private boolean isExist(String email) {

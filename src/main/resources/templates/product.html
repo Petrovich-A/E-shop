@@ -3,25 +3,11 @@
 <head>
     <title>Product page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="topnav">
-    <a class="active" href="/home">Home</a>
-    <a href="/user/redirectToSignInPage">Login </a>
-    <a href="/user/redirectToSignUpPage">Registration </a>
-    <div th:if="${session.user!=null and session.user.name!=null}">
-        <a href="/user/redirectToProfilePage">Profile </a>
-        <a href="/user/logout">Log out </a>
-        <a href="/cart/redirectToCartPage">Cart </a>
-    </div>
-    <div class="search-container">
-        <form th:action="@{/product/search}">
-            <label><input type="text" placeholder="Search.." th:name="searchKey"></label>
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-</div>
+<div th:insert="~{include/topnav :: navigation}"></div>
 <div class="main-content">
     <div class="one-card" th:if="${product!=null}">
         <h2>Product card</h2>
@@ -47,9 +33,9 @@
                 <span class="price" th:text="${p.price}"></span>
                 <p th:text="${p.description}"></p>
                 <p>
-                    <a th:href="@{/cart/add(product_id=${p.getProductId()})}">
-                        <button type="submit">Add to Cart</button>
-                    </a>
+                <form method="post" th:action="@{'/cart/add/' + ${p.productId}}">
+                    <button type="submit">Add to Cart</button>
+                </form>
                 </p>
                 <hr>
             </div>
@@ -58,9 +44,7 @@
 </div>
 
 </body>
-<div class="footer">
-    <p>Footer</p>
-</div>
+<div th:insert="~{include/footer :: footer}"></div>
 </html>
 
 

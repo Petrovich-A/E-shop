@@ -12,7 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,4 +57,18 @@ class OrderRepositoryTest {
         assertEquals(actual, expected);
     }
 
+    @Test
+    void findAllByUser() {
+        User user = User.builder().userId(2).build();
+        Order order = Order.builder()
+                .orderId(2)
+                .price(BigDecimal.valueOf(0.2))
+                .createdAt(LocalDateTime.of(2023, 6, 14, 9, 37, 59, 613918))
+                .user(User.builder().userId(2).build())
+                .build();
+        List<Order> actual = new ArrayList<>();
+        actual.add(order);
+        List<Order> expected = orderRepository.findAllByUser(user);
+        assertEquals(actual, expected);
+    }
 }

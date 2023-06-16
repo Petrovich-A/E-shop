@@ -1,38 +1,24 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Error page</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <title>Error page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="topnav">
-  <a class="active" href="/home">Home</a>
-  <a href="/user/redirectToSignInPage">Login </a>
-  <a href="/user/redirectToSignUpPage">Registration </a>
-  <div th:if="${session.user!=null and session.user.name!=null}">
-    <a href="/user/redirectToProfilePage">Profile </a>
-    <a href="/user/logout">Log out </a>
-    <a href="/cart/redirectToCartPage">Cart </a>
-  </div>
-  <div class="search-container">
-    <form th:action="@{/product/search}">
-      <label><input type="text" placeholder="Search.." th:name="searchKey"></label>
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-</div>
-
-<h2>Error</h2>
-
-<div class="container-fluid mb-4">
-  <h1 class="alert alert-danger" role="alert" th:text="${error}"></h1>
-  <a th:href="@{/home}">
-    <button type="button" class="btn btn-danger">Try again...</button>
-  </a>
+<div th:insert="~{include/topnav :: navigation}"></div>
+<div class="error-content">
+    <h2>Error</h2>
+    <p>Oops, looks like the page is lost.
+        This is not a fault, just an accident that was not intentional.</p>
+    <p th:text="${error_message}"></p>
+    <p th:text="${userNotFoundException}"></p>
+    <img src="/styles/img/error.png" alt="error 404">
+    <a th:href="@{/home}">
+        <button type="button">Try again...</button>
+    </a>
 </div>
 </body>
-<div class="footer">
-  <p>Footer</p>
-</div>
+<div th:insert="~{include/footer :: footer}"></div>
 </html>

@@ -1,4 +1,4 @@
-<div align="centr">
+<div align="center">
   <h1>E-shop app</h1>
 <!-- Badges -->
 <p>
@@ -84,6 +84,8 @@ to populate the database tables.
 <!-- Database struct -->
 ### :key: Database structure
 
+![DB_structure](src/main/resources/static/styles/img/DB_structure.png)
+
 <!-- Roadmap -->
 ## :compass: roadmap:
 
@@ -97,6 +99,9 @@ to populate the database tables.
 * [x] add User registration with saving Users to database
 * [x] add User authorization
 * [x] create shopping cart and opportunity to add products
+* [x] add orders storing to DB
+* [x] display user's order history
+* [x] add the ability to view the list of products of each user order
 
 ## :handshake: Contact
 

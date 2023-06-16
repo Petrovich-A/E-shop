@@ -8,6 +8,8 @@ public enum PathToPage {
     PRODUCT_PAGE("product"),
     PROFILE_PAGE("profile"),
     CART_PAGE("cart"),
+    ORDER_HISTORY_PAGE("order_history"),
+    ORDER_PAGE("order"),
     ERROR_PAGE("error");
 
     private final String path;
