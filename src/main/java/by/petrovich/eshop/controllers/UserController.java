@@ -20,10 +20,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.petrovich.eshop.PathToPage.ERROR_PAGE;
-import static by.petrovich.eshop.PathToPage.PROFILE_PAGE;
-import static by.petrovich.eshop.PathToPage.SIGN_IN_PAGE;
-import static by.petrovich.eshop.PathToPage.SIGN_UP_PAGE;
+import static by.petrovich.eshop.PageName.ERROR_PAGE;
+import static by.petrovich.eshop.PageName.PROFILE_PAGE;
+import static by.petrovich.eshop.PageName.SIGN_IN_PAGE;
+import static by.petrovich.eshop.PageName.SIGN_UP_PAGE;
 
 @Controller
 @SessionAttributes({"user", "cart"})
@@ -55,17 +55,17 @@ public class UserController {
     @GetMapping("/redirectToSignUpPage")
     public ModelAndView showSignUpPage(Model model) {
         model.addAttribute("registration_form_dto", new RegistrationFormDto());
-        return new ModelAndView(SIGN_UP_PAGE.getPath());
+        return new ModelAndView(SIGN_UP_PAGE);
     }
 
     @GetMapping("/redirectToSignInPage")
     public ModelAndView showSignInPage(Model model) {
-        return new ModelAndView(SIGN_IN_PAGE.getPath());
+        return new ModelAndView(SIGN_IN_PAGE);
     }
 
     @GetMapping("/redirectToProfilePage")
     public ModelAndView showProfilePage() {
-        return new ModelAndView(PROFILE_PAGE.getPath());
+        return new ModelAndView(PROFILE_PAGE);
     }
 
     @PostMapping("/signup")
@@ -73,7 +73,7 @@ public class UserController {
                                ModelAndView model) {
         model.addObject("registration_form_dto", registrationFormDto);
         userService.register(registrationFormDto);
-        return new ModelAndView(SIGN_IN_PAGE.getPath());
+        return new ModelAndView(SIGN_IN_PAGE);
     }
 
     @PostMapping("/signin")
@@ -85,9 +85,9 @@ public class UserController {
             modelParams.addAttribute("user", user);
         } else {
             modelParams.addAttribute("error_message", "Pass or login is incorrect");
-            return new ModelAndView(ERROR_PAGE.getPath(), modelParams);
+            return new ModelAndView(ERROR_PAGE, modelParams);
         }
-        return new ModelAndView(PROFILE_PAGE.getPath(), modelParams);
+        return new ModelAndView(PROFILE_PAGE, modelParams);
     }
 
     @GetMapping("/logout")

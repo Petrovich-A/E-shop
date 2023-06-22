@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.petrovich.eshop.PathToPage.CART_PAGE;
-import static by.petrovich.eshop.PathToPage.HOME_PAGE;
+import static by.petrovich.eshop.PageName.CART_PAGE;
+import static by.petrovich.eshop.PageName.HOME_PAGE;
 
 @Controller
 @SessionAttributes({"cart", "user"})
@@ -44,7 +44,7 @@ public class CartController {
 
     @GetMapping("/redirectToCartPage")
     public ModelAndView showCartPage() {
-        return new ModelAndView(CART_PAGE.getPath());
+        return new ModelAndView(CART_PAGE);
     }
 
     @PostMapping("/add/{productId}")
@@ -54,10 +54,9 @@ public class CartController {
         if (productId != null) {
             Integer id = Integer.parseInt(productId);
             modelParams.addAttribute("cart", cartService.addProduct(id, cart));
-        } else {
-            return new ModelAndView(HOME_PAGE.getPath(), modelParams);
+            return new ModelAndView(CART_PAGE, modelParams);
         }
-        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+        return new ModelAndView(HOME_PAGE, modelParams);
     }
 
     @PostMapping("/remove/{productId}")
@@ -67,15 +66,16 @@ public class CartController {
         if (productId != null) {
             Integer id = Integer.parseInt(productId);
             modelParams.addAttribute("cart", cartService.removeProduct(id, cart));
+            return new ModelAndView(CART_PAGE, modelParams);
         }
-        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+        return new ModelAndView(HOME_PAGE, modelParams);
     }
 
     @PostMapping("/clear")
     public ModelAndView clearCart(@ModelAttribute("cart") Cart cart) {
         ModelMap modelParams = new ModelMap();
         clearCart(cart, modelParams);
-        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+        return new ModelAndView(CART_PAGE, modelParams);
     }
 
     @PostMapping("/order/{userId}")
@@ -89,7 +89,7 @@ public class CartController {
                 clearCart(cart, modelParams);
             }
         }
-        return new ModelAndView(CART_PAGE.getPath(), modelParams);
+        return new ModelAndView(CART_PAGE, modelParams);
     }
 
     private void clearCart(Cart cart, ModelMap modelParams) {

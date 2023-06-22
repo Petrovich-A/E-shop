@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-import static by.petrovich.eshop.PathToPage.HOME_PAGE;
+import static by.petrovich.eshop.PageName.HOME_PAGE;
 
 @Controller
 @RequestMapping("/home")
@@ -28,7 +28,7 @@ public class HomeController {
         ModelMap model = new ModelMap();
         List<Category> categories = categoryService.findAll();
         model.addAttribute("categories", categories);
-        return new ModelAndView(HOME_PAGE.getPath(), model);
+        return new ModelAndView(HOME_PAGE, model);
     }
 
 }

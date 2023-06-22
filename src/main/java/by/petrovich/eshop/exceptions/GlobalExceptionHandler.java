@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.petrovich.eshop.PathToPage.ERROR_PAGE;
+import static by.petrovich.eshop.PageName.ERROR_PAGE;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleUserNotFoundException(UserNotFoundException ex) {
-        ModelAndView modelAndView = new ModelAndView(ERROR_PAGE.getPath());
+        ModelAndView modelAndView = new ModelAndView(ERROR_PAGE);
         modelAndView.addObject("userNotFoundException", ex.getMessage());
         logger.error("error", ex);
         return modelAndView;

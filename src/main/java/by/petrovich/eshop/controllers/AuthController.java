@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.petrovich.eshop.PathToPage.SIGN_IN_PAGE;
-import static by.petrovich.eshop.PathToPage.SIGN_UP_PAGE;
+import static by.petrovich.eshop.PageName.SIGN_IN_PAGE;
+import static by.petrovich.eshop.PageName.SIGN_UP_PAGE;
 
 @RestController
 @SessionAttributes("USER")
@@ -24,12 +24,12 @@ public class AuthController {
 
     @GetMapping("/redirectToSignInPage")
     public ModelAndView showSignInPage() {
-        return new ModelAndView(SIGN_IN_PAGE.getPath());
+        return new ModelAndView(SIGN_IN_PAGE);
     }
 
     @GetMapping("/redirectToSignUpPage")
     public ModelAndView showSignUpPage() {
-        return new ModelAndView(SIGN_UP_PAGE.getPath());
+        return new ModelAndView(SIGN_UP_PAGE);
     }
 
 }
