@@ -1,4 +1,4 @@
-package by.petrovich.eshop.service;
+package by.petrovich.eshop.entity.converter;
 
 import by.petrovich.eshop.EShopApplication;
 import by.petrovich.eshop.dto.LogInFormDto;

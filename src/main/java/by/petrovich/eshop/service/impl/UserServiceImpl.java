@@ -4,7 +4,7 @@ import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.repository.UserRepository;
-import by.petrovich.eshop.service.UserConverter;
+import by.petrovich.eshop.entity.converter.UserConverter;
 import by.petrovich.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
