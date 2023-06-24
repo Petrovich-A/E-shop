@@ -24,7 +24,7 @@
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
     </div>
-    <form th:action="@{'/order/read-history/' + ${user.userId}}" th:value="${cart}">
+    <form th:action="@{'/order/read-history/' + ${user.userId}}" th:value="${cartDto}">
         <button type="submit" class="order-btn">Orders history</button>
     </form>
 </div>

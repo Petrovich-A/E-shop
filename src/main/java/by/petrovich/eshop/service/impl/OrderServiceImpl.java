@@ -1,8 +1,10 @@
 package by.petrovich.eshop.service.impl;
 
+import by.petrovich.eshop.dto.CartDto;
 import by.petrovich.eshop.entity.Cart;
 import by.petrovich.eshop.entity.Order;
 import by.petrovich.eshop.entity.User;
+import by.petrovich.eshop.entity.converter.CartConverter;
 import by.petrovich.eshop.repository.OrderRepository;
 import by.petrovich.eshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,17 @@ import java.util.Set;
 @Service
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final CartConverter cartConverter;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, CartConverter cartConverter) {
         this.orderRepository = orderRepository;
+        this.cartConverter = cartConverter;
     }
 
     @Override
-    public Order save(Cart cart, Integer userId) {
+    public Order save(CartDto cartDto, Integer userId) {
+        Cart cart = cartConverter.convertToEntity(cartDto);
         User user = User.builder()
                 .userId(userId)
                 .build();

@@ -1,5 +1,6 @@
 package by.petrovich.eshop.controllers;
 
+import by.petrovich.eshop.dto.CartDto;
 import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.entity.Cart;
@@ -26,7 +27,7 @@ import static by.petrovich.eshop.PageName.SIGN_IN_PAGE;
 import static by.petrovich.eshop.PageName.SIGN_UP_PAGE;
 
 @Controller
-@SessionAttributes({"user", "cart"})
+@SessionAttributes({"user", "cartDto"})
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
@@ -41,9 +42,9 @@ public class UserController {
         return new User();
     }
 
-    @ModelAttribute("cart")
-    public Cart initializeCartSessionObject() {
-        return new Cart();
+    @ModelAttribute("cartDto")
+    public CartDto initializeCartSessionObject() {
+        return new CartDto();
     }
 
     @GetMapping("/users")
@@ -84,7 +85,7 @@ public class UserController {
         if (user != null) {
             modelParams.addAttribute("user", user);
         } else {
-            modelParams.addAttribute("error_message", "Pass or login is incorrect");
+            modelParams.addAttribute("error_message", "Pass or login are incorrect");
             return new ModelAndView(ERROR_PAGE, modelParams);
         }
         return new ModelAndView(PROFILE_PAGE, modelParams);

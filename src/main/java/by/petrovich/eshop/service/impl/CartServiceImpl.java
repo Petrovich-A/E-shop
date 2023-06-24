@@ -1,7 +1,10 @@
 package by.petrovich.eshop.service.impl;
 
-import by.petrovich.eshop.entity.Cart;
+import by.petrovich.eshop.dto.CartDto;
+import by.petrovich.eshop.dto.ProductDto;
 import by.petrovich.eshop.entity.Product;
+import by.petrovich.eshop.entity.converter.CartConverter;
+import by.petrovich.eshop.entity.converter.ProductConverter;
 import by.petrovich.eshop.repository.ProductRepository;
 import by.petrovich.eshop.service.CartService;
 import lombok.NoArgsConstructor;
@@ -16,59 +19,58 @@ import java.util.Optional;
 @Service
 public class CartServiceImpl implements CartService {
     private ProductRepository productRepository;
+    private CartConverter cartConverter;
+    private ProductConverter productConverter;
 
     @Autowired
-    public CartServiceImpl(ProductRepository productRepository) {
+    public CartServiceImpl(ProductRepository productRepository, CartConverter cartConverter, ProductConverter productConverter) {
         this.productRepository = productRepository;
+        this.cartConverter = cartConverter;
+        this.productConverter = productConverter;
     }
 
     @Override
-    public Cart addProduct(Integer productId, Cart cart) {
-        Optional<Product> product = productRepository.findProductByProductId(productId);
-        List<Product> products;
-        if (cart.getProducts() != null) {
-            products = cart.getProducts();
-        } else {
-            products = new ArrayList<>();
+    public CartDto addProduct(Integer productId, CartDto cartDto) {
+        List<ProductDto> products = new ArrayList<>();
+        if (productId != null && cartDto != null) {
+            Optional<Product> product = productRepository.findProductByProductId(productId);
+            ProductDto productDto = productConverter.convertToDto(product.get());
+            products = cartDto.getProducts();
+            products.add(productDto);
+            cartDto.setProducts(products);
         }
-        products.add(product.orElse(null));
-        cart = Cart.builder()
+        return CartDto.builder()
                 .products(products)
+                .totalPrice(calculateTotalPrice(products))
                 .quantity(products.size())
-                .totalPrice(calculateTotalPrice(products))
                 .build();
-        return cart;
     }
 
     @Override
-    public Cart removeProduct(Integer productId, Cart cart) {
-        List<Product> products = cart.getProducts();
+    public CartDto removeProduct(Integer productId, CartDto cartDto) {
+        List<ProductDto> products = cartDto.getProducts();
         products.removeIf(product -> product.getProductId().equals(productId));
-        cart = Cart.builder()
+        return CartDto.builder()
                 .products(products)
                 .totalPrice(calculateTotalPrice(products))
-                .quantity(products.size()).build();
-        return cart;
+                .quantity(products.size())
+                .build();
     }
 
     @Override
-    public Cart clear(Cart cart) {
-        List<Product> products = cart.getProducts();
-        products.clear();
-        cart = Cart.builder()
-                .products(products)
+    public CartDto clear(CartDto cartDto) {
+        List<ProductDto> productsDto = cartDto.getProducts();
+        productsDto.clear();
+        return CartDto.builder()
+                .products(new ArrayList<>())
                 .totalPrice(0.0)
                 .quantity(0)
                 .build();
-        return cart;
     }
 
-    private double calculateTotalPrice(List<Product> products) {
-        double sum = 0.0;
-        for (Product product : products) {
-            sum += product.getPrice();
-        }
-        return sum;
+    @Override
+    public double calculateTotalPrice(List<ProductDto> productsDto) {
+        return productsDto.stream().mapToDouble(ProductDto::getPrice).sum();
     }
 
 }

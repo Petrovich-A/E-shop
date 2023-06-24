@@ -1,10 +1,11 @@
 package by.petrovich.eshop.controllers;
 
-import by.petrovich.eshop.entity.Cart;
+import by.petrovich.eshop.dto.CartDto;
 import by.petrovich.eshop.entity.Order;
 import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.service.CartService;
 import by.petrovich.eshop.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,7 +21,7 @@ import static by.petrovich.eshop.PageName.CART_PAGE;
 import static by.petrovich.eshop.PageName.HOME_PAGE;
 
 @Controller
-@SessionAttributes({"cart", "user"})
+@SessionAttributes({"cartDto", "user"})
 @RequestMapping("/cart")
 public class CartController {
     private final CartService cartService;
@@ -32,13 +33,13 @@ public class CartController {
         this.orderService = orderService;
     }
 
-    @ModelAttribute("cart")
-    public Cart Cart() {
-        return new Cart();
+    @ModelAttribute("cartDto")
+    public CartDto initializeCartSessionObject() {
+        return new CartDto();
     }
 
     @ModelAttribute("user")
-    public User User() {
+    public User initializeUserSessionObject() {
         return new User();
     }
 
@@ -49,11 +50,11 @@ public class CartController {
 
     @PostMapping("/add/{productId}")
     public ModelAndView addProductToCart(@PathVariable("productId") String productId,
-                                         @ModelAttribute("cart") Cart cart) {
+                                         @Valid @ModelAttribute("cartDto") CartDto cartDto) {
         ModelMap modelParams = new ModelMap();
         if (productId != null) {
             Integer id = Integer.parseInt(productId);
-            modelParams.addAttribute("cart", cartService.addProduct(id, cart));
+            modelParams.addAttribute("cartDto", cartService.addProduct(id, cartDto));
             return new ModelAndView(CART_PAGE, modelParams);
         }
         return new ModelAndView(HOME_PAGE, modelParams);
@@ -61,39 +62,39 @@ public class CartController {
 
     @PostMapping("/remove/{productId}")
     public ModelAndView removeProductFromCart(@PathVariable("productId") String productId,
-                                              @ModelAttribute("cart") Cart cart) {
+                                              @Valid @ModelAttribute("cartDto") CartDto cartDto) {
         ModelMap modelParams = new ModelMap();
         if (productId != null) {
             Integer id = Integer.parseInt(productId);
-            modelParams.addAttribute("cart", cartService.removeProduct(id, cart));
+            modelParams.addAttribute("cartDto", cartService.removeProduct(id, cartDto));
             return new ModelAndView(CART_PAGE, modelParams);
         }
         return new ModelAndView(HOME_PAGE, modelParams);
     }
 
     @PostMapping("/clear")
-    public ModelAndView clearCart(@ModelAttribute("cart") Cart cart) {
+    public ModelAndView clearCart(@ModelAttribute("cartDto") CartDto cartDto) {
         ModelMap modelParams = new ModelMap();
-        clearCart(cart, modelParams);
+        clearCart(cartDto, modelParams);
         return new ModelAndView(CART_PAGE, modelParams);
     }
 
     @PostMapping("/order/{userId}")
-    public ModelAndView order(@ModelAttribute("cart") Cart cart,
+    public ModelAndView order(@ModelAttribute("cartDto") CartDto cartDto,
                               @PathVariable("userId") String userId) {
         ModelMap modelParams = new ModelMap();
-        if (cart != null && userId != null) {
+        if (cartDto != null && userId != null) {
             Integer id = Integer.valueOf(userId);
-            Order savedCart = orderService.save(cart, id);
+            Order savedCart = orderService.save(cartDto, id);
             if (savedCart != null) {
-                clearCart(cart, modelParams);
+                clearCart(cartDto, modelParams);
             }
         }
         return new ModelAndView(CART_PAGE, modelParams);
     }
 
-    private void clearCart(Cart cart, ModelMap modelParams) {
-        modelParams.addAttribute("cart", cartService.clear(cart));
+    private void clearCart(CartDto cartDto, ModelMap modelParams) {
+        modelParams.addAttribute("cartDto", cartService.clear(cartDto));
     }
 
 }

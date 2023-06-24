@@ -1,13 +1,18 @@
 package by.petrovich.eshop.service;
 
-import by.petrovich.eshop.entity.Cart;
+import by.petrovich.eshop.dto.CartDto;
+import by.petrovich.eshop.dto.ProductDto;
+
+import java.util.List;
 
 public interface CartService {
 
-    Cart addProduct(Integer productId, Cart cart);
+    CartDto addProduct(Integer productId, CartDto cartDto);
 
-    Cart removeProduct(Integer productId, Cart cart);
+    CartDto removeProduct(Integer productId, CartDto cartDto);
 
-    Cart clear(Cart cart);
+    CartDto clear(CartDto cartDto);
+
+    double calculateTotalPrice(List<ProductDto> productsDto);
 
 }
