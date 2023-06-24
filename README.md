@@ -1,10 +1,12 @@
 <div align="center">
-  <h1>E-shop app</h1>
+
+![e-shop-logo](src/main/resources/static/styles/img/logo_readme.png)
+
 <!-- Badges -->
 <p>
-  <a>
+<a>
 <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/Petrovich-A/E-shop/develop?style=for-the-badge">
-  </a>
+</a>
 <a>
 <img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/m/Petrovich-A/E-shop/develop?style=for-the-badge">
 </a>
