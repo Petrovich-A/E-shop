@@ -3,11 +3,9 @@ package by.petrovich.eshop.service.impl;
 import by.petrovich.eshop.dto.CartDto;
 import by.petrovich.eshop.dto.ProductDto;
 import by.petrovich.eshop.entity.Product;
-import by.petrovich.eshop.entity.converter.CartConverter;
 import by.petrovich.eshop.entity.converter.ProductConverter;
 import by.petrovich.eshop.repository.ProductRepository;
 import by.petrovich.eshop.service.CartService;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@NoArgsConstructor
 @Service
 public class CartServiceImpl implements CartService {
-    private ProductRepository productRepository;
-    private CartConverter cartConverter;
-    private ProductConverter productConverter;
+    private final ProductRepository productRepository;
+    private final ProductConverter productConverter;
 
     @Autowired
-    public CartServiceImpl(ProductRepository productRepository, CartConverter cartConverter, ProductConverter productConverter) {
+    public CartServiceImpl(ProductRepository productRepository, ProductConverter productConverter) {
         this.productRepository = productRepository;
-        this.cartConverter = cartConverter;
         this.productConverter = productConverter;
     }
 
@@ -34,7 +29,7 @@ public class CartServiceImpl implements CartService {
         List<ProductDto> products = new ArrayList<>();
         if (productId != null && cartDto != null) {
             Optional<Product> product = productRepository.findProductByProductId(productId);
-            ProductDto productDto = productConverter.convertToDto(product.get());
+            ProductDto productDto = productConverter.convertToDto(product.orElse(null));
             products = cartDto.getProducts();
             products.add(productDto);
             cartDto.setProducts(products);
