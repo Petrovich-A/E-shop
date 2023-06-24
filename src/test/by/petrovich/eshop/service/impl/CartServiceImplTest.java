@@ -13,8 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = EShopApplication.class)
 class CartServiceImplTest {
+    private final CartService cartService;
+
     @Autowired
-    private CartService cartService = new CartServiceImpl();
+    CartServiceImplTest(CartService cartService) {
+        this.cartService = cartService;
+    }
 
     @Test
     void calculateTotalPrice() {
