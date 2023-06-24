@@ -5,29 +5,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
-<div class="shopping-cart">
+<div class="order-content">
     <h1 th:text="${order.orderId}">Order</h1>
     <h3 th:text="${order.createdAt}">createdAt</h3>
     <h3 th:text="${user.name}">Name</h3>
 
-    <div class="column-labels">
+    <div class="header">
         <label class="product-image">Image</label>
         <label class="product-name">Name</label>
         <label class="product-description">Description</label>
         <label class="product-price">Price</label>
     </div>
 
-    <div th:each="p : ${order.products}" class="product-block">
-        <div class="product">
+    <div th:each="p : ${order.products}" class="product-row">
+        <div class="col">
             <div class="product-image">
                 <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
             </div>
-            <div class="product-name" th:text="${p.name}"></div>
-            <div class="product-description" th:text="${p.description}"></div>
-            <div class="product-price" th:utext="${'&#36;'+'&nbsp;'} + ${p.price}"></div>
+            <div class="col" th:text="${p.name}"></div>
+            <div class="col2" th:text="${p.description}"></div>
+            <div class="col" th:utext="${'&#36;'+'&nbsp;'} + ${p.price}"></div>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 <div class="topnav" th:fragment="navigation">
+    <img src="/styles/img/e_shop_logo.png" alt="e-shop logo">
     <div>
         <a class="fa badge fa-5x" href="/home">&#xf015 Home</a>
         <a href="/user/redirectToSignInPage">Login </a>
@@ -8,8 +9,9 @@
         <a class="fa badge fa-5x" href="/user/redirectToProfilePage">&#xf007 Profile</a>
         <a class="fa badge fa-5x" href="/user/logout">&#xf08b Log out</a>
     </div>
-    <div th:if="${session.cart!=null and session.cart.quantity!=null}">
-        <a class="fa badge-cart fa-5x" href="/cart/redirectToCartPage" th:value="${session.cart.quantity}">&#xf07a Cart</a>
+    <div th:if="${session.cartDto!=null and session.cartDto.quantity!=null}">
+        <a class="fa badge-cart fa-5x" href="/cart/redirectToCartPage" th:value="${session.cartDto.quantity}">&#xf07a
+            Cart</a>
     </div>
     <div class="search-container">
         <form class="search-form" th:action="@{/product/search}">
