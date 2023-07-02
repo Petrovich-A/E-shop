@@ -1,6 +1,6 @@
 <div align="center">
 
-![e-shop-logo](src/main/resources/static/styles/img/logo_readme.png)
+![e-shop-logo](src/main/resources/static/st/img/logo_readme.png)
 
 <!-- Badges -->
 <p>
@@ -86,7 +86,7 @@ to populate the database tables.
 <!-- Database struct -->
 ### :key: Database structure
 
-![DB_structure](src/main/resources/static/styles/img/DB_structure.png)
+![DB_structure](src/main/resources/static/st/img/DB_structure.png)
 
 <!-- Roadmap -->
 ## :compass: roadmap:
@@ -104,6 +104,8 @@ to populate the database tables.
 * [x] add orders storing to DB
 * [x] display user's order history
 * [x] add the ability to view the list of products of each user order
+* [x] add admin page with user's list
+* [x] add Spring Security with In-Memory Authentication
 
 ## :handshake: Contact
 

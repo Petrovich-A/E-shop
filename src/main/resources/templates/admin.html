@@ -1,25 +1,29 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Users page</title>
+    <title>Admin page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <div th:insert="~{include/topnav :: navigation}"></div>
 
 <body>
-<h1>users list</h1>
 <div th:switch="${users}">
     <h2 th:case="null">No users yet!</h2>
     <div th:case="*">
         <h2>users:</h2>
-        <table border="1" style="width: 300px">
+        <table border="1" style="width: 300px; align-content: center" >
             <thead>
             <tr>
                 <th>Id</th>
                 <th>name</th>
                 <th>password</th>
                 <th>email</th>
+                <th>birthday</th>
+                <th>balance</th>
             </tr>
             </thead>
             <tbody>
@@ -28,11 +32,12 @@
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.password}"></td>
                 <td th:text="${user.email}"></td>
+                <td th:text="${user.birthDate}"></td>
+                <td th:text="${user.balance}"></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/">Registration</a></p>
 </div>
 
 </body>
