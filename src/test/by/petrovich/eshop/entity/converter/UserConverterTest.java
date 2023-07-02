@@ -27,7 +27,7 @@ class UserConverterTest {
                 .birthDate(LocalDate.of(1990, 1, 1))
                 .build();
         RegistrationFormDto actual = RegistrationFormDto.builder()
-                .name("Wade")
+                .userName("Wade")
                 .password("Williams")
                 .email("williams@mail.com")
                 .birthDate(LocalDate.of(1990, 1, 1))
@@ -39,7 +39,7 @@ class UserConverterTest {
     @Test
     void convertToEntity() {
         RegistrationFormDto registrationFormDto = RegistrationFormDto.builder()
-                .name("Wade")
+                .userName("Wade")
                 .password("Williams")
                 .email("williams@mail.com")
                 .birthDate(LocalDate.of(1990, 1, 1))
@@ -63,7 +63,7 @@ class UserConverterTest {
                 .password("Williams")
                 .build();
         LogInFormDto actual = LogInFormDto.builder()
-                .name("Wade")
+                .userName("Wade")
                 .password("Williams")
                 .build();
         LogInFormDto expected = userConverter.convertToLogInFormDto(user);
@@ -73,7 +73,7 @@ class UserConverterTest {
     @Test
     void convertToLogInFormEntity() {
         LogInFormDto logInFormDto = LogInFormDto.builder()
-                .name("Wade")
+                .userName("Wade")
                 .password("Williams")
                 .build();
         User actual = User.builder()

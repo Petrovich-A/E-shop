@@ -43,10 +43,6 @@ public class CartController {
         return new User();
     }
 
-    @GetMapping("/redirectToCartPage")
-    public ModelAndView showCartPage() {
-        return new ModelAndView(CART_PAGE);
-    }
 
     @PostMapping("/add/{productId}")
     public ModelAndView addProductToCart(@PathVariable("productId") String productId,
