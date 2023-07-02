@@ -1,6 +1,6 @@
 <div align="center">
 
-![e-shop-logo](src/main/resources/static/st/img/logo_readme.png)
+![e-shop-logo](src/main/resources/static/img/logo_readme.png)
 
 <!-- Badges -->
 <p>
