@@ -1,6 +1,5 @@
 package by.petrovich.eshop.entity.converter;
 
-import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.entity.User;
 import org.modelmapper.ModelMapper;
@@ -24,11 +23,4 @@ public class UserConverter {
         return modelMapper.map(registrationFormDto, User.class);
     }
 
-    public LogInFormDto convertToLogInFormDto(User user) {
-        return modelMapper.map(user, LogInFormDto.class);
-    }
-
-    public User convertLogInToEntity(LogInFormDto logInFormDto) {
-        return modelMapper.map(logInFormDto, User.class);
-    }
 }

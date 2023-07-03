@@ -1,7 +1,6 @@
 package by.petrovich.eshop.entity.converter;
 
 import by.petrovich.eshop.EShopApplication;
-import by.petrovich.eshop.dto.LogInFormDto;
 import by.petrovich.eshop.dto.RegistrationFormDto;
 import by.petrovich.eshop.entity.User;
 import org.junit.jupiter.api.Test;
@@ -27,7 +26,7 @@ class UserConverterTest {
                 .birthDate(LocalDate.of(1990, 1, 1))
                 .build();
         RegistrationFormDto actual = RegistrationFormDto.builder()
-                .userName("Wade")
+                .name("Wade")
                 .password("Williams")
                 .email("williams@mail.com")
                 .birthDate(LocalDate.of(1990, 1, 1))
@@ -39,7 +38,7 @@ class UserConverterTest {
     @Test
     void convertToEntity() {
         RegistrationFormDto registrationFormDto = RegistrationFormDto.builder()
-                .userName("Wade")
+                .name("Wade")
                 .password("Williams")
                 .email("williams@mail.com")
                 .birthDate(LocalDate.of(1990, 1, 1))
@@ -56,33 +55,4 @@ class UserConverterTest {
         assertEquals(actual, expected);
     }
 
-    @Test
-    void convertToLogInFormDto() {
-        User user = User.builder()
-                .name("Wade")
-                .password("Williams")
-                .build();
-        LogInFormDto actual = LogInFormDto.builder()
-                .userName("Wade")
-                .password("Williams")
-                .build();
-        LogInFormDto expected = userConverter.convertToLogInFormDto(user);
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    void convertToLogInFormEntity() {
-        LogInFormDto logInFormDto = LogInFormDto.builder()
-                .userName("Wade")
-                .password("Williams")
-                .build();
-        User actual = User.builder()
-                .name("Wade")
-                .password("Williams")
-                // TODO: 26.05.2023
-                .orders(new HashSet<>())
-                .build();
-        User expected = userConverter.convertLogInToEntity(logInFormDto);
-        assertEquals(actual, expected);
-    }
 }

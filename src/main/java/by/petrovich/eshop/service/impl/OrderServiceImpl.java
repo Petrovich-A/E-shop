@@ -6,11 +6,16 @@ import by.petrovich.eshop.entity.Order;
 import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.entity.converter.CartConverter;
 import by.petrovich.eshop.repository.OrderRepository;
+import by.petrovich.eshop.repository.UserRepository;
 import by.petrovich.eshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -51,4 +56,5 @@ public class OrderServiceImpl implements OrderService {
     public Order read(Integer orderId) {
         return orderRepository.findByOrderId(orderId);
     }
+
 }
