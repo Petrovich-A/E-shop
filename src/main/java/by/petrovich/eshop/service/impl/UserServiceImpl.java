@@ -6,6 +6,7 @@ import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.exceptions.UserNotFoundException;
 import by.petrovich.eshop.repository.RoleRepository;
 import by.petrovich.eshop.repository.UserRepository;
+import by.petrovich.eshop.security.CustomUserDetails;
 import by.petrovich.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -58,7 +58,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDetails loadUserByUsername(String name) throws UserNotFoundException {
         User user = userRepository.findByName(name).orElseThrow(()
                 -> new UserNotFoundException("User not found"));
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), Collections.emptyList());
+        return new CustomUserDetails(
+                user.getUserId(),
+                user.getName(),
+                user.getPassword(),
+                user.getEmail(),
+                user.getBirthDate(),
+                user.getBalance(),
+                user.getOrders(),
+                user.getRole()
+        );
     }
 
     private boolean isExist(String email) {

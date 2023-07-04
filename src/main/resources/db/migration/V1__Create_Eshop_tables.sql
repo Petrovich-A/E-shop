@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users
     email      text NOT NULL UNIQUE,
     birth_date date NOT NULL,
     balance    NUMERIC(10, 2) DEFAULT '0.00',
+    role_id INTEGER,
     PRIMARY KEY (user_id)
 );
 
@@ -57,4 +58,13 @@ CREATE TABLE IF NOT EXISTS carts
     user_id    INTEGER,
     PRIMARY KEY (cart_id),
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
+
+-- ROLES
+--
+CREATE TABLE IF NOT EXISTS roles
+(
+    role_id SERIAL      NOT NULL,
+    name    varchar(20) NOT NULL,
+    PRIMARY KEY (role_id)
 );

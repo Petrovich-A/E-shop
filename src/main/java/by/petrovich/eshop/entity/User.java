@@ -7,6 +7,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -31,7 +33,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 @Entity
 @EqualsAndHashCode
 @Table(name = "users")
@@ -41,20 +42,23 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
     @NotBlank(message = "Name is required")
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
-    @Column(unique=true)
+    @Column(unique = true)
     @NotBlank(message = "Password id is required")
     private String password;
-    @Column(unique=true)
+    @Column(unique = true)
     @Email(message = "Email is not valid")
     private String email;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
     private LocalDate birthDate;
-    @Column(columnDefinition="Decimal(10,2) default '0.00'")
+    @Column(columnDefinition = "Decimal(10,2) default '0.00'")
     private BigDecimal balance;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Order> orders = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
 }

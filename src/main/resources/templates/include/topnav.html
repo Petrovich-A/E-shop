@@ -1,5 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <div class="topnav" th:fragment="navigation">
     <img src="/img/e_shop_logo.png" alt="e-shop logo">
     <a class="fa badge fa-5x" href="/home">&#xf015 Home</a>
@@ -10,10 +10,10 @@
         <a class="fa badge fa-5x" href="profile">&#xf007 Profile</a>
         <a class="fa badge-cart fa-5x" href="/cart" th:value="${session.cartDto.quantity}">&#xf07a Cart</a>
     </div>
-    <!--    <div sec:authentication="principal.firstName"> Authenticated user's lastName:</div>-->
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
+    <div sec:authorize="hasRole('ADMIN')">
         <a class="fa badge fa-5x" href="admin">Admin</a>
     </div>
+    <!--    <div sec:authentication="principal.firstName"> Authenticated user's lastName:</div>-->
     <div class="search-container">
         <form class="search-form" th:action="@{/product/search}">
             <label><input type="text" placeholder="Search.." th:name="searchKey"></label>

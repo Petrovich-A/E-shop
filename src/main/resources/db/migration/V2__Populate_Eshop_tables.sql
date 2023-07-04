@@ -1,13 +1,8 @@
-INSERT INTO users (name, password, email, birth_date, balance)
-values ('Wade', 'Williams', 'williams@mail.com', '01-01-1990', 0.5),
-       ('Dave', 'Harris', 'harris@mail.com', '01-01-1990', 0.5),
-       ('Seth', 'Thomas', 'thomas@mail.com', '01-01-1990', 0.5),
-       ('Ivan', 'Robinson', 'robinson@mail.com', '01-01-1990', 0.5),
-       ('Riley', 'Walker', 'walker@mail.com', '01-01-1990', 0.5),
-       ('Daisy', 'Scott', 'scott@mail.com', '01-01-1990', 15.5),
-       ('Deborah', 'Nelson', 'nelson@mail.com', '01-01-1990', 0.5),
-       ('Stella', 'Morgan', 'morgan@mail.com', '01-01-1990', 0.5),
-       ('Debra', 'Cooper', 'cooper@mail.com', '01-01-1990', 0.5);
+INSERT INTO users (name, password, email, birth_date, balance, role_id)
+values ('Wade', 'Williams', 'williams@mail.com', '01-01-1990', 0.5, 1),
+       ('Dave', 'Harris', 'harris@mail.com', '01-01-1990', 0.5, 1),
+       ('Seth', 'Thomas', 'thomas@mail.com', '01-01-1990', 15.5, 1),
+       ('admin', '$2a$10$an1GB52whsATPp.1SulvUun3WnF.8c5k/4BgQwh4S/OpMr9wO.SDm', 'admin@mail.com', '01-01-1990', 0.5, 2);
 
 INSERT INTO categories (name, rating)
 values ('category1', 1),
@@ -77,4 +72,8 @@ VALUES (0.10, 1, CURRENT_TIMESTAMP),
 INSERT INTO carts (price, created_at, user_id)
 VALUES (50.55, CURRENT_TIMESTAMP, 1),
        (10.99, CURRENT_TIMESTAMP, 2),
-       (0.5, CURRENT_TIMESTAMP, 5);
+       (0.5, CURRENT_TIMESTAMP, 3);
+
+INSERT INTO roles (name)
+VALUES ('ROLE_USER'),
+       ('ROLE_ADMIN');
