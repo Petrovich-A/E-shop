@@ -35,7 +35,7 @@
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
     </div>
-    <form th:action="@{'/order/read-history/' + principal.userId}">
+    <form th:action="@{/order/read-history/{userId}(userId=${#authentication.principal.userId})}">
         <button type="submit" class="order-btn">Orders history</button>
     </form>
 </div>
