@@ -44,8 +44,8 @@ public class CartController {
 
 
     @PostMapping("/add/{productId}")
-    public ModelAndView addProductToCart(@PathVariable("productId") String productId,
-                                         @Valid @ModelAttribute("cartDto") CartDto cartDto) {
+    public ModelAndView addProductToCart(@PathVariable String productId,
+                                         @Valid @ModelAttribute CartDto cartDto) {
         ModelMap modelParams = new ModelMap();
         if (productId != null) {
             Integer id = Integer.parseInt(productId);
