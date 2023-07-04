@@ -1,18 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
 <div class="topnav" th:fragment="navigation">
     <img src="/img/e_shop_logo.png" alt="e-shop logo">
-    <div>
-        <a class="fa badge fa-5x" href="/home">&#xf015 Home</a>
-        <a href="/login">Login </a>
-        <a href="/registration">Registration </a>
-        <a class="fa badge fa-5x" href="admin">Admin</a>
+    <a class="fa badge fa-5x" href="/home">&#xf015 Home</a>
+    <a href="/login">Login </a>
+    <a href="/registration">Registration </a>
+    <div sec:authorize="isAuthenticated()">
         <a class="fa badge fa-5x" href="logout">&#xf08b Log out</a>
-    </div>
-    <div th:if="${session.user!=null and session.user.name!=null}">
         <a class="fa badge fa-5x" href="profile">&#xf007 Profile</a>
+        <a class="fa badge-cart fa-5x" href="/cart" th:value="${session.cartDto.quantity}">&#xf07a Cart</a>
     </div>
-    <div th:if="${session.cartDto!=null and session.cartDto.quantity!=null}">
-        <a class="fa badge-cart fa-5x" href="/cart" th:value="${session.cartDto.quantity}">&#xf07a
-            Cart</a>
+    <!--    <div sec:authentication="principal.firstName"> Authenticated user's lastName:</div>-->
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a class="fa badge fa-5x" href="admin">Admin</a>
     </div>
     <div class="search-container">
         <form class="search-form" th:action="@{/product/search}">

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Home page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,7 +9,6 @@
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
-
 <div class="main-content" style="padding-left:80px">
     <h2>Categories</h2>
     <div th:each="c : ${categories}">
