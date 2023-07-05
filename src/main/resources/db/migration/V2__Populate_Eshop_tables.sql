@@ -1,7 +1,7 @@
 INSERT INTO users (name, password, email, birth_date, balance, role_id)
-values ('Wade', 'Williams', 'williams@mail.com', '01-01-1990', 0.5, 1),
-       ('Dave', 'Harris', 'harris@mail.com', '01-01-1990', 0.5, 1),
-       ('Seth', 'Thomas', 'thomas@mail.com', '01-01-1990', 15.5, 1),
+values ('Wade', '$2a$10$0ZrU1zZA2gx9lBm2MQ1Id.gN7Itm8a8Xi3AComXN2CZXZzHCclh..', 'williams@mail.com', '01-01-1990', 0.5, 1),
+       ('Dave', '$2a$10$XtGZF/tA.hNaFsDN6MEKYOTcFS.52OFv0U0UZUWjCl34SgDJVenBG', 'harris@mail.com', '01-01-1990', 0.5, 1),
+       ('Seth', '$2a$10$V4WWGilNB2JWcYNVXXz5eOZAessEAuKE5znzGkUGmvJcDxvBL/mam', 'thomas@mail.com', '01-01-1990', 15.5, 1),
        ('admin', '$2a$10$an1GB52whsATPp.1SulvUun3WnF.8c5k/4BgQwh4S/OpMr9wO.SDm', 'admin@mail.com', '01-01-1990', 0.5, 2);
 
 INSERT INTO categories (name, rating)
