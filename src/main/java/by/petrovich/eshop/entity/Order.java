@@ -14,10 +14,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -26,12 +24,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -61,15 +56,13 @@ public class Order {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Order order = (Order) o;
-
-        return Objects.equals(orderId, order.orderId);
+        return orderId != null && Objects.equals(orderId, order.orderId);
     }
 
     @Override
     public int hashCode() {
-        return orderId != null ? orderId.hashCode() : 0;
+        return getClass().hashCode();
     }
 }
