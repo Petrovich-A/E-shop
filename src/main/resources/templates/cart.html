@@ -45,7 +45,7 @@
             <div class="totals-value" id="cart-total" th:text="${'&#36;'+'&nbsp;'} + ${cartDto.totalPrice}"></div>
             <hr>
         </div>
-        <form method="post" th:action="@{'/cart/order/' + ${user.userId}}" th:value="${cartDto}">
+        <form method="post" th:action="@{/cart/order/{userId}(userId=${#authentication.principal.userId})}" th:value="cartDto">
             <button type="submit" class="order-btn">Order</button>
         </form>
     </div>

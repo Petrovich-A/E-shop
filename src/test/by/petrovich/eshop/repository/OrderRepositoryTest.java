@@ -39,10 +39,10 @@ class OrderRepositoryTest {
                 .category(Category.builder().categoryId(1).build())
                 .description("description1")
                 .build();
-        Set<Product> products = new HashSet<>();
+        ArrayList<Product> products = new ArrayList<>();
         products.add(product);
 
-        Order actual = Order.builder()
+        Order expected = Order.builder()
                 .orderId(4)
                 .price(BigDecimal.valueOf(10.99))
                 .user(user)
@@ -53,12 +53,12 @@ class OrderRepositoryTest {
                 .user(user)
                 .products(products)
                 .build();
-        Order expected = orderRepository.saveAndFlush(order);
+        Order actual = orderRepository.saveAndFlush(order);
         assertEquals(actual, expected);
     }
 
     @Test
-    void findAllByUser() {
+    void testFindAllByUser() {
         User user = User.builder().userId(2).build();
         Order order = Order.builder()
                 .orderId(2)
@@ -66,9 +66,9 @@ class OrderRepositoryTest {
                 .createdAt(LocalDateTime.of(2023, 6, 14, 9, 37, 59, 613918))
                 .user(User.builder().userId(2).build())
                 .build();
-        List<Order> actual = new ArrayList<>();
-        actual.add(order);
-        List<Order> expected = orderRepository.findAllByUser(user);
+        List<Order> expected = new ArrayList<>();
+        expected.add(order);
+        List<Order> actual = orderRepository.findAllByUser(user);
         assertEquals(actual, expected);
     }
 }

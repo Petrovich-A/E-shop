@@ -44,7 +44,7 @@ public class CartController {
 
 
     @PostMapping("/add/{productId}")
-    public ModelAndView addProductToCart(@PathVariable String productId,
+    public ModelAndView addProductToCart(@PathVariable("productId") String productId,
                                          @Valid @ModelAttribute CartDto cartDto) {
         ModelMap modelParams = new ModelMap();
         if (productId != null) {
@@ -75,8 +75,8 @@ public class CartController {
     }
 
     @PostMapping("/order/{userId}")
-    public ModelAndView order(@ModelAttribute("cartDto") CartDto cartDto,
-                              @PathVariable("userId") String userId) {
+    public ModelAndView saveOrder(@ModelAttribute("cartDto") CartDto cartDto,
+                              @PathVariable String userId) {
         ModelMap modelParams = new ModelMap();
         if (cartDto != null && userId != null) {
             Integer id = Integer.valueOf(userId);

@@ -4,14 +4,6 @@ DROP TABLE products CASCADE;
 DROP TABLE orders CASCADE;
 DROP TABLE carts CASCADE;
 DROP TABLE orders_products CASCADE;
-DROP TABLE flyway_schema_history;
-
-DROP TABLE users CASCADE;
-DROP TABLE categories CASCADE;
-DROP TABLE products CASCADE;
-DROP TABLE orders CASCADE;
-DROP TABLE carts CASCADE;
-DROP TABLE orders_products CASCADE;
 DROP TABLE roles CASCADE;
 DROP TABLE flyway_schema_history;
 
@@ -234,3 +226,6 @@ VALUES ('user'),
        ('admin');
 
 SELECT * FROM roles;
+
+insert into orders_products (order_id, product_id)
+values ();

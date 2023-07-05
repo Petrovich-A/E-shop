@@ -29,7 +29,7 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
+        return AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
     }
 
     @Override

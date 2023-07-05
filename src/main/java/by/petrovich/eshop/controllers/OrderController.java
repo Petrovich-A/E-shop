@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     @GetMapping("/read-history/{userId}")
-    public ModelAndView showOrdersHistory(@PathVariable("userId") String userId) {
+    public ModelAndView showOrdersHistory(@PathVariable String userId) {
         ModelMap modelParams = new ModelMap();
         if (userId != null) {
             Integer id = Integer.parseInt(userId);
@@ -45,7 +45,7 @@ public class OrderController {
     }
 
     @GetMapping("/read/{orderId}")
-    public ModelAndView showOrder(@PathVariable("orderId") String orderId) {
+    public ModelAndView showOrder(@PathVariable String orderId) {
         ModelMap modelParams = new ModelMap();
         if (orderId != null) {
             Integer id = Integer.parseInt(orderId);

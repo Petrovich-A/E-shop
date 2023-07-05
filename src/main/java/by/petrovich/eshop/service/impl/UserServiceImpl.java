@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void register(RegistrationFormDto registrationFormDto) {
-        Role role = roleRepository.findByName("ROLE_ADMIN");
+        Role role = roleRepository.findByName("ROLE_USER");
         if (!isExist(registrationFormDto.getEmail()) && role != null) {
             User user = User.builder()
                     .name(registrationFormDto.getName())
