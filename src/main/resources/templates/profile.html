@@ -14,7 +14,7 @@
     <h2 style="text-align:center">User Profile Card</h2>
     <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
     <span>name: </span>
-    <span sec:authentication="principal.name"></span>
+    <span sec:authentication="principal.username"></span>
     <span>id: </span>
     <span sec:authentication="principal.userId"></span>
     <h6></h6>
@@ -22,7 +22,7 @@
     <span sec:authentication="principal.email"></span>
     <h6></h6>
     <span>role: </span>
-    <span sec:authentication="principal.role.name"></span>
+    <span sec:authentication="principal.role"></span>
     <h6></h6>
     <span>balance: </span>
     <span sec:authentication="principal.balance"></span>
