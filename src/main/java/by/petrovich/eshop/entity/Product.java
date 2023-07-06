@@ -17,13 +17,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import org.hibernate.Hibernate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -38,7 +39,6 @@ public class Product {
     @Column(length = 400)
     private String description;
     private double price;
-    @ToString.Exclude
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -54,15 +54,13 @@ public class Product {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Product product = (Product) o;
-
-        return productId != null ? productId.equals(product.productId) : product.productId == null;
+        return productId != null && Objects.equals(productId, product.productId);
     }
 
     @Override
     public int hashCode() {
-        return productId != null ? productId.hashCode() : 0;
+        return getClass().hashCode();
     }
 }

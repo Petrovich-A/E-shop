@@ -21,6 +21,13 @@ body {
     display: flex;
 }
 
+.topnav img {
+    width: 150px;
+    height: 50px;
+    float: left;
+    display: block;
+}
+
 .topnav a {
     float: left;
     display: block;
@@ -203,7 +210,7 @@ hr {
 }
 
 /* Set a style for the remove all button */
-.remove-all-btn {
+.clear-cart-btn {
     width: 10%;
 }
 
@@ -389,6 +396,9 @@ button:hover, a:hover {
     padding: 20px;
 }
 
+
+/*footer*/
+/**/
 .footer {
     position: fixed;
     bottom: 0;
@@ -396,6 +406,26 @@ button:hover, a:hover {
     background-color: var(--color-button);
     text-align: center;
     color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.social-links a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 10px 0 10px 10px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+.social-links a:hover {
+    color: #24262b;
+    background-color: #ffffff;
 }
 
 
@@ -462,8 +492,8 @@ button:hover, a:hover {
 }
 
 .product-removal button {
-    background-color: #e7e7e7;
-    color: black;
+    background-color: #f44336;
+    color: white;
     border: none;
     padding: 10px;
     font-size: 16px;
@@ -498,7 +528,7 @@ button:hover, a:hover {
     font-size: 32px;
 }
 
-.remove-all-btn {
+.clear-cart-btn {
     background-color: #f44336;
     color: white;
     border: none;
@@ -509,7 +539,7 @@ button:hover, a:hover {
     margin-bottom: 20px;
 }
 
-.remove-all-btn:hover {
+.clear-cart-btn:hover {
     background-color: #e53935;
 }
 
@@ -531,37 +561,43 @@ button:hover, a:hover {
 /*table*/
 .order-content {
     padding: 10px 0 30px 70px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.product-row {
+    margin-top: 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.orders-tables {
-    padding-bottom: 40px;
-    text-align: center;
-    width: 50%;
+.col {
+    position: relative;
+    width: 100%;
+    flex: 1;
 }
 
-
-.orders-tables td, .orders th {
-    border: 1px solid #ddd;
-    padding: 8px;
+.col2 {
+    position: relative;
+    width: 100%;
+    flex: 2;
 }
 
-.orders-tables tr:nth-child(even) {
-    background-color: #f2f2f2;
+.col3 {
+    position: relative;
+    width: 100%;
+    flex: 3;
 }
 
-.orders-tables tr:hover {
-    background-color: #ddd;
-}
-
-.orders-tables th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: var(--color-button);
-    color: white;
+.col4 {
+    position: relative;
+    width: 100%;
+    flex: 2;
 }
 
 
@@ -587,4 +623,28 @@ button:hover, a:hover {
     display: block;
     margin: auto;
     width: 20%;
+}
+
+
+
+/*Order history page*/
+/**/
+table {
+    margin-top: 100px;
+    margin-left:auto;
+    margin-right:auto;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color:  var(--color-button);
+    color: white;
 }

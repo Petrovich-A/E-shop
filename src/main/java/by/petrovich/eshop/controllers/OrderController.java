@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.petrovich.eshop.PathToPage.HOME_PAGE;
-import static by.petrovich.eshop.PathToPage.ORDER_HISTORY_PAGE;
-import static by.petrovich.eshop.PathToPage.ORDER_PAGE;
+import static by.petrovich.eshop.PageName.HOME_PAGE;
+import static by.petrovich.eshop.PageName.ORDER_HISTORY_PAGE;
+import static by.petrovich.eshop.PageName.ORDER_PAGE;
 
 @Controller
 @SessionAttributes({"user"})
@@ -33,27 +33,27 @@ public class OrderController {
     }
 
     @GetMapping("/read-history/{userId}")
-    public ModelAndView showOrdersHistory(@PathVariable("userId") String userId) {
+    public ModelAndView showOrdersHistory(@PathVariable String userId) {
         ModelMap modelParams = new ModelMap();
         if (userId != null) {
             Integer id = Integer.parseInt(userId);
             modelParams.addAttribute("orders", orderService.readOrders(id));
         } else {
-            return new ModelAndView(HOME_PAGE.getPath(), modelParams);
+            return new ModelAndView(HOME_PAGE, modelParams);
         }
-        return new ModelAndView(ORDER_HISTORY_PAGE.getPath(), modelParams);
+        return new ModelAndView(ORDER_HISTORY_PAGE, modelParams);
     }
 
     @GetMapping("/read/{orderId}")
-    public ModelAndView showOrder(@PathVariable("orderId") String orderId) {
+    public ModelAndView showOrder(@PathVariable String orderId) {
         ModelMap modelParams = new ModelMap();
         if (orderId != null) {
             Integer id = Integer.parseInt(orderId);
             modelParams.addAttribute("order", orderService.read(id));
         } else {
-            return new ModelAndView(HOME_PAGE.getPath(), modelParams);
+            return new ModelAndView(HOME_PAGE, modelParams);
         }
-        return new ModelAndView(ORDER_PAGE.getPath(), modelParams);
+        return new ModelAndView(ORDER_PAGE, modelParams);
     }
 
 }

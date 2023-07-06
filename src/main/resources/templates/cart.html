@@ -3,14 +3,15 @@
 <head>
     <title>Cart page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
 <h2>Shopping Cart</h2>
 <form th:action="@{'/cart/clear'}" method="post">
-    <button type="submit" class="remove-all-btn">Remove all</button>
+    <button type="submit" class="clear-cart-btn">Clear cart</button>
 </form>
 <div class="shopping-cart">
     <p th:text="${user.name}"></p>
@@ -22,7 +23,7 @@
         <label class="product-removal">Remove</label>
     </div>
 
-    <div th:each="p : ${cart.getProducts()}" class="product-block">
+    <div th:each="p : ${cartDto.getProducts()}" class="product-block">
         <div class="product">
             <div class="product-image">
                 <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
@@ -41,10 +42,10 @@
     <div class="totals">
         <div class="totals-item totals-item-total">
             <label>Grand Total</label>
-            <div class="totals-value" id="cart-total" th:text="${'&#36;'+'&nbsp;'} + ${cart.totalPrice}"></div>
+            <div class="totals-value" id="cart-total" th:text="${'&#36;'+'&nbsp;'} + ${cartDto.totalPrice}"></div>
             <hr>
         </div>
-        <form method="post" th:action="@{'/cart/order/' + ${user.userId}}" th:value="${cart}">
+        <form method="post" th:action="@{/cart/order/{userId}(userId=${#authentication.principal.userId})}" th:value="cartDto">
             <button type="submit" class="order-btn">Order</button>
         </form>
     </div>

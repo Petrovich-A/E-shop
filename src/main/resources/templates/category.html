@@ -3,8 +3,9 @@
 <head>
     <title>Category page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
@@ -21,7 +22,6 @@
                 <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
                 <span class="price" th:text="${product.price}"></span>
                 <p th:text="${product.description}"></p>
-                <!--          <form method="post" th:action="@{/cart/add/(product_id=${product.productId})}">-->
                 <form method="post" th:action="@{'/cart/add/' + ${product.productId}}">
                     <button type="submit">Add to Cart</button>
                 </form>

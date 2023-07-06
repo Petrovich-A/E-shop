@@ -1,10 +1,12 @@
 <div align="center">
-  <h1>E-shop app</h1>
+
+![e-shop-logo](src/main/resources/static/img/logo_readme.png)
+
 <!-- Badges -->
 <p>
-  <a>
+<a>
 <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/Petrovich-A/E-shop/develop?style=for-the-badge">
-  </a>
+</a>
 <a>
 <img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/m/Petrovich-A/E-shop/develop?style=for-the-badge">
 </a>
@@ -43,9 +45,7 @@ by providing a user-friendly interface and incorporating the latest Java technol
 
 ### :camera: Screenshots
 
-<div> 
-<img src="https://github.com/Petrovich-A/E-shop/blob/develop/main_page.png" alt="Alt text" title="Optional title">
-</div>
+![profile page](src/main/resources/static/img/profile_page.png)
 
 <!-- TechStack -->
 
@@ -55,11 +55,16 @@ by providing a user-friendly interface and incorporating the latest Java technol
   <summary>Show</summary>
   <ul>
     <li><a>Java 17</a></li>
-    <li><a>Spring boot</a></li>
+    <li><a>Spring 3.0.6 (Spring boot, Spring Security, Spring web)</a></li>
     <li><a>Maven 3.8.1</a></li>
     <li><a>Postgresql 42.6.0</a></li>
     <li><a>Lombok 1.18.24</a></li>
     <li><a>Modelmapper 3.1.1</a></li>
+    <li><a>FlyWay 9.19.1</a></li>
+    <li><a>ThymeLeaf 3.0.6</a></li>
+    <li><a>Hibernate 6.1.7</a></li>
+    <li><a>Spring data JPA 3.0.5</a></li>
+    <li><a>JUnit 5</a></li>
   </ul>
 </details>
 
@@ -78,13 +83,10 @@ Clone the project
   git clone https://github.com/Petrovich-A/E-shop.git
 ```
 
-Go to the project directory and `run` this [script](https://github.com/Petrovich-A/E-shop/blob/develop/src/main/resources/script/create_and_populate_tables)
-to populate the database tables.
-
 <!-- Database struct -->
 ### :key: Database structure
 
-![DB_structure](src/main/resources/static/styles/img/DB_structure.png)
+![DB_structure](src/main/resources/static/img/DB_structure.png)
 
 <!-- Roadmap -->
 ## :compass: roadmap:
@@ -102,6 +104,10 @@ to populate the database tables.
 * [x] add orders storing to DB
 * [x] display user's order history
 * [x] add the ability to view the list of products of each user order
+* [x] add admin page with user's list
+* [x] add Spring Security with In-Memory Authentication
+* [x] add Spring Security authentication form Login custom page with Database
+* [x] add Spring Security roles
 
 ## :handshake: Contact
 
@@ -111,9 +117,11 @@ Petrovich Alexandr - [@Petrovich Alexandr](https://www.linkedin.com/in/alexandr-
 
 ## :gem: Acknowledgements
 
-Use this section to mention useful resources and libraries that you have used in your projects.
+Here are useful resources for readme writing and designing that I've used in my projects.
 
 - [Shields.io](https://shields.io/)
 - [Awesome README](https://github.com/matiassingers/awesome-readme)
-- [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
+- [Templates for UI](https://www.w3schools.com/howto/default.asp)
+- [Git Emoji for your commit messages](https://gitmoji.dev)
 - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+- [Technical support](https://www.baeldung.com)

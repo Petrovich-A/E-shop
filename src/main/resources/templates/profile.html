@@ -1,30 +1,39 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Profile page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
-
 <div class="card-profile">
     <h2 style="text-align:center">User Profile Card</h2>
     <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
-    <p class="title">Profile</p>
-    <h1 th:text="'name: ' + ${user.name}"></h1>
-    <p th:text="'email: ' + ${user.email}"></p>
-    <p th:text="'userId: ' + ${user.userId}"></p>
-    <span th:text="'balance: ' + ${user.balance}"></span>
+    <h1 sec:authentication="principal.username"></h1>
+    <span>id: </span>
+    <span sec:authentication="principal.userId"></span>
+    <p></p>
+    <span>email: </span>
+    <span sec:authentication="principal.email"></span>
+    <p></p>
+    <span class="title" sec:authentication="principal.role"></span>
+    <p></p>
+    <span>balance: </span>
+    <span sec:authentication="principal.balance"></span>
     <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
-    <p th:text="'birth date: ' + ${user.birthDate}"></p>
+    <p></p>
+    <span>birth date: </span>
+    <span sec:authentication="principal.birthDate"></span>
     <div style="margin: 24px 0;">
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a><i class="fa fa-twitter"></i></a>
+        <a><i class="fa fa-linkedin"></i></a>
+        <a><i class="fa fa-facebook"></i></a>
     </div>
-    <form th:action="@{'/order/read-history/' + ${user.userId}}" th:value="${cart}">
+    <form th:action="@{/order/read-history/{userId}(userId=${#authentication.principal.userId})}">
         <button type="submit" class="order-btn">Orders history</button>
     </form>
 </div>

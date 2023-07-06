@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static by.petrovich.eshop.PathToPage.PRODUCT_PAGE;
+import static by.petrovich.eshop.PageName.PRODUCT_PAGE;
 
 @RestController
 @RequestMapping("/product")
@@ -39,7 +39,7 @@ public class ProductController {
             Optional<Product> product = productService.findById(productId);
             model.addAttribute("product", product.get());
         }
-        return new ModelAndView(PRODUCT_PAGE.getPath(), model);
+        return new ModelAndView(PRODUCT_PAGE, model);
     }
 
     @GetMapping("/search")
@@ -47,8 +47,7 @@ public class ProductController {
         ModelMap model = new ModelMap();
         Set<Product> products = productService.searchProductsByNameAndDescription(searchKey);
         model.addAttribute("products", products);
-        return new ModelAndView(PRODUCT_PAGE.getPath(), model);
-//        return ResponseEntity.ok(products);
+        return new ModelAndView(PRODUCT_PAGE, model);
     }
 
     @RequestMapping(value = "/listProducts", method = RequestMethod.GET)
@@ -67,7 +66,7 @@ public class ProductController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-        return new ModelAndView(PRODUCT_PAGE.getPath(), model);
+        return new ModelAndView(PRODUCT_PAGE, model);
     }
 
 }

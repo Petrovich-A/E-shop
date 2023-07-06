@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static by.petrovich.eshop.PathToPage.CATEGORY_PAGE;
+import static by.petrovich.eshop.PageName.CATEGORY_PAGE;
 
 @Validated
 @RestController
@@ -49,7 +49,7 @@ public class CategoryController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-        return new ModelAndView(CATEGORY_PAGE.getPath(), model);
+        return new ModelAndView(CATEGORY_PAGE, model);
     }
 
 }

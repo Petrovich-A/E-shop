@@ -3,8 +3,9 @@
 <head>
     <title>Error page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
@@ -14,7 +15,7 @@
         This is not a fault, just an accident that was not intentional.</p>
     <p th:text="${error_message}"></p>
     <p th:text="${userNotFoundException}"></p>
-    <img src="/styles/img/error.png" alt="error 404">
+    <img src="/img/error.png" alt="error 404">
     <a th:href="@{/home}">
         <button type="button">Try again...</button>
     </a>

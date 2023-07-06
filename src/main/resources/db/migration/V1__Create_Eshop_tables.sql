@@ -1,3 +1,12 @@
+-- ROLES
+--
+CREATE TABLE IF NOT EXISTS roles
+(
+    role_id SERIAL      NOT NULL,
+    name    varchar(20) NOT NULL,
+    PRIMARY KEY (role_id)
+);
+
 -- USERS
 --
 CREATE TABLE IF NOT EXISTS users
@@ -8,7 +17,10 @@ CREATE TABLE IF NOT EXISTS users
     email      text NOT NULL UNIQUE,
     birth_date date NOT NULL,
     balance    NUMERIC(10, 2) DEFAULT '0.00',
-    PRIMARY KEY (user_id)
+    role_id INTEGER,
+    PRIMARY KEY (user_id),
+    CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES roles (role_id)
+
 );
 
 -- CATEGORIES

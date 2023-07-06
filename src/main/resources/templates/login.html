@@ -3,22 +3,29 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>SignIn page</title>
-    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <title>Login page</title>
+    <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="/styles/javaScript/toggle-password.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="/javaScript/toggle-password.js"></script>
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
-<form th:action="@{/user/signin}" th:object="${login_form_dto}" method="post">
+<form th:action="@{/login}" method="post">
     <div class="imgcontainer">
         <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
     </div>
     <div class="container">
-        <h2>SignIn Form</h2>
+        <h2>Please Log In</h2>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
         <label for="name"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="name" id="name" required>
-
+        <input type="text" placeholder="Enter Username" name="username" id="name" required>
         <div class="password-container">
             <label for="psw"><b>Password</b></label>
             <div class="password-input">
@@ -26,11 +33,10 @@
                 <span class="toggle-password" onclick="togglePasswordVisibility()">&#128065;</span>
             </div>
         </div>
-
-        <button value="Submit" type="submit">SignIn</button>
         <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
+        <button value="Submit" type="submit">Log In</button>
     </div>
 </form>
 

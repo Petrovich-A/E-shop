@@ -3,24 +3,20 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>SignUp page</title>
-    <link th:href="@{/styles/styles/style.css}" rel="stylesheet"/>
+    <title>Registration page</title>
+    <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="/styles/javaScript/toggle-password.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="/javaScript/toggle-password.js"></script>
 </head>
-
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
-
-<form class="main-content" th:action="@{/user/signup}" th:object="${registration_form_dto}" method="post">
+<form class="main-content" th:action="@{/users/registrate}" th:object="${registration_form_dto}" method="post">
     <div class="container">
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
+        <h2>Please fill in this form to create an account.</h2>
         <hr>
-
         <label for="name"><b>Username</b></label>
         <input type="text" placeholder="Enter name" name="name" id="name">
-
         <div class="password-container">
             <label for="psw"><b>Password</b></label>
             <div class="password-input">
@@ -28,17 +24,13 @@
                 <span class="toggle-password" onclick="togglePasswordVisibility()">&#128065;</span>
             </div>
         </div>
-
         <label for="mail"><b>Email</b></label>
         <input type="email" placeholder="Enter email" name="email" id="mail" required>
-
         <label for="user-birth-date"><b>Date of birth:</b></label>
         <input type="date" name="birthDate" id="user-birth-date" required/>
-
+        <p>Already have an account? <a href="/login">Sign in</a>.</p>
         <button type="submit" value="Submit" class="register-btn">Submit</button>
         <button type="reset" value="Reset" class="register-btn">Reset</button>
-
-        <p>Already have an account? <a href="/user/redirectToSignInPage">Sign in</a>.</p>
     </div>
 </form>
 </body>
