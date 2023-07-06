@@ -624,3 +624,27 @@ button:hover, a:hover {
     margin: auto;
     width: 20%;
 }
+
+
+
+/*Order history page*/
+/**/
+table {
+    margin-top: 100px;
+    margin-left:auto;
+    margin-right:auto;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color:  var(--color-button);
+    color: white;
+}
