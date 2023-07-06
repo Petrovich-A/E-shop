@@ -13,27 +13,25 @@
 <div class="card-profile">
     <h2 style="text-align:center">User Profile Card</h2>
     <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
-    <span>name: </span>
-    <span sec:authentication="principal.username"></span>
+    <h1 sec:authentication="principal.username"></h1>
     <span>id: </span>
     <span sec:authentication="principal.userId"></span>
-    <h6></h6>
+    <p></p>
     <span>email: </span>
     <span sec:authentication="principal.email"></span>
-    <h6></h6>
-    <span>role: </span>
-    <span sec:authentication="principal.role"></span>
-    <h6></h6>
+    <p></p>
+    <span class="title" sec:authentication="principal.role"></span>
+    <p></p>
     <span>balance: </span>
     <span sec:authentication="principal.balance"></span>
     <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
-    <h6></h6>
+    <p></p>
     <span>birth date: </span>
     <span sec:authentication="principal.birthDate"></span>
     <div style="margin: 24px 0;">
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a><i class="fa fa-twitter"></i></a>
+        <a><i class="fa fa-linkedin"></i></a>
+        <a><i class="fa fa-facebook"></i></a>
     </div>
     <form th:action="@{/order/read-history/{userId}(userId=${#authentication.principal.userId})}">
         <button type="submit" class="order-btn">Orders history</button>
