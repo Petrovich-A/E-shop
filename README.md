@@ -57,11 +57,16 @@ by providing a user-friendly interface and incorporating the latest Java technol
   <summary>Show</summary>
   <ul>
     <li><a>Java 17</a></li>
-    <li><a>Spring boot</a></li>
+    <li><a>Spring 3.0.6</a></li>
     <li><a>Maven 3.8.1</a></li>
     <li><a>Postgresql 42.6.0</a></li>
     <li><a>Lombok 1.18.24</a></li>
     <li><a>Modelmapper 3.1.1</a></li>
+    <li><a>FlyWay 9.19.1</a></li>
+    <li><a>ThymeLeaf 3.0.6</a></li>
+    <li><a>Hibernate 6.1.7</a></li>
+    <li><a>Spring data JPA 3.0.5</a></li>
+    <li><a>JUnit 5</a></li>
   </ul>
 </details>
 
@@ -86,7 +91,7 @@ to populate the database tables.
 <!-- Database struct -->
 ### :key: Database structure
 
-![DB_structure](src/main/resources/static/st/img/DB_structure.png)
+![DB_structure](src/main/resources/static/img/DB_structure.png)
 
 <!-- Roadmap -->
 ## :compass: roadmap:
@@ -106,6 +111,8 @@ to populate the database tables.
 * [x] add the ability to view the list of products of each user order
 * [x] add admin page with user's list
 * [x] add Spring Security with In-Memory Authentication
+* [x] add Spring Security authentication form Login custom page with Database
+* [x] add Spring Security roles
 
 ## :handshake: Contact
 

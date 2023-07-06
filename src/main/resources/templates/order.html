@@ -14,7 +14,7 @@
 <div class="order-content">
     <h1 th:text="${order.orderId}">Order</h1>
     <h3 th:text="${order.createdAt}">createdAt</h3>
-    <h3 sec:authentication="principal.name">Name</h3>
+    <h3 sec:authentication="principal.username">Name</h3>
 
     <div class="header">
         <label class="product-image">Image</label>

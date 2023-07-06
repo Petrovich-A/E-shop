@@ -6,7 +6,7 @@ import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.exceptions.UserNotFoundException;
 import by.petrovich.eshop.repository.RoleRepository;
 import by.petrovich.eshop.repository.UserRepository;
-import by.petrovich.eshop.security.CustomUserDetails;
+import by.petrovich.eshop.entity.model.CustomUserDetail;
 import by.petrovich.eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -58,16 +58,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDetails loadUserByUsername(String name) throws UserNotFoundException {
         User user = userRepository.findByName(name).orElseThrow(()
                 -> new UserNotFoundException("User not found"));
-        return new CustomUserDetails(
-                user.getUserId(),
-                user.getName(),
-                user.getPassword(),
-                user.getEmail(),
-                user.getBirthDate(),
-                user.getBalance(),
-                user.getOrders(),
-                user.getRole()
-        );
+        return new CustomUserDetail(user);
     }
 
     private boolean isExist(String email) {

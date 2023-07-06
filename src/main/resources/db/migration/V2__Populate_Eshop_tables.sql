@@ -1,3 +1,7 @@
+INSERT INTO roles (name)
+VALUES ('ROLE_USER'),
+       ('ROLE_ADMIN');
+
 INSERT INTO users (name, password, email, birth_date, balance, role_id)
 values ('Wade', '$2a$10$0ZrU1zZA2gx9lBm2MQ1Id.gN7Itm8a8Xi3AComXN2CZXZzHCclh..', 'williams@mail.com', '01-01-1990', 0.5, 1),
        ('Dave', '$2a$10$XtGZF/tA.hNaFsDN6MEKYOTcFS.52OFv0U0UZUWjCl34SgDJVenBG', 'harris@mail.com', '01-01-1990', 0.5, 1),
@@ -65,15 +69,14 @@ VALUES ('product name1',
         16.50, 5);
 
 INSERT INTO orders (price, user_id, created_at)
-VALUES (0.10, 1, CURRENT_TIMESTAMP),
-       (0.20, 2, CURRENT_TIMESTAMP),
+VALUES (100.00, 1, CURRENT_TIMESTAMP),
+       (19.99, 1, CURRENT_TIMESTAMP),
+       (200.00, 2, CURRENT_TIMESTAMP),
+       (25.00, 2, CURRENT_TIMESTAMP),
+       (50.00, 2, CURRENT_TIMESTAMP),
        (0.30, 3, CURRENT_TIMESTAMP);
 
 INSERT INTO carts (price, created_at, user_id)
 VALUES (50.55, CURRENT_TIMESTAMP, 1),
        (10.99, CURRENT_TIMESTAMP, 2),
        (0.5, CURRENT_TIMESTAMP, 3);
-
-INSERT INTO roles (name)
-VALUES ('ROLE_USER'),
-       ('ROLE_ADMIN');
