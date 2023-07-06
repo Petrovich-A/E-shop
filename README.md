@@ -55,7 +55,7 @@ by providing a user-friendly interface and incorporating the latest Java technol
   <summary>Show</summary>
   <ul>
     <li><a>Java 17</a></li>
-    <li><a>Spring 3.0.6</a></li>
+    <li><a>Spring 3.0.6 (Spring boot, Spring Security, Spring web)</a></li>
     <li><a>Maven 3.8.1</a></li>
     <li><a>Postgresql 42.6.0</a></li>
     <li><a>Lombok 1.18.24</a></li>
@@ -117,10 +117,11 @@ Petrovich Alexandr - [@Petrovich Alexandr](https://www.linkedin.com/in/alexandr-
 
 ## :gem: Acknowledgements
 
-Use this section to mention useful resources and libraries that you have used in your projects.
+Here are useful resources for readme writing and designing that I've used in my projects.
 
 - [Shields.io](https://shields.io/)
 - [Awesome README](https://github.com/matiassingers/awesome-readme)
 - [Templates for UI](https://www.w3schools.com/howto/default.asp)
 - [Git Emoji for your commit messages](https://gitmoji.dev)
 - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+- [Technical support](https://www.baeldung.com)
