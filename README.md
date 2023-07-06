@@ -45,9 +45,7 @@ by providing a user-friendly interface and incorporating the latest Java technol
 
 ### :camera: Screenshots
 
-<div> 
-<img src="https://github.com/Petrovich-A/E-shop/blob/develop/main_page.png" alt="Alt text" title="Optional title">
-</div>
+![profile page](src/main/resources/static/img/profile_page.png)
 
 <!-- TechStack -->
 
@@ -84,9 +82,6 @@ Clone the project
 ```bash
   git clone https://github.com/Petrovich-A/E-shop.git
 ```
-
-Go to the project directory and `run` this [script](https://github.com/Petrovich-A/E-shop/blob/develop/src/main/resources/script/create_and_populate_tables)
-to populate the database tables.
 
 <!-- Database struct -->
 ### :key: Database structure
