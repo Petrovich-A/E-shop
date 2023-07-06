@@ -22,7 +22,6 @@
                 <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
                 <span class="price" th:text="${product.price}"></span>
                 <p th:text="${product.description}"></p>
-                <!--          <form method="post" th:action="@{/cart/add/(product_id=${product.productId})}">-->
                 <form method="post" th:action="@{'/cart/add/' + ${product.productId}}">
                     <button type="submit">Add to Cart</button>
                 </form>
