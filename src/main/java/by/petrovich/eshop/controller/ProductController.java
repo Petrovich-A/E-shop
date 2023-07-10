@@ -1,4 +1,4 @@
-package by.petrovich.eshop.controllers;
+package by.petrovich.eshop.controller;
 
 import by.petrovich.eshop.entity.Product;
 import by.petrovich.eshop.service.ProductService;
@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static by.petrovich.eshop.PageName.PRODUCT_PAGE;
+import static by.petrovich.eshop.utils.PageName.PRODUCT_PAGE;
 
 @RestController
 @RequestMapping("/product")

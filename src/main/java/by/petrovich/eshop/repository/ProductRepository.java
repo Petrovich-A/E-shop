@@ -19,7 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.category.categoryId =:categoryId")
     List<Product> findProductsByCategoryId(Integer categoryId);
 
-    Set<Product> findProductsByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String searchKey, String searchKey1);
+    Set<Product> findProductsByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String searchKeyName, String searchKeyDesc);
 
     Optional<Product> findProductByProductId(Integer productId);
 

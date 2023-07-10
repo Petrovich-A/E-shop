@@ -11,7 +11,7 @@
     <script src="/javaScript/toggle-password.js"></script>
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <form th:action="@{/login}" method="post">
     <div class="imgcontainer">
         <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
@@ -41,5 +41,5 @@
 </form>
 
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>

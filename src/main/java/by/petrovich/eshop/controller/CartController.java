@@ -1,4 +1,4 @@
-package by.petrovich.eshop.controllers;
+package by.petrovich.eshop.controller;
 
 import by.petrovich.eshop.dto.CartDto;
 import by.petrovich.eshop.entity.Order;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.petrovich.eshop.PageName.CART_PAGE;
-import static by.petrovich.eshop.PageName.HOME_PAGE;
+import static by.petrovich.eshop.utils.PageName.CART_PAGE;
+import static by.petrovich.eshop.utils.PageName.HOME_PAGE;
 
 @Controller
 @SessionAttributes({"cartDto", "user"})

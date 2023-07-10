@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <div class="card-profile">
     <h2 style="text-align:center">User Profile Card</h2>
     <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
@@ -38,5 +38,5 @@
     </form>
 </div>
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>

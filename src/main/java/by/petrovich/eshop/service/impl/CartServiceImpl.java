@@ -65,7 +65,9 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public double calculateTotalPrice(List<ProductDto> productsDto) {
-        return productsDto.stream().mapToDouble(ProductDto::getPrice).sum();
+        return productsDto.stream()
+                .mapToDouble(ProductDto::getPrice)
+                .sum();
     }
 
 }

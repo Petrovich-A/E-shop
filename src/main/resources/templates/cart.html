@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <h2>Shopping Cart</h2>
 <form th:action="@{'/cart/clear'}" method="post">
     <button type="submit" class="clear-cart-btn">Clear cart</button>
@@ -51,5 +51,5 @@
     </div>
 </div>
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>

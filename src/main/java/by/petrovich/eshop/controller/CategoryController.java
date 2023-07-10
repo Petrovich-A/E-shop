@@ -1,7 +1,6 @@
-package by.petrovich.eshop.controllers;
+package by.petrovich.eshop.controller;
 
 import by.petrovich.eshop.entity.Product;
-import by.petrovich.eshop.exceptions.UserNotFoundException;
 import by.petrovich.eshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static by.petrovich.eshop.PageName.CATEGORY_PAGE;
+import static by.petrovich.eshop.utils.PageName.CATEGORY_PAGE;
 
 @Validated
 @RestController

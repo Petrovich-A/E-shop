@@ -9,7 +9,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <div class="main-content">
     <div class="one-card" th:if="${product!=null}">
         <h2>Product card</h2>
@@ -46,7 +46,7 @@
 </div>
 
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>
 
 

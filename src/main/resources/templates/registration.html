@@ -10,7 +10,7 @@
     <script src="/javaScript/toggle-password.js"></script>
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <form class="main-content" th:action="@{/users/registrate}" th:object="${registration_form_dto}" method="post">
     <div class="container">
         <h2>Please fill in this form to create an account.</h2>
@@ -34,5 +34,5 @@
     </div>
 </form>
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>
