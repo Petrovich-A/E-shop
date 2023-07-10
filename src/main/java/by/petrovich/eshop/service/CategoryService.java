@@ -7,15 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CategoryService {
     List<Category> findAll();
 
+    Page<Product> findAll(Pageable paging);
+
     User save(Category category);
 
-    Optional<Category> findById(Integer id);
-
-    Page<Product> findProductsByCategoryId(Integer categoryId, Pageable pageable);
+    Page findProductsByCategoryId(Integer categoryId, Pageable pageable);
 
 }

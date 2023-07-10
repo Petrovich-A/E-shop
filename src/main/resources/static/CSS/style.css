@@ -281,33 +281,42 @@ button:hover, a:hover {
 
 
 /* Pagination links */
-.pagination a {
-    text-decoration: none;
-    font-size: 22px;
-    color: black;
-    text-align: center;
-    /*float: ;*/
-    padding: 8px 16px;
-    transition: background-color .3s;
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
 }
 
-/* Style the active/current link */
-.pagination a.active {
-    background-color: var(--color-button);
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border: 1px solid var(--color-button);
+}
+
+.pagination li a:hover {
+    background-color: var(--color-button-hover);
     color: white;
 }
 
-/* Add a grey background color on mouse-over */
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
+.pagination li a.active {
+    background-color: var(--color-button);
+}
+
+.pagination li.disabled a {
+    color: var(--color-button);
+    pointer-events: none;
 }
 
 
 /*Product card*/
 /**/
 .card-product {
-    padding: 2px 2px 5px 2px;
-    /*border: 1px solid #E44C4C;*/
+    padding: 0 2px 10px 2px;
 }
 
 .card-block {
@@ -320,7 +329,7 @@ button:hover, a:hover {
 .card-block > div {
     /*border: 1px solid blue;*/
     flex: 1;
-    margin: 2em;
+    margin: 0.9em;
 }
 
 .card-block img {
@@ -358,7 +367,7 @@ button:hover, a:hover {
 /**/
 .one-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 350px;
+    max-width: 250px;
     margin: auto;
     text-align: center;
 }
@@ -389,7 +398,7 @@ button:hover, a:hover {
 }
 
 
-/*main-content*/
+/*main content*/
 /**/
 .main-content {
     height: 100vh;
@@ -626,13 +635,12 @@ button:hover, a:hover {
 }
 
 
-
 /*Order history page*/
 /**/
 table {
     margin-top: 100px;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
     border-collapse: collapse;
     width: 50%;
 }
@@ -642,9 +650,11 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
 
 th {
-    background-color:  var(--color-button);
+    background-color: var(--color-button);
     color: white;
 }

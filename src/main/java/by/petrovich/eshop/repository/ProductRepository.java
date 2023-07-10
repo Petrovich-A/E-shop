@@ -1,6 +1,8 @@
 package by.petrovich.eshop.repository;
 
 import by.petrovich.eshop.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,4 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Set<Product> findProductsByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String searchKey, String searchKey1);
 
     Optional<Product> findProductByProductId(Integer productId);
+
+    Page<Product> findAllByCategory_CategoryId(Integer categoryId, Pageable pageable);
+
 }

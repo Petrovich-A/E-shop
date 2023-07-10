@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/CSS/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div th:insert="~{include/topnav :: navigation}"></div>
@@ -13,7 +14,7 @@
     <h2>Categories</h2>
     <div th:each="c : ${categories}">
         <p>
-            <a th:href="@{'/category/' + ${c.categoryId}}" th:text="${c.name}"></a>
+            <a th:href="@{/category(categoryId=${c.categoryId})}" th:text="${c.name}"></a>
             <span>Rating</span>
             <span th:each="goldStars : ${#numbers.sequence(1, c.rating)}"
                   class="fa fa-star checked"></span>
@@ -21,12 +22,6 @@
                   class="fa fa-star"></span>
         </p>
     </div>
-</div>
-
-<div th:if="${user!=null}">
-    <h1 th:href="@{'/user/' + ${user.userId}}" th:text="${user.name}"></h1>
-    <span class="price" th:text="${user.name}"></span>
-    <span class="price" th:text="${user.password}"></span>
 </div>
 </body>
 <div th:insert="~{include/footer :: footer}"></div>

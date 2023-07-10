@@ -227,5 +227,6 @@ VALUES ('user'),
 
 SELECT * FROM roles;
 
-insert into orders_products (order_id, product_id)
-values ();
+
+SELECT * FROM products WHERE category_id = 1;
+SELECT count(*) FROM products WHERE category_id = 1;

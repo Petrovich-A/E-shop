@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -34,17 +33,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Page<Product> findAll(Pageable paging) {
+        return productRepository.findAll(paging);
+    }
+
+    @Override
     public User save(Category category) {
         return null;
     }
 
     @Override
-    public Optional<Category> findById(Integer id) {
-        return categoryRepository.findById(id);
-    }
-
-    @Override
-    public Page<Product> findProductsByCategoryId(Integer categoryId, Pageable pageable) {
+    public Page findProductsByCategoryId(Integer categoryId, Pageable pageable) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
