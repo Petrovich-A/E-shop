@@ -108,6 +108,7 @@ Clone the project
 * [x] add Spring Security with In-Memory Authentication
 * [x] add Spring Security authentication form Login custom page with Database
 * [x] add Spring Security roles
+* [x] add Spring Security's remember me feature
 
 ## :handshake: Contact
 
