@@ -1,10 +1,12 @@
 package by.petrovich.eshop.controllers;
 
 import by.petrovich.eshop.entity.Product;
+import by.petrovich.eshop.exceptions.UserNotFoundException;
 import by.petrovich.eshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +39,7 @@ public class CategoryController {
             @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(NUMBER_ELEMENTS_ON_PAGE);
-        int id = categoryId.orElse(1);
-
+        int id = categoryId.orElse(categoryId.orElseThrow(() -> new BadCredentialsException("Bad credentials.")));
         Page<Product> products = categoryService.findProductsByCategoryId(id,
                 PageRequest.of(currentPage - 1, pageSize));
 
@@ -52,6 +53,7 @@ public class CategoryController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
             model.addAttribute("currentPage", currentPage);
+            model.addAttribute("categoryId", categoryId);
         }
         return new ModelAndView(CATEGORY_PAGE, model);
     }

@@ -32,17 +32,17 @@
     <nav>
         <ul class="pagination">
             <li th:class="${currentPage == 0} ? disabled : ''">
-                <a th:href="@{/category}">First</a>
+                <a th:href="@{/category(categoryId=${categoryId.get()})}">First</a>
             </li>
             <li th:if="${products.totalPages > 0}" class="page-link"
                 th:each="pageNumber : ${pageNumbers}">
-                <a th:href="@{/category(size=${products.size}, page=${pageNumber})}"
+                <a th:href="@{/category(size=${products.size}, page=${pageNumber}, categoryId=${categoryId.get()})}"
                    th:text=${pageNumber}
                    th:class="${pageNumber==products.number + 1} ? active" class="page-link">
                 </a>
             </li>
             <li th:class="${currentPage == pageNumbers[pageNumbers.size() - 1] ? 'disabled' : ''}">
-                <a th:href="@{/category(page=${pageNumbers[pageNumbers.size() - 1]})}">Last</a>
+                <a th:href="@{/category(page=${pageNumbers[pageNumbers.size() - 1]}, categoryId=${categoryId.get()})}">Last</a>
             </li>
         </ul>
     </nav>
