@@ -18,7 +18,7 @@
             <div th:each="product, iStat : ${products.content}"
                  th:style="${iStat.odd}? 'font-weight: bold;'"
                  th:alt-title="${iStat.even}? 'even' : 'odd'">
-                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
+                <img th:src="|${product.image.link}|" th:alt="|${product.image.link}|">
                 <a th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></a>
                 <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
                 <span class="price" th:text="${product.price}"></span>
