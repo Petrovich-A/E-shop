@@ -27,7 +27,7 @@
     <div th:each="p : ${cartDto.getProducts()}" class="product-block">
         <div class="product">
             <div class="product-image">
-                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
+                <img th:src="|${p.image.link}|" th:alt="|${p.image.link}|">
             </div>
             <div class="product-name" th:text="${p.name}"></div>
             <div class="product-description" th:text="${p.description}"></div>

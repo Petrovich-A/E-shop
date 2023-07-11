@@ -13,7 +13,7 @@
 <div class="main-content">
     <div class="one-card" th:if="${product!=null}">
         <h2>Product card</h2>
-        <img class="one-card" src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
+        <img class="one-card" th:src="|${product.image.link}|" th:alt="|${product.image.link}|">
         <a th:href="@{'/product/' + ${product.productId}}" th:text="${product.name}"></a>
         <span class="one-card-price" th:utext="${'&#36;'+'&nbsp;'}"></span>
         <span class="one-card-price" th:text="${product.price}"></span>
