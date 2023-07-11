@@ -29,7 +29,7 @@
         <h2>Product Card</h2>
         <div class="card-block">
             <div th:each="p : ${products}">
-                <img src="/img/error.png" alt="Denim Jeans">
+                <img th:src="|${p.image.link}|" th:alt="|${p.image.link}|">
                 <a th:href="@{'/product/' + ${p.productId}}" th:text="${p.name}"></a>
                 <span class="price" th:utext="${'&#36;'+'&nbsp;'}"></span>
                 <span class="price" th:text="${p.price}"></span>
