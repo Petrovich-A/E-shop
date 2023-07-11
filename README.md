@@ -29,6 +29,7 @@
     * [Run Locally](#running-run-locally)
     * [Database structure](#key-database-structure)
 - [Roadmap](#compass-roadmap)
+- [Layout color palette](#art-color)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
 
@@ -109,6 +110,16 @@ Clone the project
 * [x] add Spring Security authentication form Login custom page with Database
 * [x] add Spring Security roles
 * [x] add Spring Security's remember me feature
+* [x] add images for according products
+
+<!-- Color -->
+## :art: color:
+ 
+|   HEX  | RGB                  |
+|-----|----------------------|
+|  #04AA6D   | rgb: (4, 170, 109)   |
+|   #1ad18c  | rgb: (26, 209, 140)  |
+|   #e9e9e9  | rgb: (233, 233, 233) |
 
 ## :handshake: Contact
 

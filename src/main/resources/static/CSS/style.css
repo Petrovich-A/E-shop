@@ -317,10 +317,11 @@ button:hover, a:hover {
 /**/
 .card-product {
     padding: 0 2px 10px 2px;
+    /*border: 1px solid red;*/
 }
 
 .card-block {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
     /*border: 1px solid greenyellow;*/
     display: flex;
@@ -334,6 +335,7 @@ button:hover, a:hover {
 
 .card-block img {
     width: 90%;
+    height: 65%;
 }
 
 .title {
@@ -569,46 +571,22 @@ button:hover, a:hover {
 /*order page*/
 /*table*/
 .order-content {
-    padding: 10px 0 30px 70px;
+    padding: 10px 0 10px 10px;
     text-align: center;
-    vertical-align: middle;
 }
 
 .header {
-    font-weight: bold;
-}
-
-.product-row {
-    margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 10px 0;
 }
 
-.col {
-    position: relative;
-    width: 100%;
-    flex: 1;
+.product-image img {
+    max-width: 100px;
+    max-height: 100px;
 }
-
-.col2 {
-    position: relative;
-    width: 100%;
-    flex: 2;
-}
-
-.col3 {
-    position: relative;
-    width: 100%;
-    flex: 3;
-}
-
-.col4 {
-    position: relative;
-    width: 100%;
-    flex: 2;
-}
-
 
 /*error page*/
 /**/
@@ -638,7 +616,7 @@ button:hover, a:hover {
 /*Order history page*/
 /**/
 table {
-    margin-top: 100px;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
