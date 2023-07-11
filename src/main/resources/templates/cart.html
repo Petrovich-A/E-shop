@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Cart page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -14,7 +15,7 @@
     <button type="submit" class="clear-cart-btn">Clear cart</button>
 </form>
 <div class="shopping-cart">
-    <p th:text="${user.name}"></p>
+    <p sec:authentication="principal.username"></p>
     <div class="column-labels">
         <label class="product-image">Image</label>
         <label class="product-name">Name</label>

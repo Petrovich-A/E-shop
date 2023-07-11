@@ -1,12 +1,14 @@
 package by.petrovich.eshop.controller;
 
+import by.petrovich.eshop.dto.CartDto;
 import by.petrovich.eshop.service.CategoryService;
 import by.petrovich.eshop.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.petrovich.eshop.utils.PageName.ADMIN_PAGE;
@@ -18,9 +20,15 @@ import static by.petrovich.eshop.utils.PageName.REGISTRATION_PAGE;
 
 @RestController
 @RequiredArgsConstructor
+@SessionAttributes({"cartDto"})
 public class GoToController {
     private final CategoryService categoryService;
     private final UserService userService;
+
+    @ModelAttribute("cartDto")
+    public CartDto initializeCartSessionObject() {
+        return new CartDto();
+    }
 
     @GetMapping("/home")
     public ModelAndView showHomePage() {
