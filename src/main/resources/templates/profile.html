@@ -20,7 +20,7 @@
     <span>email: </span>
     <span sec:authentication="principal.email"></span>
     <p></p>
-    <span class="title" sec:authentication="principal.role"></span>
+    <span class="title" th:text="${#authentication.getAuthorities()[0].authority}"></span>
     <p></p>
     <span>balance: </span>
     <span sec:authentication="principal.balance"></span>
