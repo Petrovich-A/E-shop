@@ -8,7 +8,9 @@
     <div sec:authorize="isAuthenticated()">
         <a class="fa badge fa-5x" href="/logout">&#xf08b Log out</a>
         <a class="fa badge fa-5x" href="/profile">&#xf007 Profile</a>
-        <a class="fa badge-cart fa-5x" href="/cart" th:value="${session.cartDto.quantity}">&#xf07a Cart</a>
+        <a class="fa badge-cart fa-5x" href="/cart"
+           th:value="${session?.cartDto?.quantity != null ? session.cartDto.quantity : '0'}">
+            &#xf07a Cart</a>
     </div>
     <div sec:authorize="hasRole('ADMIN')">
         <a class="fa badge fa-5x" href="/admin">Admin</a>
