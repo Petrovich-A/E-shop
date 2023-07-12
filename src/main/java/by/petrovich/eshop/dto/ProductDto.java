@@ -1,5 +1,6 @@
 package by.petrovich.eshop.dto;
 
+import by.petrovich.eshop.entity.Image;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -23,5 +24,5 @@ public class ProductDto {
     private String description;
     @DecimalMin(value = "0.0")
     private double price;
-
+    private Image image;
 }
