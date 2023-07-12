@@ -10,30 +10,49 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <div class="order-content">
-    <h1 th:text="${order.orderId}">Order</h1>
-    <h3 th:text="${order.createdAt}">createdAt</h3>
-    <h3 sec:authentication="principal.username">Name</h3>
-
-    <div class="header">
-        <label class="product-image">Image</label>
-        <label class="product-name">Name</label>
-        <label class="product-description">Description</label>
-        <label class="product-price">Price</label>
-    </div>
-
-    <div th:each="p : ${order.products}" class="product-row">
-        <div class="col">
-            <div class="product-image">
-                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
-            </div>
-            <div class="col" th:text="${p.name}"></div>
-            <div class="col2" th:text="${p.description}"></div>
-            <div class="col" th:utext="${'&#36;'+'&nbsp;'} + ${p.price}"></div>
-        </div>
-    </div>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Creation Date</th>
+            <th>Customer Name</th>
+        </tr>
+        <tr>
+            <td th:text="${order.orderId}">Order</td>
+            <td th:text="${order.createdAt}">createdAt</td>
+            <td sec:authentication="principal.username">Name</td>
+        </tr>
+    </table>
+    <table>
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${order.products}">
+            <td>
+                <div class="product-image">
+                    <img th:src="|${p.image.link}|" th:alt="|${p.image.link}|">
+                </div>
+            </td>
+            <td>
+                <div th:text="${p.name}"></div>
+            </td>
+            <td>
+                <div th:text="${p.description}"></div>
+            </td>
+            <td>
+                <div th:utext="${'&#36;'+'&nbsp;'} + ${p.price}"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
 </html>

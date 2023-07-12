@@ -19,7 +19,6 @@ public class RegistrationFormDto {
     private String name;
     @NotBlank(message = "Password is required")
     @Size(min = 2, max = 20, message = "Password id is required")
-    // TODO: add validator 28 мая 2023 г.
     private String password;
     @NotNull
     @Email(message = "Email is not valid")

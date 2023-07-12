@@ -1,4 +1,4 @@
-package by.petrovich.eshop;
+package by.petrovich.eshop.utils;
 
 public class PageName {
     public static final String HOME_PAGE = "home";

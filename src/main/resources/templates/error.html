@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <div class="error-content">
     <h2>Error</h2>
     <p>Oops, looks like the page is lost.
@@ -21,5 +21,5 @@
     </a>
 </div>
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>

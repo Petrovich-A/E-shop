@@ -60,7 +60,7 @@ public class CustomUserDetail implements UserDetails {
         return user.getEmail();
     }
 
-    public String getRole() {
+    public String getRoleName() {
         return user.getRole().getName();
     }
 

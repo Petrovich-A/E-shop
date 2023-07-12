@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Cart page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -8,13 +9,13 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <h2>Shopping Cart</h2>
 <form th:action="@{'/cart/clear'}" method="post">
     <button type="submit" class="clear-cart-btn">Clear cart</button>
 </form>
 <div class="shopping-cart">
-    <p th:text="${user.name}"></p>
+    <p sec:authentication="principal.username"></p>
     <div class="column-labels">
         <label class="product-image">Image</label>
         <label class="product-name">Name</label>
@@ -26,7 +27,7 @@
     <div th:each="p : ${cartDto.getProducts()}" class="product-block">
         <div class="product">
             <div class="product-image">
-                <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans">
+                <img th:src="|${p.image.link}|" th:alt="|${p.image.link}|">
             </div>
             <div class="product-name" th:text="${p.name}"></div>
             <div class="product-description" th:text="${p.description}"></div>
@@ -51,5 +52,5 @@
     </div>
 </div>
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>

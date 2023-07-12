@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-<div th:insert="~{include/topnav :: navigation}"></div>
+<div th:insert="~{fragment/topnav :: navigation}"></div>
 <div class="card-profile">
     <h2 style="text-align:center">User Profile Card</h2>
     <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
@@ -20,7 +20,7 @@
     <span>email: </span>
     <span sec:authentication="principal.email"></span>
     <p></p>
-    <span class="title" sec:authentication="principal.role"></span>
+    <span class="title" th:text="${#authentication.getAuthorities()[0].authority}"></span>
     <p></p>
     <span>balance: </span>
     <span sec:authentication="principal.balance"></span>
@@ -28,7 +28,7 @@
     <p></p>
     <span>birth date: </span>
     <span sec:authentication="principal.birthDate"></span>
-    <div style="margin: 24px 0;">
+    <div style="margin: 2px 0;">
         <a><i class="fa fa-twitter"></i></a>
         <a><i class="fa fa-linkedin"></i></a>
         <a><i class="fa fa-facebook"></i></a>
@@ -38,5 +38,5 @@
     </form>
 </div>
 </body>
-<div th:insert="~{include/footer :: footer}"></div>
+<div th:insert="~{fragment/footer :: footer}"></div>
 </html>

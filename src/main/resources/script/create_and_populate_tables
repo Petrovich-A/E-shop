@@ -5,7 +5,8 @@ DROP TABLE orders CASCADE;
 DROP TABLE carts CASCADE;
 DROP TABLE orders_products CASCADE;
 DROP TABLE roles CASCADE;
-DROP TABLE flyway_schema_history;
+TRUNCATE TABLE flyway_schema_history;
+DROP TABLE images;
 
 SELECT *
 FROM pg_catalog.pg_tables;
@@ -227,5 +228,16 @@ VALUES ('user'),
 
 SELECT * FROM roles;
 
-insert into orders_products (order_id, product_id)
-values ();
+
+SELECT * FROM products WHERE category_id = 1;
+SELECT count(*) FROM products WHERE category_id = 1;
+
+-- Creating junction table images
+--
+CREATE TABLE IF NOT EXISTS images
+(
+    image_id INTEGER NOT NULL,
+    link     VARCHAR(50) UNIQUE,
+    CONSTRAINT pk_images PRIMARY KEY (image_id)
+);
+

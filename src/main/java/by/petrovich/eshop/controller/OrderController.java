@@ -1,4 +1,4 @@
-package by.petrovich.eshop.controllers;
+package by.petrovich.eshop.controller;
 
 import by.petrovich.eshop.entity.User;
 import by.petrovich.eshop.service.OrderService;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import static by.petrovich.eshop.PageName.HOME_PAGE;
-import static by.petrovich.eshop.PageName.ORDER_HISTORY_PAGE;
-import static by.petrovich.eshop.PageName.ORDER_PAGE;
+import static by.petrovich.eshop.utils.PageName.HOME_PAGE;
+import static by.petrovich.eshop.utils.PageName.ORDER_HISTORY_PAGE;
+import static by.petrovich.eshop.utils.PageName.ORDER_PAGE;
 
 @Controller
 @SessionAttributes({"user"})
