@@ -9,6 +9,8 @@ import by.petrovich.eshop.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -65,9 +67,18 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public double calculateTotalPrice(List<ProductDto> productsDto) {
-        return productsDto.stream()
+        double sum = productsDto.stream()
                 .mapToDouble(ProductDto::getPrice)
                 .sum();
+        return round(sum);
+    }
+
+    private double round(double number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        decimalFormat.setRoundingMode(RoundingMode.CEILING);
+        String formattedNumber = decimalFormat.format(number);
+        formattedNumber = formattedNumber.replace(",", ".");
+        return Double.parseDouble(formattedNumber);
     }
 
 }

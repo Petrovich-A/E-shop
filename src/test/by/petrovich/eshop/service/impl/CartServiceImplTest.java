@@ -25,15 +25,15 @@ class CartServiceImplTest {
 
     @Test
     void testCalculateTotalPrice() {
-        double price1 = 10.0;
-        double price2 = 5.55;
+        double price1 = 19.99;
+        double price2 = 3.99;
         ProductDto productDto1 = ProductDto.builder().price(price1).build();
         ProductDto productDto2 = ProductDto.builder().price(price2).build();
         ArrayList<ProductDto> productsDto = new ArrayList<>();
         productsDto.add(productDto1);
         productsDto.add(productDto2);
         double actual = cartService.calculateTotalPrice(productsDto);
-        double expected = 15.55;
+        double expected = 23.98;
         assertEquals(expected, actual);
     }
 
